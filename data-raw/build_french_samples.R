@@ -65,7 +65,7 @@ if (!requireNamespace("udpipe", quietly = TRUE)) {
   stop("Package 'udpipe' must be installed to build udpipe samples")
 }
 
-model_path <- file.path("..", "french-gsd-ud-2.5-191206.udpipe")
+model_path <- file.path("..", "tests", "french-gsd-ud-2.5-191206.udpipe")
 if (!file.exists(model_path)) {
   stop("Could not find UD model at ", normalizePath(model_path, mustWork = FALSE))
 }

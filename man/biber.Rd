@@ -66,168 +66,170 @@ of those models. Thus, texts with irregular spellings, non-normative
 punctuation, etc. will likely produce unreliable outputs, unless taggers are
 tuned specifically for those purposes.
 
-The following features are detected. Square brackets in example sentences
-indicate the location of the feature.
+The following feature families are detected. Each description highlights
+typical French cues for the feature. The repository file
+\code{biber_features_equivalents_french.csv} and the packaged dataset
+\code{french_examples} list the exact examples that guide every heuristic.
 \subsection{Tense and aspect markers}{
 
 \describe{
-\item{f_01_past_tense}{Verbs in the past tense.}
-\item{f_02_perfect_aspect}{Verbs in the perfect aspect, indicated by "have" as an auxiliary verb (e.g. \emph{I [have] written this sentence.})}
-\item{f_03_present_tense}{Verbs in the present tense.}
+\item{f_01_past_tense}{Verbs in a past-tense form (e.g., \emph{il parlait}).}
+\item{f_02_perfect_aspect}{Perfect aspect built with auxiliaries such as \emph{avoir} or \emph{etre} plus a past participle (e.g., \emph{j'ai fini}).}
+\item{f_03_present_tense}{Finite verbs in the present tense (e.g., \emph{nous parlons}).}
 }
 }
 
 \subsection{Place and time adverbials}{
 
 \describe{
-\item{f_04_place_adverbials}{Place adverbials (e.g., \emph{above}, \emph{beside}, \emph{outdoors}; see list in \code{dict$f_04_place_adverbials})}
-\item{f_05_time_adverbials}{Time adverbials (e.g., \emph{early}, \emph{instantly}, \emph{soon}; see \code{dict$f_05_time_adverbials})}
+\item{f_04_place_adverbials}{Adverbs of place (e.g., \emph{dehors}, \emph{ailleurs}).}
+\item{f_05_time_adverbials}{Adverbs of time (e.g., \emph{bientot}, \emph{hier}).}
 }
 }
 
 \subsection{Pronouns and pro-verbs}{
 
 \describe{
-\item{f_06_first_person_pronouns}{First-person pronouns; see \code{dict$f_06_first_person_pronouns}}
-\item{f_07_second_person_pronouns}{Second-person pronouns; see \code{dict$f_07_second_person_pronouns}}
-\item{f_08_third_person_pronouns}{Third-person personal pronouns (excluding \emph{it}); see \code{dict$f_08_third_person_pronouns}}
-\item{f_09_pronoun_it}{Pronoun \emph{it}, \emph{its}, or \emph{itself}}
-\item{f_10_demonstrative_pronoun}{Pronouns being used to replace a noun (e.g. \emph{[That] is an example sentence.})}
-\item{f_11_indefinite_pronouns}{Indefinite pronouns (e.g., \emph{anybody}, \emph{nothing}, \emph{someone}; see \code{dict$f_11_indefinite_pronouns})}
-\item{f_12_proverb_do}{Pro-verb \emph{do}}
+\item{f_06_first_person_pronouns}{First-person pronouns (e.g., \emph{je}, \emph{nous}).}
+\item{f_07_second_person_pronouns}{Second-person pronouns (e.g., \emph{tu}, \emph{vous}).}
+\item{f_08_third_person_pronouns}{Third-person personal pronouns other than expletives (e.g., \emph{il}, \emph{elle}, \emph{ils}).}
+\item{f_09_pronoun_it}{Impersonal or expletive subjects (e.g., \emph{il} in \emph{il faut} or \emph{il pleut}).}
+\item{f_10_demonstrative_pronoun}{Standalone demonstratives that replace a noun (e.g., \emph{celui-ci}).}
+\item{f_11_indefinite_pronouns}{Indefinite pronouns (e.g., \emph{quelqu'un}, \emph{personne}).}
+\item{f_12_proverb_do}{Uses of \emph{faire} as a pro-verb (e.g., \emph{je le fais}).}
 }
 }
 
 \subsection{Questions}{
 
 \describe{
-\item{f_13_wh_question}{Direct \emph{wh-} questions (e.g., \emph{When are you leaving?})}
+\item{f_13_wh_question}{Direct interrogatives beginning with \emph{qui}, \emph{quoi}, \emph{ou}, etc.}
 }
 }
 
 \subsection{Nominal forms}{
 
 \describe{
-\item{f_14_nominalizations}{Nominalizations (nouns ending in \emph{-tion}, \emph{-ment}, \emph{-ness}, \emph{-ity}, e.g. \emph{adjustment}, \emph{abandonment})}
-\item{f_15_gerunds}{Gerunds (participial forms functioning as nouns)}
-\item{f_16_other_nouns}{Total other nouns}
+\item{f_14_nominalizations}{Nominalisations such as words ending in \emph{-tion}, \emph{-ment}, \emph{-age}.}
+\item{f_15_gerunds}{Gerunds or \emph{groupe infinitif} headed by \emph{en} (e.g., \emph{en travaillant}).}
+\item{f_16_other_nouns}{All other noun tokens once nominalisations and gerunds are excluded.}
 }
 }
 
 \subsection{Passives}{
 
 \describe{
-\item{f_17_agentless_passives}{Agentless passives (e.g., \emph{The task [was done].})}
-\item{f_18_by_passives}{\emph{by-} passives (e.g., \emph{The task [was done by Steve].})}
+\item{f_17_agentless_passives}{Passive clauses without an explicit agent (e.g., \emph{La decision a ete prise}).}
+\item{f_18_by_passives}{Passive clauses with an expressed agent (e.g., \emph{La decision a ete prise par le directeur}).}
 }
 }
 
 \subsection{Stative forms}{
 
 \describe{
-\item{f_19_be_main_verb}{\emph{be} as main verb}
-\item{f_20_existential_there}{Existential \emph{there} (e.g., \emph{[There] is a feature in this sentence.})}
+\item{f_19_be_main_verb}{\emph{etre} used as a lexical verb.}
+\item{f_20_existential_there}{Existential constructions (e.g., \emph{il y a}).}
 }
 }
 
 \subsection{Subordination features}{
 
 \describe{
-\item{f_21_that_verb_comp}{\emph{that} verb complements (e.g., \emph{I said [that he went].})}
-\item{f_22_that_adj_comp}{\emph{that} adjective complements (e.g., \emph{I'm glad [that you like it].})}
-\item{f_23_wh_clause}{\emph{wh-} clauses (e.g., \emph{I believed [what he told me].})}
-\item{f_24_infinitives}{Infinitives}
-\item{f_25_present_participle}{Present participial adverbial clauses (e.g., \emph{[Stuffing his mouth with cookies], Joe ran out the door.})}
-\item{f_26_past_participle}{Past participial adverbial clauses (e.g., \emph{[Built in a single week], the house would stand for fifty years.})}
-\item{f_27_past_participle_whiz}{Past participial postnominal (reduced relative) clauses (e.g., \emph{the solution [produced by this process]})}
-\item{f_28_present_participle_whiz}{Present participial postnominal (reduced relative) clauses (e.g., \emph{the event [causing this decline]})}
-\item{f_29_that_subj}{\emph{that} relative clauses on subject position (e.g., \emph{the dog [that bit me]})}
-\item{f_30_that_obj}{\emph{that} relative clauses on object position (e.g., \emph{the dog [that I saw]})}
-\item{f_31_wh_subj}{\emph{wh-} relatives on subject position (e.g., \emph{the man [who likes popcorn]})}
-\item{f_32_wh_obj}{\emph{wh-} relatives on object position (e.g., \emph{the man [who Sally likes]})}
-\item{f_33_pied_piping}{Pied-piping relative clauses (e.g., \emph{the manner [in which he was told]})}
-\item{f_34_sentence_relatives}{Sentence relatives (e.g., \emph{Bob likes fried mangoes, [which is the most disgusting thing I've ever heard of].})}
-\item{f_35_because}{Causative adverbial subordinator (\emph{because})}
-\item{f_36_though}{Concessive adverbial subordinators (\emph{although}, \emph{though})}
-\item{f_37_if}{Conditional adverbial subordinators (\emph{if}, \emph{unless})}
-\item{f_38_other_adv_sub}{Other adverbial subordinators (e.g., \emph{since}, \emph{while}, \emph{whereas})}
+\item{f_21_that_verb_comp}{Verb complements introduced by \emph{que} (e.g., \emph{je pense qu'il vient}).}
+\item{f_22_that_adj_comp}{Adjectival complements introduced by \emph{que} (e.g., \emph{je suis heureux que tu sois la}).}
+\item{f_23_wh_clause}{\emph{wh}-clauses such as \emph{ce que}, \emph{ce qui}.}
+\item{f_24_infinitives}{Infinitival clauses.}
+\item{f_25_present_participle}{Adverbial clauses headed by a present participle (e.g., \emph{en chantant}).}
+\item{f_26_past_participle}{Adverbial clauses headed by a past participle (e.g., \emph{construit en un an}).}
+\item{f_27_past_participle_whiz}{Post-nominal reduced relatives with past participles (e.g., \emph{la maison construite en 2020}).}
+\item{f_28_present_participle_whiz}{Post-nominal reduced relatives with present participles (e.g., \emph{les enfants jouant dans le parc}).}
+\item{f_29_that_subj}{Subject relatives introduced by \emph{qui} following a noun.}
+\item{f_30_that_obj}{Object relatives introduced by \emph{que}.}
+\item{f_31_wh_subj}{Subject relatives with \emph{lequel/laquelle/...}.}
+\item{f_32_wh_obj}{Object relatives with \emph{dont}, \emph{lequel/laquelle/...}.}
+\item{f_33_pied_piping}{Pied-piping relatives including the preposition (e.g., \emph{la maniere dans laquelle il procede}).}
+\item{f_34_sentence_relatives}{Sentence relatives such as \emph{ce qui} following a clause (e.g., \emph{Il a reussi, ce qui est remarquable}).}
+\item{f_35_because}{Causal subordinates (e.g., \emph{parce que}, \emph{car}).}
+\item{f_36_though}{Concessive subordinates (e.g., \emph{bien que}, \emph{meme si}).}
+\item{f_37_if}{Conditional subordinates (e.g., \emph{si}, \emph{a moins que}).}
+\item{f_38_other_adv_sub}{Other adverbial subordinators (e.g., \emph{tandis que}, \emph{lorsque}).}
 }
 }
 
 \subsection{Prepositional phrases, adjectives, and adverbs}{
 
 \describe{
-\item{f_39_prepositions}{Total prepositional phrases}
-\item{f_40_adj_attr}{Attributive adjectives (e.g., \emph{the [big] horse})}
-\item{f_41_adj_pred}{Predicative adjectives (e.g., \emph{The horse is [big].})}
-\item{f_42_adverbs}{Total adverbs}
+\item{f_39_prepositions}{Prepositions functioning as case markers.}
+\item{f_40_adj_attr}{Attributive adjectives placed before or alongside a noun (e.g., \emph{une grande maison}).}
+\item{f_41_adj_pred}{Predicative adjectives following a copula (e.g., \emph{la maison est grande}).}
+\item{f_42_adverbs}{Adverbs not counted elsewhere (e.g., \emph{vraiment}).}
 }
 }
 
 \subsection{Lexical specificity}{
 
 \describe{
-\item{f_43_type_token}{Type-token ratio (including punctuation), using the statistic chosen in \code{measure}, or TTR if there are fewer than 200 tokens in the smallest document.}
-\item{f_44_mean_word_length}{Average word length (across tokens, excluding punctuation)}
+\item{f_43_type_token}{Type-token ratio computed with the requested measure.}
+\item{f_44_mean_word_length}{Average token length (letters only).}
 }
 }
 
 \subsection{Lexical classes}{
 
 \describe{
-\item{f_45_conjuncts}{Conjuncts (e.g., \emph{consequently}, \emph{furthermore}, \emph{however}; see \code{dict$f_45_conjuncts})}
-\item{f_46_downtoners}{Downtoners (e.g., \emph{barely}, \emph{nearly}, \emph{slightly}; see \code{dict$f_46_downtoners})}
-\item{f_47_hedges}{Hedges (e.g., \emph{at about}, \emph{something like}, \emph{almost}; see \code{dict$f_47_hedges})}
-\item{f_48_amplifiers}{Amplifiers (e.g., \emph{absolutely}, \emph{extremely}, \emph{perfectly}; see \code{dict$f_48_amplifiers})}
-\item{f_49_emphatics}{Emphatics (e.g., \emph{a lot}, \emph{for sure}, \emph{really}; see \code{dict$f_49_emphatics})}
-\item{f_50_discourse_particles}{Discourse particles (e.g., sentence-initial \emph{well}, \emph{now}, \emph{anyway}; see \code{dict$f_50_discourse_particles})}
-\item{f_51_demonstratives}{Demonstratives (\emph{that}, \emph{this}, \emph{these}, or \emph{those} used as determiners, e.g. \emph{[That] is the feature})}
+\item{f_45_conjuncts}{Sentence connectors such as \emph{cependant}, \emph{toutefois}.}
+\item{f_46_downtoners}{Downtoners (e.g., \emph{a peine}, \emph{presque}).}
+\item{f_47_hedges}{Hedges or approximators (e.g., \emph{environ}, \emph{quelque peu}).}
+\item{f_48_amplifiers}{Amplifiers (e.g., \emph{tres}, \emph{particulierement}).}
+\item{f_49_emphatics}{Emphatic markers (e.g., \emph{vraiment}, \emph{bien}).}
+\item{f_50_discourse_particles}{Discourse particles often sentence-initial (e.g., \emph{eh bien}, \emph{bon}).}
+\item{f_51_demonstratives}{Demonstrative determiners (e.g., \emph{ce}, \emph{cet}, \emph{cette}, \emph{ces}).}
 }
 }
 
 \subsection{Modals}{
 
 \describe{
-\item{f_52_modal_possibility}{Possibility modals (\emph{can}, \emph{may}, \emph{might}, \emph{could})}
-\item{f_53_modal_necessity}{Necessity modals (\emph{ought}, \emph{should}, \emph{must})}
-\item{f_54_modal_predictive}{Predictive modals (\emph{will}, \emph{would}, \emph{shall})}
+\item{f_52_modal_possibility}{Verbs expressing possibility (e.g., \emph{pouvoir}, \emph{il se peut}).}
+\item{f_53_modal_necessity}{Necessity modals (e.g., \emph{devoir}, \emph{falloir}).}
+\item{f_54_modal_predictive}{Predictive markers (e.g., \emph{aller} + infinitive, \emph{devoir} au futur).}
 }
 }
 
 \subsection{Specialized verb classes}{
 
 \describe{
-\item{f_55_verb_public}{Public verbs (e.g., \emph{assert}, \emph{declare}, \emph{mention}; see \code{dict$f_55_verb_public})}
-\item{f_56_verb_private}{Private verbs (e.g., \emph{assume}, \emph{believe}, \emph{doubt}, \emph{know}; see \code{dict$f_56_verb_private})}
-\item{f_57_verb_suasive}{Suasive verbs (e.g., \emph{command}, \emph{insist}, \emph{propose}; see \code{dict$f_57_verb_suasive})}
-\item{f_58_verb_seem}{\emph{seem} and \emph{appear}}
+\item{f_55_verb_public}{Public communication verbs (e.g., \emph{declarer}, \emph{annoncer}).}
+\item{f_56_verb_private}{Private cognition verbs (e.g., \emph{penser}, \emph{croire}).}
+\item{f_57_verb_suasive}{Suasive verbs (e.g., \emph{ordonner}, \emph{proposer}).}
+\item{f_58_verb_seem}{Verbs of seeming (e.g., \emph{sembler}, \emph{paraître}).}
 }
 }
 
 \subsection{Reduced forms and dispreferred structures}{
 
 \describe{
-\item{f_59_contractions}{Contractions}
-\item{f_60_that_deletion}{Subordinator \emph{that} deletion (e.g., \emph{I think [he went].})}
-\item{f_61_stranded_preposition}{Stranded prepositions (e.g., \emph{the candidate that I was thinking [of]})}
-\item{f_62_split_infinitive}{Split infinitives (e.g., \emph{He wants [to convincingly prove] that ...})}
-\item{f_63_split_auxiliary}{Split auxiliaries (e.g., \emph{They [were apparently shown] to ...})}
+\item{f_59_contractions}{Contractions (e.g., \emph{j'ai}, \emph{c'etait}).}
+\item{f_60_that_deletion}{Subordinator \emph{que} omission in complement clauses.}
+\item{f_61_stranded_preposition}{Stranded prepositions (e.g., \emph{la personne que je parlais avec}).}
+\item{f_62_split_infinitive}{Split infinitives (e.g., \emph{de vraiment comprendre}).}
+\item{f_63_split_auxiliary}{Auxiliary and participle separated by an adverb (e.g., \emph{a probablement ete vu}).}
 }
 }
 
 \subsection{Co-ordination}{
 
 \describe{
-\item{f_64_phrasal_coordination}{Phrasal co-ordination (N and N; Adj and Adj; V and V; Adv and Adv)}
-\item{f_65_clausal_coordination}{Independent clause co-ordination (clause-initial \emph{and})}
+\item{f_64_phrasal_coordination}{Coordination of like phrases (e.g., \emph{pommes et oranges}).}
+\item{f_65_clausal_coordination}{Coordination of independent clauses (e.g., sentence-initial \emph{et}).}
 }
 }
 
 \subsection{Negation}{
 
 \describe{
-\item{f_66_neg_synthetic}{Synthetic negation (e.g., \emph{No answer is good enough for Jones.})}
-\item{f_67_neg_analytic}{Analytic negation (e.g., \emph{That isn't good enough.})}
+\item{f_66_neg_synthetic}{Synthetic negation with determiners or adjectives (e.g., \emph{aucun}, \emph{nul}).}
+\item{f_67_neg_analytic}{Analytic negation with \emph{ne} ... adverb (e.g., \emph{ne ... pas}, \emph{ne ... jamais}).}
 }
 }
 }

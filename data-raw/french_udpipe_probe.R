@@ -11,7 +11,7 @@ if (length(missing_pkgs) > 0) {
   stop("Install required packages first: ", paste(missing_pkgs, collapse = ", "))
 }
 
-model_path <- file.path("..", "french-gsd-ud-2.5-191206.udpipe")
+model_path <- file.path("..", "tests", "french-gsd-ud-2.5-191206.udpipe")
 if (!file.exists(model_path)) {
   stop("Could not find UD model at ", model_path)
 }

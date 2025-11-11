@@ -614,7 +614,7 @@ test_that("French impersonal, existential, and nominal features counted", {
 test_that("udpipe connector handles missing xpos", {
   skip_if_not_installed("udpipe")
 
-  model_path <- test_path("..", "..", "..", "french-gsd-ud-2.5-191206.udpipe")
+  model_path <- test_path("..", "french-gsd-ud-2.5-191206.udpipe")
   skip_if_not(file.exists(model_path), "French UD model not available")
 
   model <- udpipe::udpipe_load_model(model_path)

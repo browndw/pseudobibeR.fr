@@ -173,16 +173,16 @@
   example: La voiture que nous avons achetée est bleue.
   count: 1.0
 - feature: f_31_wh_subj
-  example: L'homme qui a téléphoné est mon cousin.
+  example: Les candidats lesquels réussissent l'examen obtiennent le poste.
   count: 1.0
 - feature: f_31_wh_subj
-  example: Les personnes qui arrivent en retard doivent attendre.
+  example: Les appareils lesquels fonctionnent sans arrêt surchauffent.
   count: 1.0
 - feature: f_32_wh_obj
-  example: La femme que tu as rencontrée est ma sœur.
+  example: Les raisons dont il parle sont claires.
   count: 1.0
 - feature: f_32_wh_obj
-  example: Le film que nous avons vu était excellent.
+  example: Les projets dont nous discutons avancent vite.
   count: 1.0
 - feature: f_33_pied_piping
   example: C'est la manière dont il parle.

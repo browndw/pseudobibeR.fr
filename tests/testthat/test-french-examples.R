@@ -6,8 +6,17 @@ test_that("UDPipe french examples align with expected feature counts", {
   package_tests <- normalizePath(file.path(tests_dir, ".."), mustWork = FALSE)
   package_root <- normalizePath(file.path(package_tests, ".."), mustWork = FALSE)
   workspace_root <- normalizePath(file.path(package_root, ".."), mustWork = FALSE)
-  model_path <- normalizePath(file.path(workspace_root, "french-gsd-ud-2.5-191206.udpipe"), mustWork = FALSE)
-  skip_if(!file.exists(model_path), "UDPipe French model missing")
+
+  candidate_paths <- c(
+    testthat::test_path("..", "french-gsd-ud-2.5-191206.udpipe"),
+    file.path(package_root, "tests", "french-gsd-ud-2.5-191206.udpipe"),
+    file.path(workspace_root, "tests", "french-gsd-ud-2.5-191206.udpipe")
+  )
+
+  existing_models <- candidate_paths[file.exists(candidate_paths)]
+  skip_if(length(existing_models) == 0, "UDPipe French model missing")
+
+  model_path <- normalizePath(existing_models[[1]], mustWork = TRUE)
 
   model <- udpipe::udpipe_load_model(model_path)
   if ("udpipe_free_model" %in% getNamespaceExports("udpipe")) {
