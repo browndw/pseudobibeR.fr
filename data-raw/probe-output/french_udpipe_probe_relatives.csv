@@ -1,0 +1,4 @@
+doc_id,sentence_id,token_id,token,lemma,upos,feats,dep_rel
+fr_probe_02,1,7,que,que,PRON,PronType=Rel,obj
+fr_probe_08,1,5,dont,dont,PRON,PronType=Rel,iobj
+fr_probe_09,1,2,que,que,SCONJ,,fixed

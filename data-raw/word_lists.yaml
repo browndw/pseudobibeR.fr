@@ -1,0 +1,372 @@
+pronoun_matchlist:
+  - celle
+  - celles
+  - celles-ci
+  - celles-là
+  - cela
+  - ce
+  - celui
+  - celui-ci
+  - celui-là
+  - cet
+  - cette
+  - ces
+  - ceux
+  - ceux-ci
+  - elle
+  - elles
+  - elle-même
+  - eux
+  - eux-mêmes
+  - il
+  - ils
+  - je
+  - les siens
+  - lui
+  - lui-même
+  - moi
+  - me
+  - m'
+  - moi-même
+  - nous
+  - nous-mêmes
+  - on
+  - se
+  - soi
+  - s'
+  - soi-même
+  - te
+  - t'
+  - tu
+  - toi
+  - toi-même
+  - vous
+  - vous-même
+proverb_object_pronouns:
+  - le
+  - la
+  - les
+  - "l'"
+  - "l’"
+  - ce
+  - cela
+  - ça
+impersonal_verbs:
+  - pleuvoir
+  - neiger
+  - bruiner
+  - grêler
+  - venter
+  - tonner
+  - geler
+linking_matchlist:
+  - être
+  - paraître
+  - sembler
+  - demeurer
+  - rester
+  - devenir
+  - avoir
+verb_matchlist:
+  - accepter
+  - accorder
+  - affirmer
+  - annoncer
+  - anticiper
+  - apprendre
+  - assumer
+  - commander
+  - comprendre
+  - conclure
+  - connaître
+  - craindre
+  - croire
+  - décider
+  - déclarer
+  - découvrir
+  - demander
+  - démontrer
+  - déterminer
+  - deviner
+  - dire
+  - donner des instructions
+  - douter
+  - écrire
+  - entendre
+  - espérer
+  - estimer
+  - exiger
+  - expliquer
+  - imaginer
+  - impliquer
+  - indiquer
+  - informer
+  - insister
+  - jurer
+  - mendier
+  - mentionner
+  - montrer
+  - nantir
+  - nier
+  - ordonner
+  - organiser
+  - oublier
+  - parler
+  - penser
+  - proclamer
+  - promettre
+  - prononcer
+  - proposer
+  - protester
+  - prouver
+  - rappeler
+  - réaliser
+  - réclamer
+  - recommander
+  - reconnaître
+  - remarquer
+  - répondre
+  - révéler
+  - se plaindre
+  - sentir
+  - signaler
+  - signifier
+  - stipuler
+  - suggérer
+  - supposer
+  - trouver
+  - voir
+nominalization_stoplist:
+  # -tion/-sion endings
+  - lion
+  - avion
+  - camion
+  
+  # -ment endings
+  - moment
+  - élément
+  - document
+  - monument
+  - aliment
+  - ciment
+  - comment
+  
+  # -age endings
+  - âge
+  - cage
+  - page
+  - rage
+  - sage
+  - image
+  - plage
+  - village
+  - fromage
+  - message
+  - garage
+  
+  # -ure endings
+  - nature
+  - figure
+  - allure
+  - aventure
+  - créature
+  - torture
+  - pure
+  - dure
+  - sûre
+  - mure
+  
+  # -ance/-ence endings
+  - lance
+  - chance
+  - France
+  - romance
+  - danse
+  - once
+  - science
+  - essence
+  
+  # -ité endings
+  - cité
+  - comité
+  - été
+  - côté
+  - moitié
+  - pitié
+  
+  # -esse endings
+  - messe
+  
+  # -isme endings
+  - prisme
+  - abîme
+gerund_stoplist:
+  # Common adjectives ending in -ant
+  - important
+  - constant
+  - élégant
+  - méchant
+  - puissant
+  - géant
+  - bruyant
+  - grand
+  - savant
+  
+  # Nouns ending in -ant
+  - enfant
+  - éléphant
+  - diamant
+  - restaurant
+  - implant
+  - chant
+  
+  # Prepositions/adverbs ending in -ant
+  - avant
+  - devant
+  - maintenant
+  - durant
+  - pendant
+  - dorénavant
+  - cependant
+  - pourtant
+  - autant
+  - tant
+  
+  # Nouns/adjectives that are derived from verbs but function as nouns/adjectives
+  - commerçant
+  - fabricant
+  - habitant
+  - occupant
+  - passant
+  - gagnant
+  - perdant
+  - croyant
+  - représentant
+  - assistant
+  - consultant
+  - débutant
+  - militant
+  
+  # If catching -ent endings too:
+  - moment
+  - élément
+  - document
+  - monument
+  - aliment
+  - vent
+  - dent
+  - cent
+  - agent
+  - argent
+  - parent
+  - talent
+  - absent
+  - présent
+  - différent
+  - évident
+  - urgent
+  - prudent
+  - violent
+  - excellent
+  - patient
+  - client
+  - accident
+  - président
+  - étudiant
+nominalization_suffixes:
+  - tion
+  - sion
+  - ment
+  - ments
+  - age
+  - ages
+  - ure
+  - ures
+  - ance
+  - ances
+  - ence
+  - ences
+  - esse
+  - esses
+  - ité
+  - ités
+  - isation
+  - isations
+  - issement
+  - issements
+multiword_patterns:
+  - à bord
+  - à côté
+  - à l'est
+  - à l'étage
+  - à l'étranger
+  - à l'extérieur
+  - à l'intérieur
+  - à l'origine
+  - à l'ouest
+  - à la mer
+  - à peine
+  - à peu de choses près
+  - à peu près
+  - à proximité
+  - à savoir
+  - à terre
+  - à travers
+  - au loin
+  - au nord
+  - au sud
+  - ce soir
+  - dans les environs
+  - dans les terres
+  - de manière similaire
+  - de même
+  - de nos jours
+  - de plus
+  - de toute façon
+  - donner des instructions
+  - en amont
+  - en aval
+  - en bas
+  - en dessous
+  - en montée
+  - en quelque sorte
+  - encore une fois
+  - les siens
+  - n'importe qui
+  - n'importe quoi
+  - nulle part
+  - par ailleurs
+  - par conséquent
+  - par exemple
+  - par voie de terre
+  - peu de temps après
+  - plus ou moins
+  - plus tard
+  - plus tôt
+  - quelque chose comme
+  - se plaindre
+  - sous le pied
+  - sous terre
+  - tout à fait
+  - tout le monde
+  - un peu
+  - une fois
+neg_synthetic_determiners:
+  - aucun
+  - aucune
+  - nul
+  - nulle
+  - ni
+  - sans
+negation_particles:
+  - ne
+neg_analytic_adverbs:
+  - pas
+  - plus
+  - jamais
+  - guère
+  - point
+  - personne
+  - rien
+  - nullement
+

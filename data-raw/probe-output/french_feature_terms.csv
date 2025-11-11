@@ -1,0 +1,223 @@
+Feature,term
+f_04_place_adverbials,à bord
+f_04_place_adverbials,à côté
+f_04_place_adverbials,à l'est
+f_04_place_adverbials,à l'étage
+f_04_place_adverbials,à l'étranger
+f_04_place_adverbials,à l'extérieur
+f_04_place_adverbials,à l'intérieur
+f_04_place_adverbials,à l'ouest
+f_04_place_adverbials,à la mer
+f_04_place_adverbials,à proximité
+f_04_place_adverbials,à terre
+f_04_place_adverbials,à travers
+f_04_place_adverbials,au loin
+f_04_place_adverbials,au nord
+f_04_place_adverbials,au sud
+f_04_place_adverbials,au-dessous
+f_04_place_adverbials,au-dessus
+f_04_place_adverbials,autour
+f_04_place_adverbials,dans les environs
+f_04_place_adverbials,dans les terres
+f_04_place_adverbials,derrière
+f_04_place_adverbials,descendant
+f_04_place_adverbials,devant
+f_04_place_adverbials,en amont
+f_04_place_adverbials,en aval
+f_04_place_adverbials,en bas
+f_04_place_adverbials,en dessous
+f_04_place_adverbials,en montée
+f_04_place_adverbials,localement
+f_04_place_adverbials,loin
+f_04_place_adverbials,nulle part
+f_04_place_adverbials,par voie de terre
+f_04_place_adverbials,sous le pied
+f_04_place_adverbials,sous terre
+f_05_time_adverbials,à l'origine
+f_05_time_adverbials,actuellement
+f_05_time_adverbials,aujourd'hui
+f_05_time_adverbials,autrefois
+f_05_time_adverbials,ce soir
+f_05_time_adverbials,de nos jours
+f_05_time_adverbials,demain
+f_05_time_adverbials,encore une fois
+f_05_time_adverbials,ensuite
+f_05_time_adverbials,éventuellement
+f_05_time_adverbials,hier
+f_05_time_adverbials,immédiatement
+f_05_time_adverbials,initialement
+f_05_time_adverbials,instantanément
+f_05_time_adverbials,maintenant
+f_05_time_adverbials,momentanément
+f_05_time_adverbials,peu de temps après
+f_05_time_adverbials,plus tard
+f_05_time_adverbials,plus tôt
+f_05_time_adverbials,précédemment
+f_05_time_adverbials,récemment
+f_05_time_adverbials,simultanément
+f_05_time_adverbials,tardivement
+f_05_time_adverbials,tôt
+f_05_time_adverbials,ultérieurement
+f_05_time_adverbials,une fois
+f_06_first_person_pronouns,je
+f_06_first_person_pronouns,moi
+f_06_first_person_pronouns,notre
+f_06_first_person_pronouns,nous
+f_06_first_person_pronouns,nous-mêmes
+f_07_second_person_pronouns,vous
+f_07_second_person_pronouns,vous-même
+f_08_third_person_pronouns,elle
+f_08_third_person_pronouns,eux
+f_08_third_person_pronouns,eux-mêmes
+f_08_third_person_pronouns,il
+f_08_third_person_pronouns,les siens
+f_08_third_person_pronouns,lui
+f_10_demonstrative_pronoun,cela
+f_10_demonstrative_pronoun,ceux
+f_10_demonstrative_pronoun,ceux-ci
+f_11_indefinite_pronoun,chose
+f_11_indefinite_pronoun,n'importe qui
+f_11_indefinite_pronoun,n'importe quoi
+f_11_indefinite_pronoun,nulle part
+f_11_indefinite_pronoun,personne
+f_11_indefinite_pronoun,quelqu'un
+f_11_indefinite_pronoun,quelque
+f_11_indefinite_pronoun,quelquechose
+f_11_indefinite_pronoun,rien
+f_11_indefinite_pronoun,tout
+f_11_indefinite_pronoun,tout le monde
+f_45_conjuncts,à savoir
+f_45_conjuncts,ainsi
+f_45_conjuncts,alternativement
+f_45_conjuncts,de manière similaire
+f_45_conjuncts,de même
+f_45_conjuncts,de plus
+f_45_conjuncts,donc
+f_45_conjuncts,inversement
+f_45_conjuncts,néanmoins
+f_45_conjuncts,nonobstant
+f_45_conjuncts,par ailleurs
+f_45_conjuncts,par conséquent
+f_45_conjuncts,par exemple
+f_46_downtoners,à peine
+f_46_downtoners,légèrement
+f_46_downtoners,modérément
+f_46_downtoners,partiellement
+f_46_downtoners,pratiquement
+f_46_downtoners,presque
+f_46_downtoners,seulement
+f_46_downtoners,simplement
+f_46_downtoners,un peu
+f_47_hedges,à peu de choses près
+f_47_hedges,à peu près
+f_47_hedges,en quelque sorte
+f_47_hedges,environ
+f_47_hedges,peut-être
+f_47_hedges,plus ou moins
+f_47_hedges,quelque chose comme
+f_48_amplifiers,absolument
+f_48_amplifiers,complètement
+f_48_amplifiers,énormément
+f_48_amplifiers,fort
+f_48_amplifiers,fortement
+f_48_amplifiers,intensément
+f_48_amplifiers,parfaitement
+f_48_amplifiers,totalement
+f_48_amplifiers,tout à fait
+f_48_amplifiers,très
+f_49_emphatics,beaucoup
+f_49_emphatics,sûr
+f_49_emphatics,vraiment
+f_50_discourse_particles,bien
+f_50_discourse_particles,de toute façon
+f_50_discourse_particles,encore
+f_50_discourse_particles,maintenant
+f_51_demonstratives,cela
+f_51_demonstratives,ceux
+f_51_demonstratives,ceux-ci
+f_52_modal_possibility,peut
+f_52_modal_possibility,pourrait
+f_52_modal_possibility,pouvoir
+f_53_modal_necessity,devoir
+f_53_modal_necessity,devrait
+f_53_modal_necessity,doit
+f_53_modal_necessity,peut-être
+f_54_modal_predictive,devoir
+f_54_modal_predictive,sera
+f_54_modal_predictive,serait
+f_55_verb_public,accepter
+f_55_verb_public,affirmer
+f_55_verb_public,annoncer
+f_55_verb_public,déclarer
+f_55_verb_public,écrire
+f_55_verb_public,expliquer
+f_55_verb_public,informer
+f_55_verb_public,insister
+f_55_verb_public,jurer
+f_55_verb_public,mentionner
+f_55_verb_public,nier
+f_55_verb_public,parler
+f_55_verb_public,proclamer
+f_55_verb_public,promettre
+f_55_verb_public,protester
+f_55_verb_public,réclamer
+f_55_verb_public,reconnaître
+f_55_verb_public,remarquer
+f_55_verb_public,répondre
+f_55_verb_public,se plaindre
+f_55_verb_public,signaler
+f_55_verb_public,suggérer
+f_56_verb_private,anticiper
+f_56_verb_private,apprendre
+f_56_verb_private,assumer
+f_56_verb_private,comprendre
+f_56_verb_private,conclure
+f_56_verb_private,connaître
+f_56_verb_private,craindre
+f_56_verb_private,croire
+f_56_verb_private,décider
+f_56_verb_private,découvrir
+f_56_verb_private,démontrer
+f_56_verb_private,déterminer
+f_56_verb_private,deviner
+f_56_verb_private,dire
+f_56_verb_private,douter
+f_56_verb_private,entendre
+f_56_verb_private,espérer
+f_56_verb_private,estimer
+f_56_verb_private,imaginer
+f_56_verb_private,impliquer
+f_56_verb_private,indiquer
+f_56_verb_private,montrer
+f_56_verb_private,oublier
+f_56_verb_private,penser
+f_56_verb_private,prouver
+f_56_verb_private,rappeler
+f_56_verb_private,réaliser
+f_56_verb_private,reconnaître
+f_56_verb_private,révéler
+f_56_verb_private,sentir
+f_56_verb_private,signifier
+f_56_verb_private,supposer
+f_56_verb_private,trouver
+f_56_verb_private,voir
+f_57_verb_suasive,accepter
+f_57_verb_suasive,accorder
+f_57_verb_suasive,commander
+f_57_verb_suasive,décider
+f_57_verb_suasive,demander
+f_57_verb_suasive,donner des instructions
+f_57_verb_suasive,exiger
+f_57_verb_suasive,insister
+f_57_verb_suasive,mendier
+f_57_verb_suasive,nantir
+f_57_verb_suasive,ordonner
+f_57_verb_suasive,organiser
+f_57_verb_suasive,prononcer
+f_57_verb_suasive,proposer
+f_57_verb_suasive,recommander
+f_57_verb_suasive,stipuler
+f_57_verb_suasive,suggérer
+f_58_verb_seem,apparaître
+f_58_verb_seem,paraître
+f_58_verb_seem,sembler
