@@ -14,5 +14,11 @@ word lists) and parsing helpers grounded in Universal Dependencies.
 \author{
 \strong{Maintainer}: David Brown \email{dwb2@andrew.cmu.edu} (\href{https://orcid.org/0000-0001-7745-6354}{ORCID})
 
+Authors:
+\itemize{
+  \item Marina Seghier \email{ms@up8.edu}
+  \item Alice Millour \email{am@up8.edu}
+}
+
 }
 \keyword{internal}

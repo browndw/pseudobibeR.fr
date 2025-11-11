@@ -256,7 +256,6 @@ biber.udpipe_connlu <- function(tokens, measure = c("MATTR", "TTR", "CTTR", "MST
 }
 
 #' @importFrom rlang .data :=
-#' @importFrom reticulate py_str
 #' @importFrom utils tail
 parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy", "udpipe")) {
   engine <- match.arg(engine)
@@ -312,7 +311,18 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     tokens <- tokens %>%
       dplyr::mutate(morph = purrr::map_chr(.data$morph, function(x) {
         if (inherits(x, "python.builtin.object")) {
-          return(reticulate::py_str(x))
+          if (requireNamespace("reticulate", quietly = TRUE)) {
+            value <- reticulate::py_to_r(x)
+            if (is.null(value) || length(value) == 0) {
+              return("")
+            }
+            value <- as.character(value)
+            if (length(value) == 1) {
+              return(value)
+            }
+            return(paste(value, collapse = "|"))
+          }
+          return(as.character(x))
         }
         if (is.null(x) || length(x) == 0) {
           return("")

@@ -202,7 +202,7 @@ typical French cues for the feature. The repository file
 \item{f_55_verb_public}{Public communication verbs (e.g., \emph{declarer}, \emph{annoncer}).}
 \item{f_56_verb_private}{Private cognition verbs (e.g., \emph{penser}, \emph{croire}).}
 \item{f_57_verb_suasive}{Suasive verbs (e.g., \emph{ordonner}, \emph{proposer}).}
-\item{f_58_verb_seem}{Verbs of seeming (e.g., \emph{sembler}, \emph{paraître}).}
+\item{f_58_verb_seem}{Verbs of seeming (e.g., \emph{sembler}, \emph{paraitre}).}
 }
 }
 
@@ -251,8 +251,8 @@ Biber, Douglas (1995). \emph{Dimensions of Register Variation: A Cross-Linguisti
 Comparison.} Cambridge University Press.
 
 Covington, M. A., & McFall, J. D. (2010). Cutting the Gordian Knot: The
-Moving-Average Type–Token Ratio (MATTR). \emph{Journal of Quantitative
-Linguistics}, 17(2), 94–100. \doi{10.1080/09296171003643098}
+Moving-Average Type-Token Ratio (MATTR). \emph{Journal of Quantitative
+Linguistics}, 17(2), 94-100. \doi{10.1080/09296171003643098}
 }
 \seealso{
 \link{dict}, \link{word_lists}

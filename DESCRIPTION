@@ -2,11 +2,21 @@ Package: pseudobibeR.fr
 Title: Aggregate Counts of French Linguistic Features
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "David",
-           family = "Brown",
-           role = c("aut", "cre"),
-           email = "dwb2@andrew.cmu.edu",
-           comment = c(ORCID = "0000-0001-7745-6354"))
+    c(
+     person(given = "David",
+         family = "Brown",
+         role = c("aut", "cre"),
+         email = "dwb2@andrew.cmu.edu",
+         comment = c(ORCID = "0000-0001-7745-6354")),
+     person(given = "Marina",
+         family = "Seghier",
+         role = "aut",
+         email = "ms@up8.edu"),
+     person(given = "Alice",
+         family = "Millour",
+         role = "aut",
+         email = "am@up8.edu")
+    )
 Description: Calculates lexicogrammatical and functional features for
     French texts following the framework introduced by Biber (1985)
     <doi:10.1515/ling.1985.23.2.337>. Provides a companion implementation
@@ -32,5 +42,6 @@ Imports:
 Suggests:
     testthat (>= 3.0.0),
     udpipe,
-    spacyr
+    spacyr,
+    reticulate
 Config/testthat/edition: 3
