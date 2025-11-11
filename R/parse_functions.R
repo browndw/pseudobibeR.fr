@@ -145,7 +145,7 @@
 #' \item{f_55_verb_public}{Public communication verbs (e.g., \emph{declarer}, \emph{annoncer}).}
 #' \item{f_56_verb_private}{Private cognition verbs (e.g., \emph{penser}, \emph{croire}).}
 #' \item{f_57_verb_suasive}{Suasive verbs (e.g., \emph{ordonner}, \emph{proposer}).}
-#' \item{f_58_verb_seem}{Verbs of seeming (e.g., \emph{sembler}, \emph{paraître}).}
+#' \item{f_58_verb_seem}{Verbs of seeming (e.g., \emph{sembler}, \emph{paraitre}).}
 #' }
 #'
 #' ## Reduced forms and dispreferred structures
@@ -197,8 +197,8 @@
 #' Comparison.* Cambridge University Press.
 #'
 #' Covington, M. A., & McFall, J. D. (2010). Cutting the Gordian Knot: The
-#' Moving-Average Type–Token Ratio (MATTR). *Journal of Quantitative
-#' Linguistics*, 17(2), 94–100. \doi{10.1080/09296171003643098}
+#' Moving-Average Type-Token Ratio (MATTR). *Journal of Quantitative
+#' Linguistics*, 17(2), 94-100. \doi{10.1080/09296171003643098}
 #' @examples
 #' # Parse the example documents provided with the package
 #' biber(udpipe_samples)
@@ -256,6 +256,8 @@ biber.udpipe_connlu <- function(tokens, measure = c("MATTR", "TTR", "CTTR", "MST
 }
 
 #' @importFrom rlang .data :=
+#' @importFrom reticulate py_str
+#' @importFrom utils tail
 parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy", "udpipe")) {
   engine <- match.arg(engine)
 
@@ -354,7 +356,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
   doc_ids <- tokens %>% dplyr::distinct(.data$doc_id)
 
   proverb_pronouns <- normalize_terms(
-    get_word_list("proverb_object_pronouns", c("le", "la", "les", "ce", "cela", "ça"))
+  get_word_list("proverb_object_pronouns", c("le", "la", "les", "ce", "cela", "\u00e7a"))
   )
 
   neg_synthetic_terms <- normalize_terms(
@@ -362,31 +364,31 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
   )
 
   negation_particle_terms <- normalize_terms(get_word_list("negation_particles", c("ne")))
-  negation_part_lemmas <- unique(c(negation_particle_terms, "n'", "n’"))
+  negation_part_lemmas <- unique(c(negation_particle_terms, "n'", "n\u2019"))
 
   negation_adverbs <- normalize_terms(
     get_word_list(
       "neg_analytic_adverbs",
-      c("pas", "plus", "jamais", "guère", "point", "personne", "rien", "nullement")
+  c("pas", "plus", "jamais", "gu\u00e8re", "point", "personne", "rien", "nullement")
     )
   )
 
   impersonal_verbs <- normalize_terms(
     get_word_list(
       "impersonal_verbs",
-      c("pleuvoir", "neiger", "bruiner", "grêler", "venter", "tonner", "geler")
+  c("pleuvoir", "neiger", "bruiner", "gr\u00ealer", "venter", "tonner", "geler")
     )
   )
 
   weather_lemmas <- unique(c(impersonal_verbs, "bruiner", "tonner"))
-  raising_verbs <- c("sembler", "paraître", "demeurer", "rester", "suffire", "convenir")
+  raising_verbs <- c("sembler", "para\u00eetre", "demeurer", "rester", "suffire", "convenir")
   wh_question_lemmas <- c(
-    "qui", "que", "quoi", "où", "quand", "comment", "pourquoi",
+  "qui", "que", "quoi", "o\u00f9", "quand", "comment", "pourquoi",
     "lequel", "laquelle", "lesquels", "lesquelles",
     "quel", "quelle", "quels", "quelles", "combien"
   )
   relative_pronoun_candidates <- c(
-    "qui", "que", "quoi", "où", "dont",
+  "qui", "que", "quoi", "o\u00f9", "dont",
     "lequel", "laquelle", "lesquel", "lesquelle", "lesquels", "lesquelles",
     "auquel", "auxquels", "auxquelles",
     "duquel", "desquels", "desquelles"
@@ -408,7 +410,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
 
   que_markers <- tokens %>%
     dplyr::filter(
-      .data$lemma %in% c("que", "qu'", "qu’"),
+  .data$lemma %in% c("que", "qu'", "qu\u2019"),
       .data$dep_rel %in% c("mark", "expl", "obj"),
       !is.na(.data$head_token_id_int)
     ) %>%
@@ -495,7 +497,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
   perfect_candidates <- tokens %>%
     dplyr::filter(
       .data$pos %in% c("AUX", "VERB"),
-      .data$lemma %in% c("avoir", "être"),
+  .data$lemma %in% c("avoir", "\u00eatre"),
       stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "^(aux|cop)"),
       !is.na(.data$head_token_id_int)
     ) %>%
@@ -521,7 +523,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
           .data$head_pos == "NOUN" &
             stringr::str_detect(
               stringr::str_to_lower(dplyr::coalesce(.data$head_token, "")),
-              "(é|ée|és|ées|i|ie|is|ies|u|ue|us|ues)$"
+              "(\u00e9|\u00e9e|\u00e9s|\u00e9es|i|ie|is|ies|u|ue|us|ues)$"
             )
         )
     ) %>%
@@ -536,7 +538,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
   pronoun_it_candidates <- tokens %>%
     dplyr::filter(
       .data$pos == "PRON",
-      .data$lemma %in% c("il", "ce", "cela", "ça"),
+  .data$lemma %in% c("il", "ce", "cela", "\u00e7a"),
       !is.na(.data$head_token_id_int)
     ) %>%
     dplyr::left_join(
@@ -652,7 +654,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
 
   nominalization_suffixes <- get_word_list(
     "nominalization_suffixes",
-    c("tion", "sion", "ment", "age", "ure", "ance", "ence", "esse", "ité", "isation", "issement")
+  c("tion", "sion", "ment", "age", "ure", "ance", "ence", "esse", "it\u00e9", "isation", "issement")
   )
 
   nominalization_pattern <- if (length(nominalization_suffixes) > 0) {
@@ -759,7 +761,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
         .data$pos %in% c("VERB", "ADJ") &
           stringr::str_detect(
             stringr::str_to_lower(.data$token),
-            "(é|ée|és|ées|i|ie|is|ies|u|ue|us|ues|it|ite|its|ites)$"
+            "(\u00e9|\u00e9e|\u00e9s|\u00e9es|i|ie|is|ies|u|ue|us|ues|it|ite|its|ites)$"
           ) &
           stringr::str_detect(
             dplyr::coalesce(.data$dep_rel, ""),
@@ -870,7 +872,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
   df[["f_19_be_main_verb"]] <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(
-      .data$lemma == "être",
+  .data$lemma == "\u00eatre",
       stringr::str_detect(.data$dep_rel, "aux") == F
     ) %>%
     dplyr::tally() %>%
@@ -891,10 +893,10 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     dplyr::tally() %>%
     dplyr::rename(f_20_existential_there = "n")
 
-  complementizers <- c("que", "qu'", "qu’")
+  complementizers <- c("que", "qu'", "qu\u2019")
   wh_lemmas <- c(
     "qui", "que", "quoi", "dont",
-    "où", "ou", "quand", "comment", "pourquoi", "combien",
+  "o\u00f9", "ou", "quand", "comment", "pourquoi", "combien",
     "lequel", "laquelle", "lesquels", "lesquelles",
     "auquel", "auxquels", "auxquelles",
     "duquel", "desquels", "desquelles"
@@ -1094,8 +1096,8 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     dplyr::rename(f_33_pied_piping = "n")
 
   sentence_relative_anchors <- c("ce", "cela", "ceci", "celui", "celle", "ceux", "celles")
-  parce_follow_tokens <- c("que", "qu'", "qu’")
-  because_single_tokens <- c("car", "puisque", "puisqu'", "puisqu’", "comme")
+  parce_follow_tokens <- c("que", "qu'", "qu\u2019")
+  because_single_tokens <- c("car", "puisque", "puisqu'", "puisqu\u2019", "comme")
 
   df[["f_34_sentence_relatives"]] <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
@@ -1141,7 +1143,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
             .data$next_pos %in% c("SCONJ")
         ) |
         (
-          .data$token == "même" &
+          .data$token == "m\u00eame" &
             .data$next_token == "si" &
             .data$next_pos %in% c("SCONJ")
         )
@@ -1160,12 +1162,12 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
       ) |
         (
           .data$token == "moins" &
-            .data$prev_token %in% c("à", "au") &
+            .data$prev_token %in% c("\u00e0", "au") &
             .data$next_token %in% parce_follow_tokens
         ) |
         (
           .data$token == "condition" &
-            .data$prev_token == "à" &
+            .data$prev_token == "\u00e0" &
             .data$next_token %in% parce_follow_tokens
         )
     ) %>%
