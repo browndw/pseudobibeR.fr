@@ -41,6 +41,20 @@ Install the development version from GitHub:
 devtools::install_github("browndw/pseudobibeR.fr")
 ```
 
+### Install from a release tarball
+
+1. Download the latest `pseudobibeR.fr_<version>.tar.gz` file from the
+  [GitHub Releases page](https://github.com/browndw/pseudobibeR.fr/releases).
+2. In R, install the downloaded archive with:
+
+  ```r
+  install.packages("/path/to/pseudobibeR.fr_<version>.tar.gz", repos = NULL, type = "source")
+  ```
+
+  Replace `/path/to/` with the location where you saved the tarball; on macOS
+  and Linux you can drag the file into the R console to fill in the path.
+3. Restart your R session so the newly installed package is picked up.
+
 ## Quick Start
 
 The package provides the main function `biber()`, which takes either udpipe- or spacyr-tagged text and produces a data frame of linguistic features for each document.
@@ -242,6 +256,55 @@ data(udpipe_samples)
 The sample objects are rebuilt with `data-raw/build_french_samples.R`, which
 normalizes spaCy morphological attributes to plain strings before saving.
 
+## Updating dictionaries and examples
+
+Collaborators can extend the lexical resources that power the
+feature extractor. The YAML files live in `data-raw/` and are converted into
+package data (`dict.rda`, `word_lists.rda`, `french_examples.rda`) via the
+`build_french_dictionaries.R` script.
+
+### 1. Edit the YAML files
+
+- `data-raw/dict.yaml`: maps each feature ID (e.g. `f_45_conjuncts`) to a list
+  of underscore-separated lemmas or multiword patterns. All entries are
+  lower-cased automatically; comments beginning with `#` are allowed.
+- `data-raw/word_lists.yaml`: collects helper lists (pronouns, suffixes,
+  stop-lists, etc.). Write phrases normally (`"à peine"`); the build script
+  will normalize spaces to underscores as needed.
+- `data-raw/french_examples.yaml`: provides illustrative sentences. Each
+  entry is an object of the form:
+
+  ```yaml
+  - feature: f_05_time_adverbials
+    example: Nous partirons demain matin.
+    count: 1
+  ```
+
+  The optional `count` field is useful when a sentence demonstrates a feature
+  more than once; omit it to default to `1`.
+
+### 2. Rebuild the packaged data
+
+From the project root, run:
+
+```r
+source("data-raw/build_french_dictionaries.R")
+```
+
+This script lowercases, de-duplicates, and saves the refreshed `dict`,
+`word_lists`, and `french_examples` objects under `data/`. Re-run
+`source("data-raw/build_french_samples.R")` if you also adjust the example
+corpora.
+
+### 3. Validate the changes
+
+- `devtools::test()` confirms the feature detectors still pass the test suite.
+- `devtools::document()` refreshes the help topics so the packaged
+  documentation reflects any newly documented lexical cues.
+
+Remember to commit the updated YAML files *and* the regenerated `.rda` assets
+in `data/` so the package bundle stays in sync.
+
 ## Citation
 
 When using pseudobibeR.fr in your research, please cite:
@@ -299,7 +362,7 @@ The package extracts 67 linguistic features organized into 16 categories based o
 | **D. Questions**                                     |                                                                                                                                                          |
 | f\_13\_wh_question                                 | qui, que, quoi, où, quand, comment, pourquoi                                                                                                             |
 | **E. Nominal forms**                                 |                                                                                                                                                          |
-| f\_14\_nominalization                              | liste de suffixe : https://facmed.univ-constantine3.dz/wp-content/uploads/2024/01/La-nominalisation-des-verbes-daction.pdf                               |
+| f\_14\_nominalization                              | liste de suffixe : [référence PDF](https://facmed.univ-constantine3.dz/wp-content/uploads/2024/01/La-nominalisation-des-verbes-daction.pdf)             |
 | f\_15\_gerunds                                     | en travaillant, en mangeant... EN + VBE-ant / verbe -> nom                                                                                               |
 | f\_16\_other_nouns                                 | autres noms                                                                                                                                              |
 | **F. Passives**                                      |                                                                                                                                                          |
@@ -355,7 +418,7 @@ The package extracts 67 linguistic features organized into 16 categories based o
 | **N. Reduced forms and dispreferred structures**     |                                                                                                                                                          |
 | f\_59\_contractions                                | (n’existe pas vraiment ; “p’tit”, “t’es” à l'oral ?)                                                                                                     |
 | f\_60\_that_deletion                               | suppression de “que” (“je pense il vient”)                                                                                                               |
-| f\_61\_stranded_preposition                        | Pour qui est-ce que tu as fait le gâteau? / L’homme que tu parles avec (*Qui as-tu fait ce gateau pour?, *C' est la personne que j' ai du trouble avec.) |
+| f\_61\_stranded_preposition                        | Pour qui est-ce que tu as fait le gâteau? / L’homme que tu parles avec (exemples non standard en anglais : "Who did you bake that cake for?", "That's the person I'm having trouble with.") |
 | f\_62\_split_infinitive                            | “de vraiment comprendre”                                                                                                                                 |
 | f\_63\_split_auxiliary                             | “a probablement été vu”                                                                                                                                  |
 | **O. Coordination**                                  |                                                                                                                                                          |
