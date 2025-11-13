@@ -1,0 +1,14 @@
+examples:
+  - test: test_multiple_features_in_complex_text
+    text: "Les étudiants ont terminé leurs devoirs, qui étaient assez difficiles."
+  - test: test_punctuation_handling
+    texts:
+      - "Je pense qu’il est parti"
+      - "Je pense qu’il est parti."
+      - "Je pense qu’il est parti !"
+      - "Je pense, qu’il est parti."
+  - test: test_capitalization_handling
+    texts:
+      - "Le chat a marché dans la rue."
+      - "le chat a marché dans la rue."
+      - "LE CHAT A MARCHÉ DANS LA RUE."

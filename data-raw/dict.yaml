@@ -33,6 +33,10 @@ f_04_place_adverbials:
   - par_voie_de_terre
   - sous_le_pied
   - sous_terre
+  - ailleurs
+  - ici
+  - là
+  - partout
 f_05_time_adverbials:
   - à_l'origine
   - actuellement
@@ -42,7 +46,7 @@ f_05_time_adverbials:
   - de_nos_jours
   - demain
   - encore_une_fois
-  - ensuite
+  - ensuite # 1
   - éventuellement
   - hier
   - immédiatement
@@ -60,6 +64,13 @@ f_05_time_adverbials:
   - tôt
   - ultérieurement
   - une_fois
+  - bientôt
+  - enfin
+  - toujours
+  - jamais
+  - rarement
+  - souvent
+  - désormais
 f_06_first_person_pronouns:
   - je
   - moi
@@ -87,6 +98,10 @@ f_08_third_person_pronouns:
   - il
   - les_siens
   - lui
+  - ils
+  - elles
+  - leur
+  - leurs
 f_11_indefinite_pronoun:
   - chose
   - n'importe_qui
@@ -99,6 +114,9 @@ f_11_indefinite_pronoun:
   - rien
   - tout
   - tout_le_monde
+  - autrui
+  - chacun
+  - quiconque
 f_45_conjuncts:
   - à_savoir
   - ainsi
@@ -113,6 +131,10 @@ f_45_conjuncts:
   - par_ailleurs
   - par_conséquent
   - par_exemple
+  - cependant
+  - toutefois
+  - ensuite # 2
+  - puis
 f_46_downtoners:
   - à_peine
   - légèrement
@@ -123,6 +145,8 @@ f_46_downtoners:
   - seulement
   - simplement
   - un_peu
+  - guère
+  - à_demi
 f_47_hedges:
   - à_peu_de_choses_près
   - à_peu_près
@@ -131,6 +155,8 @@ f_47_hedges:
   - peut-être
   - plus_ou_moins
   - quelque_chose_comme
+  - du_genre
+  - quelque_peu
 f_48_amplifiers:
   - absolument
   - complètement
@@ -142,33 +168,71 @@ f_48_amplifiers:
   - totalement
   - tout_à_fait
   - très
+  - ultra
+  - super
+  - hyper
+  - vraiment # 1
+  - grave
+  - de_ouf
 f_49_emphatics:
   - beaucoup
   - sûr
-  - vraiment
+  - vraiment # 2
+  - tellement
+  - tout_à
+  - évidemment
+  - certes
+  - bien_sûr
+  - effectivement
 f_50_discourse_particles:
   - bien
   - de_toute_façon
   - encore
   - maintenant
+  - alors
+  - donc
+  - du_coup
+  - voilà
+  - bref
+  - en_fait
+  - eh_bien
+  - hein
+  - euh
 f_51_demonstratives:
   - cela
   - ceux
   - ceux-ci
+  - ce
+  - cette
+  - ces
+  - celui
+  - celle
+  - celles
+  - ça
+  - ceci
 f_52_modal_possibility:
   - peut
   - pourrait
   - pouvoir
+  - sembler
+  - risquer_de # 1
+  - avoir_la_possibilité_de
 f_53_modal_necessity:
   - falloir
   - faut
   - devoir
   - devrait
   - doit
+  - être_obligé_de
+  - être_nécessaire_de
+  - il_faut_que
 f_54_modal_predictive:
   - devoir
   - sera
   - serait
+  - va
+  - risquer_de # 2
+  - être_susceptible_de
 f_55_verb_public:
   - accepter
   - affirmer
@@ -192,6 +256,8 @@ f_55_verb_public:
   - se_plaindre
   - signaler
   - suggérer
+  - commenter
+  - raconter
 f_56_verb_private:
   - anticiper
   - apprendre
@@ -227,6 +293,9 @@ f_56_verb_private:
   - supposer
   - trouver
   - voir
+  - constater
+  - pressentir
+  - prévoir
 f_57_verb_suasive:
   - accepter
   - accorder
@@ -245,8 +314,13 @@ f_57_verb_suasive:
   - recommander
   - stipuler
   - suggérer
+  - conseiller
+  - inviter
+  - persuader
+  - encourager
+  - convaincre
 f_58_verb_seem:
   - apparaître
   - paraître
   - sembler
-
+  - avoir_l’air

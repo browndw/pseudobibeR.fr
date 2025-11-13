@@ -4,17 +4,26 @@
 - feature: f_01_past_tense
   example: Nous avions déjà terminé quand elle arriva.
   count: 1.0
+- feature: f_01_past_tense
+  example: Le chat a marché lentement dans la rue.
+  count: 1.0
 - feature: f_02_perfect_aspect
   example: J'ai fini mon travail.
   count: 1.0
 - feature: f_02_perfect_aspect
   example: Elle était partie avant midi.
   count: 1.0
+- feature: f_02_perfect_aspect
+  example: J’ai écrit cette phrase.
+  count: 1.0
 - feature: f_03_present_tense
   example: Je parle français couramment.
   count: 1.0
 - feature: f_03_present_tense
   example: Nous allons au marché tous les samedis.
+  count: 1.0
+- feature: f_03_present_tense
+  example: Le renard brun rapide saute par-dessus le chien paresseux.
   count: 1.0
 - feature: f_04_place_adverbials
   example: Les enfants jouent dehors.
@@ -58,6 +67,9 @@
 - feature: f_10_demonstrative_pronoun
   example: Celles qui sont arrivées en retard ont manqué le début.
   count: 1.0
+- feature: f_10_demonstrative_pronoun
+  example: Cela est une phrase d’exemple.
+  count: 1.0
 - feature: f_11_indefinite_pronouns
   example: Quelqu'un a frappé à la porte.
   count: 1.0
@@ -75,6 +87,9 @@
   count: 1.0
 - feature: f_13_wh_question
   example: Où vas-tu en vacances cet été?
+  count: 1.0
+- feature: f_13_wh_question
+  example: Quand partez-vous ?
   count: 1.0
 - feature: f_14_nominalizations
   example: La création de cette loi a pris plusieurs mois.
@@ -94,11 +109,17 @@
 - feature: f_17_agentless_passives
   example: La maison sera vendue la semaine prochaine.
   count: 1.0
+- feature: f_17_agentless_passives
+  example: La tâche a été accomplie.
+  count: 1.0
 - feature: f_18_by_passives
   example: Le roman a été écrit par Victor Hugo.
   count: 1.0
 - feature: f_18_by_passives
   example: La décision fut prise par le directeur.
+  count: 1.0
+- feature: f_18_by_passives
+  example: La tâche a été accomplie par John.
   count: 1.0
 - feature: f_19_be_main_verb
   example: Elle est médecin.
@@ -112,14 +133,23 @@
 - feature: f_20_existential_there
   example: Il y avait trois personnes dans la salle.
   count: 1.0
+- feature: f_20_existential_there
+  example: Il y a une caractéristique dans cette phrase.
+  count: 1.0
 - feature: f_21_that_verb_comp
   example: Je crois qu'il viendra demain.
   count: 1.0
 - feature: f_21_that_verb_comp
   example: Elle pense que c'est une bonne idée.
   count: 1.0
+- feature: f_21_that_verb_comp
+  example: J’ai dit qu’il était parti.
+  count: 1.0
 - feature: f_22_that_adj_comp
   example: Je suis content que tu sois venu.
+  count: 1.0
+- feature: f_22_that_adj_comp
+  example: Je suis content que cela vous plaise.
   count: 1.0
 - feature: f_22_that_adj_comp
   example: Il est heureux que tout se soit bien passé.
@@ -141,6 +171,9 @@
   count: 1.0
 - feature: f_25_present_participle
   example: Tout en travaillant, elle écoutait de la musique.
+  count: 1.0
+- feature: f_25_present_participle
+  example: En se remplissant la bouche de biscuits, Joe est sorti en courant.
   count: 1.0
 - feature: f_26_past_participle
   example: Construit en un an, le bâtiment est impressionnant.
@@ -196,6 +229,9 @@
 - feature: f_34_sentence_relatives
   example: Elle est partie sans dire au revoir, ce que je trouve étrange.
   count: 1.0
+- feature: f_34_sentence_relatives
+  example: Bob aime les mangues frites, ce qui est la chose la plus écœurante que j’aie jamais entendue.
+  count: 1.0
 - feature: f_35_because
   example: Je reste à la maison parce qu'il pleut.
   count: 1.0
@@ -237,6 +273,9 @@
   count: 1.0
 - feature: f_41_adj_pred
   example: Cette histoire est vraie.
+  count: 1.0
+- feature: f_41_adj_pred
+  example: Le cheval est grand.
   count: 1.0
 - feature: f_42_adverbs
   example: Elle parle très rapidement.
@@ -334,6 +373,9 @@
 - feature: f_60_that_deletion
   example: Elle croit c'est impossible.
   count: 1.0
+- feature: f_60_that_deletion
+  example: On suppose ça a fonctionné.
+  count: 1.0
 - feature: f_61_stranded_preposition
   example: Pour qui est-ce que tu as fait le gâteau?
   count: 1.0
@@ -376,4 +418,3 @@
 - feature: f_67_neg_analytic
   example: Elle n'est jamais venue ici.
   count: 1.0
-

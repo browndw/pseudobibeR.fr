@@ -42,6 +42,13 @@ pronoun_matchlist:
   - toi-même
   - vous
   - vous-même
+  - elles-mêmes
+  - nous-autres
+  - vous-autres
+  - chacun
+  - autrui
+  - quiconque
+  - tout le monde
 proverb_object_pronouns:
   - le
   - la
@@ -51,6 +58,7 @@ proverb_object_pronouns:
   - ce
   - cela
   - ça
+  - cela-même
 impersonal_verbs:
   - pleuvoir
   - neiger
@@ -59,6 +67,9 @@ impersonal_verbs:
   - venter
   - tonner
   - geler
+  - faire # ex : il fait froid
+  - s’agir # ex : il s’agit de
+  - y avoir # ex : il y a
 linking_matchlist:
   - être
   - paraître
@@ -136,6 +147,15 @@ verb_matchlist:
   - supposer
   - trouver
   - voir
+  - commenter
+  - persuader
+  - convaincre
+  - inviter
+  - encourager
+  - prévoir
+  - pressentir
+  - constater
+  - avouer
 nominalization_stoplist:
   # -tion/-sion endings
   - lion
@@ -150,6 +170,11 @@ nominalization_stoplist:
   - aliment
   - ciment
   - comment
+  - mouvement
+  - fondement
+  - serment
+  - segment
+  - vêtement
   
   # -age endings
   - âge
@@ -163,6 +188,7 @@ nominalization_stoplist:
   - fromage
   - message
   - garage
+  - barrage
   
   # -ure endings
   - nature
@@ -211,6 +237,11 @@ gerund_stoplist:
   - bruyant
   - grand
   - savant
+  - géant
+  - plaisant
+  - fatigant
+  - agaçant
+  - inquiétant
   
   # Nouns ending in -ant
   - enfant
@@ -294,6 +325,14 @@ nominalization_suffixes:
   - isations
   - issement
   - issements
+  - erie
+  - eries
+  - eur
+  - eurs
+  - trice
+  - trices
+  - ade
+  - ades
 multiword_patterns:
   - à bord
   - à côté
@@ -351,6 +390,16 @@ multiword_patterns:
   - tout le monde
   - un peu
   - une fois
+  - au même titre que
+  - à cet égard
+  - à ce moment
+  - du coup
+  - en effet
+  - en réalité
+  - à ce sujet
+  - à ce point
+  - bien que
+  - tandis que
 neg_synthetic_determiners:
   - aucun
   - aucune
@@ -358,6 +407,8 @@ neg_synthetic_determiners:
   - nulle
   - ni
   - sans
+  - aucun des
+  - sans que
 negation_particles:
   - ne
 neg_analytic_adverbs:
@@ -369,4 +420,6 @@ neg_analytic_adverbs:
   - personne
   - rien
   - nullement
-
+  - nulle part
+  - pas du tout
+  - aucunement
