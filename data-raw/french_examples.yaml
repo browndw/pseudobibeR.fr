@@ -14,7 +14,7 @@
   example: Elle était partie avant midi.
   count: 1.0
 - feature: f_02_perfect_aspect
-  example: J’ai écrit cette phrase.
+  example: J'ai écrit cette phrase.
   count: 1.0
 - feature: f_03_present_tense
   example: Je parle français couramment.
@@ -30,7 +30,7 @@
   count: 1.0
 - feature: f_04_place_adverbials
   example: Il habite loin d'ici.
-  count: 1.0
+  count: 2.0
 - feature: f_05_time_adverbials
   example: Je viendrai demain matin.
   count: 1.0
@@ -68,7 +68,7 @@
   example: Celles qui sont arrivées en retard ont manqué le début.
   count: 1.0
 - feature: f_10_demonstrative_pronoun
-  example: Cela est une phrase d’exemple.
+  example: Cela est une phrase d'exemple.
   count: 1.0
 - feature: f_11_indefinite_pronouns
   example: Quelqu'un a frappé à la porte.

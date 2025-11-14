@@ -453,8 +453,9 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
   biber_tks <- quanteda::tokens(lexical_text$text, what = "word", remove_punct = FALSE)
     names(biber_tks) <- lexical_text$doc_id
 
-    if ("multiword_patterns" %in% names(word_lists_lookup) && length(word_lists_lookup$multiword_patterns) > 0) {
-      multi_phrases <- quanteda::phrase(word_lists_lookup$multiword_patterns)
+    multiword_patterns <- get_word_list("multiword_patterns")
+    if (length(multiword_patterns) > 0) {
+      multi_phrases <- quanteda::phrase(multiword_patterns)
       biber_tks <- quanteda::tokens_compound(biber_tks, pattern = multi_phrases)
     }
 
@@ -630,7 +631,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
 
   df[["f_10_demonstrative_pronoun"]] <- tokens %>%
     dplyr::filter(
-      .data$token %in% word_lists_lookup$pronoun_matchlist,
+      .data$token %in% get_word_list("pronoun_matchlist"),
       .data$morph_prontype == "Dem",
       .data$pos == "PRON"
     ) %>%
@@ -1235,7 +1236,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     dplyr::filter(
       .data$pos == "ADJ",
       dplyr::lag(.data$pos == "VERB" | .data$pos == "AUX"),
-  dplyr::lag(.data$lemma %in% word_lists_lookup$linking_matchlist),
+  dplyr::lag(.data$lemma %in% get_word_list("linking_matchlist")),
       dplyr::lead(.data$pos != "NOUN"),
       dplyr::lead(.data$pos != "ADJ"),
       dplyr::lead(.data$pos != "ADV")
@@ -1264,7 +1265,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
   df[["f_51_demonstratives"]] <- tokens %>%
     dplyr::group_by(.data$doc_id) %>%
     dplyr::filter(
-      .data$token %in% word_lists_lookup$pronoun_matchlist,
+      .data$token %in% get_word_list("pronoun_matchlist"),
       .data$dep_rel == "det",
       .data$pos %in% c("DET", "PRON")
     ) %>%
@@ -1515,9 +1516,13 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
     x_col <- paste0(feature, ".x")
     y_col <- paste0(feature, ".y")
     if (all(c(x_col, y_col) %in% colnames(biber_counts))) {
-      biber_counts[[feature]] <-
-        dplyr::coalesce(biber_counts[[x_col]], 0L) +
-        dplyr::coalesce(biber_counts[[y_col]], 0L)
+      x_vals <- dplyr::coalesce(biber_counts[[x_col]], 0L)
+      y_vals <- dplyr::coalesce(biber_counts[[y_col]], 0L)
+      if (feature == "f_51_demonstratives") {
+        biber_counts[[feature]] <- pmax(x_vals, y_vals)
+      } else {
+        biber_counts[[feature]] <- x_vals + y_vals
+      }
       biber_counts <- biber_counts %>%
         dplyr::select(-dplyr::any_of(c(x_col, y_col)))
     }
