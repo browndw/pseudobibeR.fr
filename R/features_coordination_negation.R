@@ -261,7 +261,8 @@ block_split_coordination_fr <- function(
   split_auxiliary_tokens <- all_aux_dependencies %>%
     dplyr::left_join(
       adverbial_interveners,
-      by = c("doc_id", "sentence_id")
+      by = c("doc_id", "sentence_id"),
+      relationship = "many-to-many"
     ) %>%
     dplyr::filter(
       !is.na(.data$adv_token_id_int),
