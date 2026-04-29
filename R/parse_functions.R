@@ -341,13 +341,7 @@ biber.udpipe_connlu <- function(tokens, measure = c("MATTR", "TTR", "CTTR", "MST
 
   measure <- match.arg(measure)
 
-  udpipe_tks <- udpipe_tks %>%
-    dplyr::select("doc_id", "sentence_id", "token_id", "token", "lemma", "upos",
-                  "xpos", "feats", "head_token_id", "dep_rel") %>%
-    dplyr::rename(pos = "upos", tag = "xpos") %>%
-    dplyr::mutate(tag = dplyr::if_else(is.na(.data$tag) | .data$tag == "", .data$pos, .data$tag))
-
-  udpipe_tks <- structure(udpipe_tks, class = c("spacyr_parsed", "data.frame"))
+  udpipe_tks <- coerce_udpipe_to_spacy_tokens(tokens)
 
   parse_biber_features(udpipe_tks, measure, normalize, "udpipe")
 }
@@ -387,72 +381,7 @@ parse_biber_features <- function(tokens, measure, normalize, engine = c("spacy",
 
   df <- list()
 
-  tokens <- tokens %>%
-    dplyr::as_tibble() %>%
-    dplyr::mutate(token = stringr::str_to_lower(.data$token)) %>%
-    dplyr::mutate(pos = dplyr::if_else(.data$token == "\n", "PUNCT", .data$pos)) %>%
-    dplyr::filter(.data$pos != "SPACE")
-  
-  # Check after filtering SPACE tokens
-  if (nrow(tokens) == 0) {
-    stop("No valid tokens found after filtering. Document may contain only whitespace.", call. = FALSE)
-  }
-
-  if ("morph" %in% colnames(tokens)) {
-    tokens <- tokens %>%
-      dplyr::mutate(morph = purrr::map_chr(.data$morph, function(x) {
-        if (inherits(x, "python.builtin.object")) {
-          if (requireNamespace("reticulate", quietly = TRUE)) {
-            value <- reticulate::py_to_r(x)
-            if (is.null(value) || length(value) == 0) {
-              return("")
-            }
-            value <- as.character(value)
-            if (length(value) == 1) {
-              return(value)
-            }
-            return(paste(value, collapse = "|"))
-          }
-          return(as.character(x))
-        }
-        if (is.null(x) || length(x) == 0) {
-          return("")
-        }
-        if (length(x) == 1) {
-          return(as.character(x))
-        }
-        paste(as.character(x), collapse = "|")
-      })) %>%
-      dplyr::mutate(morph = dplyr::na_if(.data$morph, ""))
-
-    if ("feats" %in% colnames(tokens)) {
-      tokens <- tokens %>%
-        dplyr::mutate(feats = dplyr::coalesce(.data$feats, .data$morph))
-    } else {
-      tokens <- tokens %>%
-        dplyr::mutate(feats = .data$morph)
-    }
-  }
-
-  if (!"feats" %in% colnames(tokens)) {
-    tokens <- dplyr::mutate(tokens, feats = NA_character_)
-  }
-
-  tokens <- tokens %>%
-    dplyr::mutate(
-      token_id_int = suppressWarnings(as.integer(.data$token_id)),
-      head_token_id_int = suppressWarnings(as.integer(.data$head_token_id)),
-      morph_tense = extract_morph_value(.data$feats, "Tense"),
-      morph_verbform = extract_morph_value(.data$feats, "VerbForm"),
-      morph_mood = extract_morph_value(.data$feats, "Mood"),
-      morph_prontype = extract_morph_value(.data$feats, "PronType"),
-      morph_voice = extract_morph_value(.data$feats, "Voice"),
-      morph_number = extract_morph_value(.data$feats, "Number"),
-      morph_person = extract_morph_value(.data$feats, "Person")
-    )
-
-  tokens <- tokens %>%
-    dplyr::arrange(.data$doc_id, .data$sentence_id, .data$token_id_int)
+  tokens <- prepare_parsed_tokens(tokens)
 
   doc_ids <- tokens %>% dplyr::distinct(.data$doc_id)
 
