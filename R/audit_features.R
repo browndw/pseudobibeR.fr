@@ -30,7 +30,9 @@
 #'   `audit_features_result`, which provides a compact print method.
 #' @examples
 #' audit_features(spacy_samples, feature = "f_19_be_main_verb", sample_n = 5)
-#' audit_features(udpipe_samples, category = "Modals", sample_n = 10, seed = 1)
+#' if (requireNamespace("udpipe", quietly = TRUE)) {
+#'   audit_features(udpipe_samples, category = "Modals", sample_n = 10, seed = 1)
+#' }
 #' @export
 audit_features <- function(tokens,
                            feature = NULL,
@@ -326,7 +328,7 @@ locate_surface_pattern_matches <- function(tokens, feature, patterns) {
 
 prepare_exact_locator_context <- function(tokens) {
   relative_pronoun_candidates <- c(
-    "qui", "que", "quoi", "où", "ou", "dont",
+    "qui", "que", "quoi", "\u00f9", "ou", "dont",
     "lequel", "laquelle", "lesquel", "lesquelle", "lesquels", "lesquelles",
     "auquel", "auxquels", "auxquelles",
     "duquel", "desquels", "desquelles"
@@ -535,7 +537,7 @@ locate_stative_feature_matches <- function(tokens, selected_features) {
 
   f19_rows <- tokens_with_context %>%
     dplyr::filter(
-      .data$lemma == "être",
+      .data$lemma == "\u00eatre",
       !stringr::str_detect(dplyr::coalesce(.data$dep_rel, ""), "aux")
     ) %>%
     dplyr::transmute(
@@ -783,7 +785,7 @@ locate_modal_feature_matches <- function(tokens, selected_features, dict_lookup)
 
   possibilite_pattern <- tokens_with_context %>%
     dplyr::filter(
-      .data$lemma == "possibilité",
+      .data$lemma == "possibilit\u00e9",
       .data$prev2_lemma == "avoir"
     ) %>%
     has_de_inf() %>%
@@ -802,14 +804,14 @@ locate_modal_feature_matches <- function(tokens, selected_features, dict_lookup)
     tokens_with_context %>%
       dplyr::filter(
         .data$lemma %in% target_lemmas,
-        (.data$prev_lemma == "être" | .data$prev2_lemma == "être")
+        (.data$prev_lemma == "\u00eatre" | .data$prev2_lemma == "\u00eatre")
       ) %>%
       has_de_inf() %>%
       dplyr::transmute(
         feature = feature,
         doc_id = .data$doc_id,
         sentence_id = .data$sentence_id,
-        start_token_id_int = dplyr::if_else(.data$prev_lemma == "être", .data$prev_token_id_int, .data$prev2_token_id_int),
+        start_token_id_int = dplyr::if_else(.data$prev_lemma == "\u00eatre", .data$prev_token_id_int, .data$prev2_token_id_int),
         end_token_id_int = .data$next2_token_id_int,
         keyword_token = paste(.data$token, .data$next_token, .data$next2_token),
         count = 1L,
@@ -852,7 +854,7 @@ locate_modal_feature_matches <- function(tokens, selected_features, dict_lookup)
   etre_future_pattern <- tokens_with_context %>%
     dplyr::filter(
       .data$token %in% c("sera", "serait"),
-      .data$lemma == "être"
+      .data$lemma == "\u00eatre"
     ) %>%
     dplyr::transmute(
       feature = "f_54_modal_predictive",
@@ -869,7 +871,7 @@ locate_modal_feature_matches <- function(tokens, selected_features, dict_lookup)
     lemma_rows("f_52_modal_possibility", possibility_lemmas),
     possibilite_pattern,
     lemma_rows("f_53_modal_necessity", necessity_lemmas),
-    etre_support_pattern("f_53_modal_necessity", c("obliger", "nécessaire")),
+    etre_support_pattern("f_53_modal_necessity", c("obliger", "n\u00e9cessaire")),
     lemma_rows("f_54_modal_predictive", predictive_lemmas),
     predictive_aller,
     risquer_pattern,
@@ -1052,7 +1054,7 @@ locate_clause_embedding_feature_matches <- function(tokens, selected_features) {
         .data$pos %in% c("VERB", "ADJ") &
           stringr::str_detect(
             stringr::str_to_lower(.data$token),
-            "(é|ée|és|ées|i|ie|is|ies|u|ue|us|ues|it|ite|its|ites)$"
+            "(\u00e9|\u00e9e|\u00e9s|\u00e9es|i|ie|is|ies|u|ue|us|ues|it|ite|its|ites)$"
           ) &
           stringr::str_detect(
             dplyr::coalesce(.data$dep_rel, ""),
@@ -1070,16 +1072,16 @@ locate_clause_embedding_feature_matches <- function(tokens, selected_features) {
       head_token = "token"
     )
 
-  complementizers <- c("que", "qu'", "qu’")
+  complementizers <- c("que", "qu'", "qu\u2019")
   wh_lemmas <- c(
     "qui", "que", "quoi", "dont",
-    "où", "ou", "quand", "comment", "pourquoi", "combien",
+    "\u00f9", "ou", "quand", "comment", "pourquoi", "combien",
     "lequel", "laquelle", "lesquels", "lesquelles",
     "auquel", "auxquels", "auxquelles",
     "duquel", "desquels", "desquelles"
   )
-  parce_follow_tokens <- c("que", "qu'", "qu’")
-  because_single_tokens <- c("car", "puisque", "puisqu'", "puisqu’", "comme")
+  parce_follow_tokens <- c("que", "qu'", "qu\u2019")
+  because_single_tokens <- c("car", "puisque", "puisqu'", "puisqu\u2019", "comme")
   counted_subordinators <- unique(c(
     complementizers,
     parce_follow_tokens,
@@ -1280,7 +1282,7 @@ locate_clause_embedding_feature_matches <- function(tokens, selected_features) {
             .data$next_pos %in% c("SCONJ")
         ) |
         (
-          .data$token == "même" &
+          .data$token == "m\u00eame" &
             .data$next_token == "si" &
             .data$next_pos %in% c("SCONJ")
         )
@@ -1291,8 +1293,8 @@ locate_clause_embedding_feature_matches <- function(tokens, selected_features) {
       doc_id = .data$doc_id,
       sentence_id = .data$sentence_id,
       start_token_id_int = .data$token_id_int,
-      end_token_id_int = dplyr::if_else(.data$token %in% c("bien", "même"), .data$next_token_id_int, .data$token_id_int),
-      keyword_token = dplyr::if_else(.data$token %in% c("bien", "même"), paste(.data$token, .data$next_token), .data$token),
+      end_token_id_int = dplyr::if_else(.data$token %in% c("bien", "m\u00eame"), .data$next_token_id_int, .data$token_id_int),
+      keyword_token = dplyr::if_else(.data$token %in% c("bien", "m\u00eame"), paste(.data$token, .data$next_token), .data$token),
       count = 1L,
       match_type = "exact"
     )
@@ -1306,12 +1308,12 @@ locate_clause_embedding_feature_matches <- function(tokens, selected_features) {
       ) |
         (
           .data$token == "moins" &
-            .data$prev_token %in% c("à", "au") &
+            .data$prev_token %in% c("\u00e0", "au") &
             .data$next_token %in% parce_follow_tokens
         ) |
         (
           .data$token == "condition" &
-            .data$prev_token == "à" &
+            .data$prev_token == "\u00e0" &
             .data$next_token %in% parce_follow_tokens
         )
     ) %>%
@@ -1399,7 +1401,7 @@ locate_negation_feature_matches <- function(tokens, selected_features, word_list
 
   neg_synthetic_terms <- normalize_terms(get_word_list(word_lists_lookup, "neg_synthetic_determiners"))
   negation_particle_terms <- normalize_terms(get_word_list(word_lists_lookup, "negation_particles"))
-  negation_part_lemmas <- unique(c(negation_particle_terms, "n'", "n’"))
+  negation_part_lemmas <- unique(c(negation_particle_terms, "n'", "n\u2019"))
   negation_adverbs <- normalize_terms(get_word_list(word_lists_lookup, "neg_analytic_adverbs"))
 
   f66 <- tokens %>%
@@ -1499,10 +1501,10 @@ locate_coordination_split_feature_matches <- function(tokens, selected_features,
     dplyr::ungroup()
 
   stranded_pronouns <- c("qui", "quoi")
-  inf_prepositions <- c("à", "a", "au", "aux", "de", "d'", "d’", "du", "des", "pour")
+  inf_prepositions <- c("\u00e0", "a", "au", "aux", "de", "d'", "d\u2019", "du", "des", "pour")
   filler_pos <- c("ADV", "PART", "PRON", "DET")
   negation_particle_terms <- normalize_terms(get_word_list(word_lists_lookup, "negation_particles"))
-  negation_part_lemmas <- unique(c(negation_particle_terms, "n'", "n’"))
+  negation_part_lemmas <- unique(c(negation_particle_terms, "n'", "n\u2019"))
 
   f61 <- tokens_ctx %>%
     dplyr::filter(
@@ -1626,7 +1628,7 @@ locate_coordination_split_feature_matches <- function(tokens, selected_features,
 
   french_compound_verbs <- tokens %>%
     dplyr::filter(
-      .data$lemma %in% c("avoir", "être"),
+      .data$lemma %in% c("avoir", "\u00eatre"),
       .data$pos %in% c("VERB", "AUX")
     ) %>%
     dplyr::left_join(
@@ -1835,8 +1837,8 @@ attach_kwic_columns <- function(rows, tokens, window) {
     function(current_doc_id, current_sentence_id, start_token_id_int, end_token_id_int) {
       sentence_tokens <- tokens %>%
         dplyr::filter(
-          .data$doc_id == .env$current_doc_id,
-          .data$sentence_id == .env$current_sentence_id
+          .data$doc_id == current_doc_id,
+          .data$sentence_id == current_sentence_id
         ) %>%
         dplyr::arrange(.data$token_id_int)
 

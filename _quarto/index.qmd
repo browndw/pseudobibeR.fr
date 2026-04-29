@@ -37,5 +37,6 @@ author:
 
 New to the package? Start with the [Getting Started](vignettes/getting-started.qmd) vignette for a complete workflow walkthrough. For detailed examples with real corpora, see:
 
+- [Auditing Feature Matches](vignettes/auditing-features.qmd) - Reviews exact KWIC anchors and sentence-level evidence using pre-parsed UDPipe data
 - [Cross-Parser Validation](vignettes/parser-validation.qmd) - Demonstrates MDA with multi-register French corpus
 - [Chambers–Le Baron Walkthrough](vignettes/chambers-corpus.qmd) - Analyzes disciplinary variation in academic French

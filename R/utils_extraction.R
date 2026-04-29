@@ -164,7 +164,17 @@ prepare_parsed_tokens <- function(tokens) {
 #' @return A data frame with the shared token columns used internally
 #' @keywords internal
 coerce_udpipe_to_spacy_tokens <- function(tokens) {
-  udpipe_tks <- as.data.frame(tokens, stringsAsFactors = FALSE)
+  udpipe_as_df <- if (requireNamespace("udpipe", quietly = TRUE)) {
+    utils::getFromNamespace("as.data.frame.udpipe_connlu", "udpipe")
+  } else {
+    NULL
+  }
+
+  if (is.null(udpipe_as_df)) {
+    stop("The 'udpipe' package is required to coerce udpipe_connlu objects.", call. = FALSE)
+  }
+
+  udpipe_tks <- udpipe_as_df(tokens, stringsAsFactors = FALSE)
 
   udpipe_tks <- udpipe_tks %>%
     dplyr::select(

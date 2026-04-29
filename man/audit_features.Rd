@@ -56,5 +56,7 @@ lexical and syntactic features.
 }
 \examples{
 audit_features(spacy_samples, feature = "f_19_be_main_verb", sample_n = 5)
-audit_features(udpipe_samples, category = "Modals", sample_n = 10, seed = 1)
+if (requireNamespace("udpipe", quietly = TRUE)) {
+  audit_features(udpipe_samples, category = "Modals", sample_n = 10, seed = 1)
+}
 }

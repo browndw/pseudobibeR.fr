@@ -19,6 +19,8 @@ website:
         menu:
           - text: Getting Started
             file: vignettes/getting-started.qmd
+          - text: Auditing Feature Matches
+            file: vignettes/auditing-features.qmd
           - text: Cross-Parser Validation
             file: vignettes/parser-validation.qmd
           - text: Chambers–Le Baron Walkthrough

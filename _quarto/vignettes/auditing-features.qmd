@@ -1,0 +1,177 @@
+---
+title: "Auditing Feature Matches"
+description: "Inspect exact and sentence-level feature evidence with audit_features() using pre-parsed UDPipe data."
+page-layout: article
+format:
+  html:
+    toc: true
+engine: knitr
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(pseudobibeR.fr)
+library(udpipe)
+library(dplyr)
+library(stringr)
+
+load("../data/french_corpus.rda")   # loads 'french_corpus'
+load("../data/fc_udpipe_parsed.rda")   # loads 'fc_udpipe_parsed'
+
+discipline_lookup <- french_corpus |>
+  distinct(doc_id, discipline)
+```
+
+## Why audit feature matches?
+
+`biber()` gives you document-level counts. `audit_features()` lets you step down
+to the sentence or token span that triggered those counts so you can review
+edge cases, confirm parser behavior, and share examples with collaborators.
+
+The audit API now supports three common review modes:
+
+- Inspect a single feature with exact KWIC-style anchors when available
+- Sample a whole feature category without reading every sentence in the corpus
+- Distinguish between exact token-span matches and sentence-level fallback rows
+
+::: {.callout-note}
+## Data
+This vignette uses the Chambers-Le Baron UDPipe parse stored in
+`_quarto/data/fc_udpipe_parsed.rda`, plus the companion document metadata in
+`_quarto/data/french_corpus.rda`.
+:::
+
+## Corpus snapshot
+
+```{r corpus-summary}
+tibble::tibble(
+  documents = nrow(french_corpus),
+  disciplines = n_distinct(french_corpus$discipline),
+  parsed_tokens = nrow(fc_udpipe_parsed)
+)
+```
+
+## Start with one exact feature
+
+Discourse particles are a good first audit target because they usually return
+exact token spans rather than whole-sentence fallback rows.
+
+```{r discourse-particles}
+particle_audit <- audit_features(
+  fc_udpipe_parsed,
+  feature = "f_50_discourse_particles",
+  sample_n = 8,
+  max_per_doc = 1,
+  seed = 1,
+  window = 6
+)
+
+particle_audit
+```
+
+```{r particle-display}
+particle_audit |>
+  left_join(discipline_lookup, by = "doc_id") |>
+  select(discipline, doc_id, sentence_id, keyword, left, right, chunk)
+```
+
+The compact print method gives you a quick summary of how many returned rows are
+exact anchors versus sentence-level fallback rows.
+
+## Audit a whole category
+
+The category interface is useful when you want representative evidence across a
+family of related features without choosing them one by one.
+
+```{r subordination-category}
+subordination_audit <- audit_features(
+  fc_udpipe_parsed,
+  category = "Subordination features",
+  sample_n = 12,
+  max_per_doc = 2,
+  seed = 7,
+  window = 5
+)
+
+subordination_audit |>
+  left_join(discipline_lookup, by = "doc_id") |>
+  select(discipline, feature, match_type, keyword, chunk)
+```
+
+```{r subordination-summary}
+subordination_audit |>
+  count(feature, match_type, sort = TRUE)
+```
+
+Because the audit locators now cover complement clauses, relatives, adverbial
+subordinators, and reduced clause types, many rows in this category should be
+returned with exact anchors.
+
+## Compare exact and sentence-level review modes
+
+Not every feature family has an exact locator yet. For those features,
+`audit_features()` still returns sentence chunks so you can review what was
+counted.
+
+```{r sentence-fallback}
+verb_class_audit <- audit_features(
+  fc_udpipe_parsed,
+  category = "Specialized verb classes",
+  sample_n = 8,
+  max_per_doc = 1,
+  seed = 11
+)
+
+verb_class_audit |>
+  select(feature, doc_id, sentence_id, match_type, keyword, chunk)
+```
+
+In this case, `match_type` helps you distinguish rows backed by exact token-span
+ locators from rows returned through sentence-level fallback.
+
+## Review reduced forms and negation together
+
+You can also pass a vector of specific features when you want a targeted review
+set for debugging or annotation meetings.
+
+```{r targeted-review}
+targeted_audit <- audit_features(
+  fc_udpipe_parsed,
+  feature = c(
+    "f_60_that_deletion",
+    "f_61_stranded_preposition",
+    "f_62_split_infinitive",
+    "f_63_split_auxiliary",
+    "f_66_neg_synthetic",
+    "f_67_neg_analytic"
+  ),
+  sample_n = 14,
+  max_per_doc = 2,
+  seed = 21,
+  window = 7
+)
+
+targeted_audit |>
+  left_join(discipline_lookup, by = "doc_id") |>
+  select(discipline, feature, keyword, left, right, chunk)
+```
+
+This pattern is especially useful when you want to inspect recently added or
+parser-sensitive heuristics side by side.
+
+## Practical review tips
+
+- Use `sample_n` when a feature is common enough that full inspection would be noisy
+- Use `max_per_doc` to avoid letting one document dominate the sample
+- Increase `window` for multiword constructions such as negation or split auxiliaries
+- Join audit output back to corpus metadata so reviewers can stratify by discipline, register, or source
+- Reserve `biber()` for quantitative summaries and `audit_features()` for qualitative spot-checking
+
+## Next step
+
+Once you have confirmed that feature matches look sensible, return to
+`biber()` for corpus-level counts or move on to the multidimensional analysis
+workflows shown in the other vignettes.
