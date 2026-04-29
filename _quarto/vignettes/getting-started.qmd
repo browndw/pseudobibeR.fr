@@ -1,6 +1,5 @@
 ---
 title: "Getting Started with pseudobibeR.fr"
-author: "David West Brown"
 format: html
 execute:
   warning: false
@@ -100,6 +99,39 @@ features <- features |>
 
 # View feature counts
 head(features)
+```
+
+### Step 2b: Audit feature matches with KWIC-style context
+
+When you want to inspect how a feature is being counted, use
+`audit_features()`. The function accepts either a single feature or a whole
+category and returns sentence chunks with random sampling support. For a subset
+of high-volume lexical and stative features, it also returns exact
+`left`/`keyword`/`right` context columns.
+
+```{r}
+# Inspect a large category with random sampling
+noun_audit <- audit_features(
+  parsed,
+  feature = "f_16_other_nouns",
+  sample_n = 10,
+  max_per_doc = 3,
+  seed = 1
+)
+
+noun_audit |>
+  select(doc_id, sentence_id, keyword, left, right, chunk)
+
+# Audit a broader category; rows without exact anchors fall back to sentence chunks
+modal_audit <- audit_features(
+  parsed,
+  category = "Modals",
+  sample_n = 10,
+  seed = 1
+)
+
+modal_audit |>
+  select(feature, doc_id, sentence_id, match_type, keyword, chunk)
 ```
 
 ### Step 3: Perform Multidimensional Analysis

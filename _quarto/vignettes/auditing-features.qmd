@@ -56,24 +56,23 @@ tibble::tibble(
 
 ## Start with one exact feature
 
-Discourse particles are a good first audit target because they usually return
-exact token spans rather than whole-sentence fallback rows.
+We'll start with by-passives.
 
-```{r discourse-particles}
-particle_audit <- audit_features(
+```{r passive-boice}
+passive_audit <- audit_features(
   fc_udpipe_parsed,
-  feature = "f_50_discourse_particles",
+  feature = "f_18_by_passives",
   sample_n = 8,
   max_per_doc = 1,
   seed = 1,
   window = 6
 )
 
-particle_audit
+passive_audit
 ```
 
 ```{r particle-display}
-particle_audit |>
+passive_audit |>
   left_join(discipline_lookup, by = "doc_id") |>
   select(discipline, doc_id, sentence_id, keyword, left, right, chunk)
 ```
