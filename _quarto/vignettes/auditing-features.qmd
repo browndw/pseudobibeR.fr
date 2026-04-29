@@ -58,7 +58,7 @@ tibble::tibble(
 
 We'll start with by-passives.
 
-```{r passive-boice}
+```{r passive-voice}
 passive_audit <- audit_features(
   fc_udpipe_parsed,
   feature = "f_18_by_passives",
