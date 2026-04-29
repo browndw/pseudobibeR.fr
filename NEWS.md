@@ -1,3 +1,42 @@
+# pseudobibeR.fr 0.0.0.94
+
+## Major Changes
+
+### Feature Auditing Workflow
+* Added `audit_features()` as a collaborator-facing audit helper for parser output from both spaCy and UDPipe
+* Supports auditing by individual feature or by feature category, with optional `sample_n`, `max_per_doc`, `seed`, and KWIC `window` controls
+* Returns review-ready audit tables with document IDs, sentence IDs, feature labels, and reconstructed text chunks
+
+### Exact KWIC Anchors
+* Expanded exact token-span auditing beyond sentence-level fallback rows for a broad set of high-value features
+* Added exact anchors for:
+  - Nominal and stative features
+  - Lexical classes such as conjuncts, hedges, amplifiers, and discourse particles
+  - Passives, modals, and relative clauses
+  - Clause-embedding and subordination features
+  - Negation features
+  - Coordination and split constructions
+* Exact matches now expose `left`, `keyword`, and `right` context columns for faster manual review
+
+## Documentation Improvements
+
+* Added `audit_features()` examples to the Getting Started vignette
+* Added a compact `print()` method for `audit_features_result` objects so collaborator-facing output is easier to scan by default
+* Regenerated package documentation for the new audit API behavior and print method
+
+## Internal Improvements
+
+* Centralized parsed-token preparation in shared helpers so `biber()` and `audit_features()` use the same normalization path
+* Reused shared UDPipe coercion for both extraction and auditing workflows
+* Tightened exact-match and split-auxiliary handling to keep focused and full test runs warning-free
+
+## Validation
+
+* Added focused tests for audit exact anchors across lexical, clausal, negation, coordination, and split-construction features
+* Full test suite passes locally after the audit expansion (`PASS 276, SKIP 3`)
+
+---
+
 # pseudobibeR.fr 0.0.0.93
 
 ## Major Changes
