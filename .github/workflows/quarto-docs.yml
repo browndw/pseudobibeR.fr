@@ -9,9 +9,6 @@ on:
       - '.github/workflows/quarto-docs.yml'
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -19,7 +16,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
@@ -53,7 +50,7 @@ jobs:
 
       - name: Install pseudobibeR.fr package
         run: |
-          devtools::install(upgrade = "never")
+          devtools::install(upgrade = FALSE)
         shell: Rscript {0}
 
       - name: Set up Quarto
@@ -67,10 +64,38 @@ jobs:
         run: touch _quarto/_site/.nojekyll
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: _quarto/_site
-          destination_dir: docs
-          force_orphan: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          publish_dir="$RUNNER_TEMP/gh-pages-worktree"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            git fetch origin gh-pages
+            git worktree add "$publish_dir" origin/gh-pages
+            cd "$publish_dir"
+            git checkout -B gh-pages origin/gh-pages
+          else
+            git worktree add --detach "$publish_dir"
+            cd "$publish_dir"
+            git checkout --orphan gh-pages
+            git rm -rf . >/dev/null 2>&1 || true
+          fi
+
+          rm -rf docs
+          mkdir -p docs
+          cp -R "$GITHUB_WORKSPACE/_quarto/_site/." docs/
+
+          git add docs
+
+          if git diff --cached --quiet; then
+            echo "No docs changes to publish"
+            exit 0
+          fi
+
+          git commit -m "Deploy Quarto docs"
+          git push origin gh-pages
