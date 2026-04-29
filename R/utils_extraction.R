@@ -80,3 +80,99 @@ dictionary_to_lemmas <- function(dict_lookup, feature) {
   
   lemmas
 }
+
+#' Prepare parsed tokens for downstream feature extraction
+#'
+#' @param tokens Parsed token data frame
+#' @return Normalized token tibble with harmonized morphology columns
+#' @keywords internal
+prepare_parsed_tokens <- function(tokens) {
+  tokens <- tokens %>%
+    dplyr::as_tibble() %>%
+    dplyr::mutate(token = stringr::str_to_lower(.data$token))
+
+  if (!"sentence_id" %in% colnames(tokens)) {
+    tokens <- dplyr::mutate(tokens, sentence_id = 1L)
+  }
+
+  tokens <- tokens %>%
+    dplyr::mutate(pos = dplyr::if_else(.data$token == "\n", "PUNCT", .data$pos)) %>%
+    dplyr::filter(.data$pos != "SPACE")
+
+  if (nrow(tokens) == 0) {
+    stop("No valid tokens found after filtering. Document may contain only whitespace.", call. = FALSE)
+  }
+
+  if ("morph" %in% colnames(tokens)) {
+    tokens <- tokens %>%
+      dplyr::mutate(morph = purrr::map_chr(.data$morph, function(x) {
+        if (inherits(x, "python.builtin.object")) {
+          if (requireNamespace("reticulate", quietly = TRUE)) {
+            value <- reticulate::py_to_r(x)
+            if (is.null(value) || length(value) == 0) {
+              return("")
+            }
+            value <- as.character(value)
+            if (length(value) == 1) {
+              return(value)
+            }
+            return(paste(value, collapse = "|"))
+          }
+          return(as.character(x))
+        }
+        if (is.null(x) || length(x) == 0) {
+          return("")
+        }
+        if (length(x) == 1) {
+          return(as.character(x))
+        }
+        paste(as.character(x), collapse = "|")
+      })) %>%
+      dplyr::mutate(morph = dplyr::na_if(.data$morph, ""))
+
+    if ("feats" %in% colnames(tokens)) {
+      tokens <- tokens %>%
+        dplyr::mutate(feats = dplyr::coalesce(.data$feats, .data$morph))
+    } else {
+      tokens <- tokens %>%
+        dplyr::mutate(feats = .data$morph)
+    }
+  }
+
+  if (!"feats" %in% colnames(tokens)) {
+    tokens <- dplyr::mutate(tokens, feats = NA_character_)
+  }
+
+  tokens %>%
+    dplyr::mutate(
+      token_id_int = suppressWarnings(as.integer(.data$token_id)),
+      head_token_id_int = suppressWarnings(as.integer(.data$head_token_id)),
+      morph_tense = extract_morph_value(.data$feats, "Tense"),
+      morph_verbform = extract_morph_value(.data$feats, "VerbForm"),
+      morph_mood = extract_morph_value(.data$feats, "Mood"),
+      morph_prontype = extract_morph_value(.data$feats, "PronType"),
+      morph_voice = extract_morph_value(.data$feats, "Voice"),
+      morph_number = extract_morph_value(.data$feats, "Number"),
+      morph_person = extract_morph_value(.data$feats, "Person")
+    ) %>%
+    dplyr::arrange(.data$doc_id, .data$sentence_id, .data$token_id_int)
+}
+
+#' Coerce UDPipe annotations to the shared spacy-like token schema
+#'
+#' @param tokens A `udpipe_connlu` object
+#' @return A data frame with the shared token columns used internally
+#' @keywords internal
+coerce_udpipe_to_spacy_tokens <- function(tokens) {
+  udpipe_tks <- as.data.frame(tokens, stringsAsFactors = FALSE)
+
+  udpipe_tks <- udpipe_tks %>%
+    dplyr::select(
+      "doc_id", "sentence_id", "token_id", "token", "lemma", "upos",
+      "xpos", "feats", "head_token_id", "dep_rel"
+    ) %>%
+    dplyr::rename(pos = "upos", tag = "xpos") %>%
+    dplyr::mutate(tag = dplyr::if_else(is.na(.data$tag) | .data$tag == "", .data$pos, .data$tag))
+
+  structure(udpipe_tks, class = c("spacyr_parsed", "data.frame"))
+}
