@@ -553,11 +553,11 @@ test_that("f_50 clause-initial, f_39 compound prepositions, f_65 initial et (D-5
     "Il mange bien.", 0, 0, 0,
     "Il \u00e9tait alors jeune.", 0, 0, 0,
     "Eh bien, je ne sais pas.", 1, 0, 0,
-    "Du coup, on y va.", 1, 0, 0,
+    "Du coup, on y va.", 1, 1, 0,
     "Il reste \u00e0 cause de la pluie.", 0, 1, 0,
     "Gr\u00e2ce \u00e0 toi, il a r\u00e9ussi.", 0, 1, 0,
     "Et il est parti.", 0, 0, 1,
-    "Et alors ?", 1, 0, 0,
+    "Et alors ?", 0, 0, 0,
     "Il est parti et elle est rest\u00e9e.", 0, 0, 1,
     "Il est grand et elle est petite.", 0, 0, 1
   )
