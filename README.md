@@ -228,7 +228,7 @@ the examples marks what is counted.
 | `f_47_hedges` | Hedges (mark uncertainty) | Marqueurs d'approximation | *Il y avait **environ** cinquante personnes.* |
 | `f_48_amplifiers` | Amplifiers (strengthen a statement) | Intensifieurs | *C'est **très** important.* |
 | `f_49_emphatics` | Emphatics | Marqueurs d'emphase | *Je l'ai **vraiment** fait hier.* |
-| `f_50_discourse_particles` | Discourse markers | Marqueurs discursifs | ***Eh bien**, je ne sais pas.* |
+| `f_50_discourse_particles` | Discourse markers at the start of a clause | Marqueurs discursifs en début de proposition | ***Eh bien**, je ne sais pas.* |
 | `f_51_demonstratives` | Demonstratives before a noun | Déterminants démonstratifs | ***Ce** livre est intéressant.* |
 | **L. Modals** | | | |
 | `f_52_modal_possibility` | Possibility (*pouvoir*) | Possibilité (*pouvoir*) | *Je **peux** venir demain.* |

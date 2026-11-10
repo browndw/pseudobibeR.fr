@@ -64,17 +64,16 @@ pronoun_matchlist:
 proverb_object_pronouns:
   - le
   - l_'
+# Weather verbs for f_09 (il pleut). Weather faire (il fait froid) is handled
+# with weather_faire_terms; existential il y a is f_20.
 impersonal_verbs:
   - bruiner
-  - faire # ex_: il_fait_froid
   - geler
   - grêler
   - neiger
   - pleuvoir
-  - s'agir # ex_: il_s’agit_de
   - tonner
   - venter
-  - y_avoir # ex_: il_y_a
 # Standalone demonstrative pronouns for f_10 (forms of celui/celle/ceux/celles,
 # with -ci/-là, and ce/ceci/cela/ça). Demonstrative determiners are f_51.
 demonstrative_matchlist:
@@ -291,6 +290,60 @@ resumptive_en_verbs:
   - rêver
   - occuper
   - dépendre
+
+# f_39 (D-56): compound prepositions counted once, as in Spanish.
+prepositions_compound:
+  - à_cause_de
+  - "à_cause_d_'"
+  - grâce_à
+  - au_lieu_de
+  - "au_lieu_d_'"
+  - à_côté_de
+  - "à_côté_d_'"
+  - en_face_de
+  - "en_face_d_'"
+  - par_rapport_à
+  - au_cours_de
+  - "au_cours_d_'"
+  - en_raison_de
+  - "en_raison_d_'"
+  - au_sein_de
+  - "au_sein_d_'"
+  - lors_de
+  - "lors_d_'"
+  - à_partir_de
+  - "à_partir_d_'"
+  - au-delà_de
+  - "au-delà_d_'"
+  - près_de
+  - "près_d_'"
+  - loin_de
+  - "loin_d_'"
+  - autour_de
+  - "autour_d_'"
+  - quant_à
+  - à_propos_de
+  - "à_propos_d_'"
+  - "à_l_'_égard_de"
+  - "à_l_'_égard_d_'"
+  - en_dépit_de
+  - "en_dépit_d_'"
+  - en_fonction_de
+  - "en_fonction_d_'"
+  - face_à
+  - "jusqu_'_à"
+  - à_la_suite_de
+  - "à_la_suite_d_'"
+  - en_vue_de
+  - "en_vue_d_'"
+  - "à_l_'_intérieur_de"
+  - "à_l_'_intérieur_d_'"
+  - "à_l_'_extérieur_de"
+  - "à_l_'_extérieur_d_'"
+  - au-dessus_de
+  - "au-dessus_d_'"
+  - au-dessous_de
+  - "au-dessous_d_'"
 
 # f_60 (D-27, D-46): predicates whose que-clause competes with a bare
 # infinitive or unmarked finite complement (je crois avoir compris / je crois

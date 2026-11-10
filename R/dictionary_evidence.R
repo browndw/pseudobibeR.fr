@@ -4,7 +4,9 @@
 #'
 #' Underscores separate words; an apostrophe ends a word (`à_l_'_est` becomes
 #' `à l' est`). Entries with an internal apostrophe (`quelqu'un`) also match
-#' the split elision tokenization (`quelqu' un`) used by some parsers.
+#' the split elision tokenization (`quelqu' un`) used by some parsers, and
+#' entries with a contracted article also match its expanded form (`du coup`
+#' and `de le coup`, as UDPipe splits du/des/au/aux).
 #'
 #' @param patterns Dictionary entries.
 #' @return Character vector of space-separated phrases.
@@ -14,7 +16,13 @@ dictionary_phrases <- function(patterns) {
   joined <- gsub("_'(_|$)", "'\\1", patterns)
   phrases <- gsub("_", " ", joined, fixed = TRUE)
   split <- gsub("([^ ])'([^ ])", "\\1' \\2", phrases)
-  unique(c(phrases, split))
+  phrases <- unique(c(phrases, split))
+  # UDPipe splits contracted articles (du coup -> de le coup); spaCy may not.
+  expanded <- phrases
+  for (pair in list(c("du", "de le"), c("des", "de les"), c("au", "\u00e0 le"), c("aux", "\u00e0 les"))) {
+    expanded <- gsub(paste0("(^| )", pair[1], "( |$)"), paste0("\\1", pair[2], "\\2"), expanded)
+  }
+  unique(c(phrases, expanded))
 }
 
 #' Find maximal sentence-local phrase matches
@@ -109,4 +117,28 @@ dictionary_evidence <- function(tokens, features, cross_feature_precedence = FAL
       data.frame(feature = character(), doc_id = character(), sentence_id = integer(),
                  start = integer(), end = integer())
   )
+}
+
+#' Keep clause-initial discourse particles (f_50)
+#'
+#' Biber counts discourse particles clause-initially (sentence-initial or after
+#' punctuation: *well, now, anyway*), as the English package does (D-56).
+#' A dictionary match for f_50 is kept only when its first word starts the
+#' sentence or follows punctuation, so adverbial or verbal homographs
+#' elsewhere in the clause are not counted.
+#'
+#' @param evidence Dictionary evidence.
+#' @param tokens Prepared tokens.
+#' @return `evidence` without non-initial f_50 rows.
+#' @keywords internal
+clause_initial_particles <- function(evidence, tokens) {
+  f50 <- which(evidence$feature == "f_50_discourse_particles")
+  if (!length(f50)) return(evidence)
+  previous <- match(
+    paste(evidence$doc_id[f50], evidence$sentence_id[f50], evidence$token_id[f50] - 1L),
+    paste(tokens$doc_id, tokens$sentence_id, tokens$token_id_int)
+  )
+  initial <- is.na(previous) | tokens$pos[previous] %in% c("PUNCT", "SYM")
+  drop <- f50[!initial]
+  if (length(drop)) evidence[-drop, ] else evidence
 }

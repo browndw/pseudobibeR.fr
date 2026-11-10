@@ -29,7 +29,7 @@
 #'   and `chunk` (the full sentence). Lexical metrics (f_43, f_44) cannot be
 #'   audited.
 #' @examples
-#' audit_features(spacy_samples, feature = "f_19_be_main_verb", sample_n = 5)
+#' audit_features(spacy_samples, feature = "f_19_copula_main_verb", sample_n = 5)
 #' if (requireNamespace("udpipe", quietly = TRUE)) {
 #'   audit_features(udpipe_samples, category = "Modals", sample_n = 10, seed = 1)
 #' }

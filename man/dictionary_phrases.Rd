@@ -15,6 +15,8 @@ Character vector of space-separated phrases.
 \description{
 Underscores separate words; an apostrophe ends a word (\verb{à_l_'_est} becomes
 \verb{à l' est}). Entries with an internal apostrophe (\verb{quelqu'un}) also match
-the split elision tokenization (\verb{quelqu' un}) used by some parsers.
+the split elision tokenization (\verb{quelqu' un}) used by some parsers, and
+entries with a contracted article also match its expanded form (\verb{du coup}
+and \verb{de le coup}, as UDPipe splits du/des/au/aux).
 }
 \keyword{internal}

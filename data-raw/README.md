@@ -23,12 +23,23 @@ The package data infrastructure has three main layers:
 - Multiword expressions use underscores: `avoir_la_possibilité`
 - Run: `source("data-raw/build_french_dictionaries.R")`
 
-**`word_lists.yaml`** - Support lists for pattern matching
-- `pronoun_matchlist` - pronouns for extraction
-- `impersonal_verbs` - verbs like "falloir", "pleuvoir"  
-- `nominalization_suffixes` - endings like "-tion", "-ment"
-- `multiword_patterns` - manually-specified phrases
+**`word_lists.yaml`** - Support lists used by the detectors, for example
+- `impersonal_verbs` - weather verbs for f_09 (`pleuvoir`, `neiger`)
+- `nominalization_suffixes`, `nominalization_stoplist` - f_14
+- `demonstrative_matchlist` - f_10
+- `colloquial_contractions` - f_59 reductions (`p'tit`, `chuis`)
+- `reduced_complement_predicates` - f_60 governors
+- `orphan_prepositions`, `resumptive_prepositional_frames`, `resumptive_en_verbs` - f_61
+- `preinfinitival_light_adverbs` - f_62
+- `accent_contrastive_forms` - forms that keep their accent when unaccented
+  twins are generated (`à/a`, `où/ou`)
 - Run: `source("data-raw/build_french_dictionaries.R")`
+
+Each list has a comment explaining its feature and decision ID.
+
+**`feature_names.yaml`** - French display names for output columns
+(shared identifier: display name). Each display name must keep its `f_NN_`
+number. Run: `source("data-raw/build_feature_names.R")`
 
 #### 2. Rebuild Package Data
 
@@ -83,8 +94,11 @@ source("data-raw/generate_edge_case_fixture.R")
 
 This creates/updates:
 - `tests/testthat/fixtures/french_edge_case_features.csv` - Expected feature counts
+  (shared feature identifiers)
 
 The test `test-french-edge-cases.R` compares live extraction against this fixture.
+The fixture records current behavior, not a gold standard: before committing a
+regenerated fixture, review every changed count and confirm it is intended.
 
 **When to regenerate:**
 - After adding new edge cases to `french_edge_cases.yaml`
@@ -129,8 +143,9 @@ Creates/updates:
 To rebuild all package data from scratch:
 
 ```r
-# 1. Build dictionaries and word lists (required)
+# 1. Build dictionaries, word lists and display names (required)
 source("data-raw/build_french_dictionaries.R")
+source("data-raw/build_feature_names.R")
 
 # 2. Rebuild sample data (optional, requires corpus access)
 # source("data-raw/build_french_samples.R")

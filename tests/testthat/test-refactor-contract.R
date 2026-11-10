@@ -203,7 +203,8 @@ test_that("UDPipe probes reflect the corrected definitions", {
   expect_equal(value("weather", "f_09_pronoun_it"), 1)
   expect_equal(value("weather", "f_08_third_person_pronouns"), 0)
   expect_equal(value("referential", "f_09_pronoun_it"), 0)
-  expect_equal(value("referential", "f_08_third_person_pronouns"), 1)
+  # il and the possessive ses, as English counts he and his.
+  expect_equal(value("referential", "f_08_third_person_pronouns"), 2)
   expect_equal(value("raising", "f_09_pronoun_it"), 1)
   expect_equal(value("predicative", "f_09_pronoun_it"), 0)
   expect_equal(value("modal_weather", "f_09_pronoun_it"), 1)
@@ -510,4 +511,59 @@ test_that("f_11 counts indefinites in pronoun use only (D-52)", {
   docs <- sprintf("ind_%02d", seq_len(nrow(cases)))
   raw <- raw_counts(udpipe::udpipe_annotate(model, x = cases$text, doc_id = docs))
   expect_equal(raw$f_11_indefinite_pronouns, cases$f11)
+})
+
+test_that("existentials, adverbial subordinators, possessives and multiword verbs (D-55)", {
+  model_path <- get_udpipe_model_path()
+  skip_if(is.null(model_path), "UDPipe French model missing")
+  model <- udpipe::udpipe_load_model(model_path)
+  cases <- tibble::tribble(
+    ~text, ~f20, ~f38, ~f06, ~f08, ~f55, ~f57, ~f58,
+    "Il n'y a rien.", 1, 0, 0, 0, 0, 0, 0,
+    "Il y en a trois.", 1, 0, 0, 0, 0, 0, 0,
+    "Il y a eu un accident.", 1, 0, 0, 0, 0, 0, 0,
+    "Elle y a mang\u00e9 hier.", 0, 0, 0, 1, 0, 0, 0,
+    "Il est facile de convaincre Jean.", 0, 0, 0, 0, 0, 1, 0,
+    "Avant de partir, il mange.", 0, 0, 0, 1, 0, 0, 0,
+    "Pendant qu'il dort, je lis.", 0, 1, 1, 1, 0, 0, 0,
+    "Mon fr\u00e8re et moi avons visit\u00e9 le mus\u00e9e.", 0, 0, 2, 0, 0, 0, 0,
+    "Le son est fort.", 0, 0, 0, 0, 0, 0, 0,
+    "Ce livre est le mien.", 0, 0, 1, 0, 0, 0, 0,
+    "Il se plaint du bruit.", 0, 0, 0, 2, 1, 0, 0,
+    "Il a donn\u00e9 des instructions.", 0, 0, 0, 1, 0, 1, 0,
+    "Elle avait l'air heureuse.", 0, 0, 0, 1, 0, 0, 1
+  )
+  docs <- sprintf("d55_%02d", seq_len(nrow(cases)))
+  raw <- raw_counts(udpipe::udpipe_annotate(model, x = cases$text, doc_id = docs))
+  expect_equal(raw$f_20_existential_there, cases$f20)
+  expect_equal(raw$f_38_other_adv_sub, cases$f38)
+  expect_equal(raw$f_06_first_person_pronouns, cases$f06)
+  expect_equal(raw$f_08_third_person_pronouns, cases$f08)
+  expect_equal(raw$f_55_verb_public, cases$f55)
+  expect_equal(raw$f_57_verb_suasive, cases$f57)
+  expect_equal(raw$f_58_verb_seem, cases$f58)
+})
+
+test_that("f_50 clause-initial, f_39 compound prepositions, f_65 initial et (D-56)", {
+  model_path <- get_udpipe_model_path()
+  skip_if(is.null(model_path), "UDPipe French model missing")
+  model <- udpipe::udpipe_load_model(model_path)
+  cases <- tibble::tribble(
+    ~text, ~f50, ~f39, ~f65,
+    "Il mange bien.", 0, 0, 0,
+    "Il \u00e9tait alors jeune.", 0, 0, 0,
+    "Eh bien, je ne sais pas.", 1, 0, 0,
+    "Du coup, on y va.", 1, 0, 0,
+    "Il reste \u00e0 cause de la pluie.", 0, 1, 0,
+    "Gr\u00e2ce \u00e0 toi, il a r\u00e9ussi.", 0, 1, 0,
+    "Et il est parti.", 0, 0, 1,
+    "Et alors ?", 1, 0, 0,
+    "Il est parti et elle est rest\u00e9e.", 0, 0, 1,
+    "Il est grand et elle est petite.", 0, 0, 1
+  )
+  docs <- sprintf("d56_%02d", seq_len(nrow(cases)))
+  raw <- raw_counts(udpipe::udpipe_annotate(model, x = cases$text, doc_id = docs))
+  expect_equal(raw$f_50_discourse_particles, cases$f50)
+  expect_equal(raw$f_39_prepositions, cases$f39)
+  expect_equal(raw$f_65_clausal_coordination, cases$f65)
 })

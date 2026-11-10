@@ -20,8 +20,9 @@ expand_adjective_conjuncts <- function(tokens, rows) {
 
 #' Adjective, preposition, and adverb features (French)
 #'
-#' f_39: one occurrence per prepositional `case` marker; a multiword
-#' preposition (`à cause de`, `grâce à`) counts once, on its first word.
+#' f_39: one occurrence per prepositional `case` marker; a compound
+#' preposition listed in `prepositions_compound` (`à cause de`, `grâce à`) or
+#' marked `fixed` by the parser counts once, on its first word (D-56).
 #' f_40: adjectives in an `amod` relation and their conjuncts, excluding
 #' hyphenated forms and the quantifier tout (`tous les jours`). f_41: adjectives heading a copula or in an
 #' `xcomp`/`acomp` relation to a linking verb, and their conjuncts.
@@ -40,14 +41,33 @@ block_adj_prep_adv_fr <- function(tokens, doc_ids, dict_lookup, word_lists_looku
   fixed_adp_heads <- tokens %>%
     dplyr::filter(.data$pos == "ADP", .data$dep_rel == "fixed") %>%
     dplyr::distinct(.data$doc_id, .data$sentence_id, token_id_int = .data$head_token_id_int)
-  f39 <- tokens %>%
+  f39_rows <- tokens %>%
     dplyr::filter(.data$dep_rel == "case") %>%
     dplyr::filter(
       .data$pos == "ADP" |
         paste(.data$doc_id, .data$sentence_id, .data$token_id_int) %in%
         paste(fixed_adp_heads$doc_id, fixed_adp_heads$sentence_id, fixed_adp_heads$token_id_int)
-    ) %>%
-    count_feature_traced("f_39_prepositions")
+    )
+  # Listed compound prepositions (à cause de, grâce à) count once, on their
+  # first word, replacing the single prepositions they contain (D-56).
+  compound_hits <- surface_matches(tokens, get_word_list(word_lists_lookup, "prepositions_compound"))
+  compound_spans <- data.frame(
+    doc_id = tokens$doc_id[compound_hits$start_row],
+    sentence_id = tokens$sentence_id[compound_hits$start_row],
+    start = tokens$token_id_int[compound_hits$start_row],
+    end = tokens$token_id_int[compound_hits$end_row]
+  )
+  if (nrow(compound_spans)) {
+    f39_rows <- dplyr::anti_join(
+      f39_rows, compound_spans,
+      by = dplyr::join_by("doc_id", "sentence_id", "token_id_int" >= "start",
+                          "token_id_int" <= "end")
+    )
+  }
+  f39 <- list(evidence = bind_evidence(
+    count_feature_traced(f39_rows, "f_39_prepositions")$evidence,
+    span_evidence(tokens, compound_spans, "f_39_prepositions")
+  ))
 
   plain <- !stringr::str_detect(tokens$token, "-")
   f40_rows <- tokens[tokens$pos == "ADJ" & tokens$dep_rel == "amod" & plain &
@@ -109,7 +129,10 @@ exclude_specialized_adverbs <- function(evidence) {
 #' Specialized verb class features (French)
 #'
 #' One occurrence per VERB/AUX whose lemma is a single-word entry of the
-#' corresponding dictionary class.
+#' corresponding dictionary class. Multiword entries are matched on the verb:
+#' `avoir_l_'_air` is avoir followed by `l' air` (`il a l'air fatigué`), and an
+#' entry starting with se (`se_plaindre`) is the verb with a reflexive clitic
+#' among the three preceding words (`il se plaint`, `je me suis plaint`).
 #'
 #' @param tokens Prepared tokens.
 #' @param doc_ids Document IDs.
@@ -118,10 +141,34 @@ exclude_specialized_adverbs <- function(evidence) {
 #' @keywords internal
 block_specialized_verbs_fr <- function(tokens, doc_ids, dict_lookup) {
   features <- c("f_55_verb_public", "f_56_verb_private", "f_57_verb_suasive", "f_58_verb_seem")
-  verbs <- tokens[tokens$pos %in% c("VERB", "AUX"), ]
+  verbal <- tokens$pos %in% c("VERB", "AUX")
+  reflexives <- c("se", "s'", "me", "m'", "te", "t'", "nous", "vous")
+  previous <- cbind(tokens$prev_token, tokens$prev2_token, tokens$prev3_token)
+  has_reflexive <- rowSums(matrix(normalize_terms(previous) %in% reflexives, ncol = 3)) > 0
+  following <- cbind(tokens$next_token, tokens$next2_token, tokens$next3_token)
   evidence <- lapply(features, function(feature) {
     lemmas <- dictionary_to_lemmas(dict_lookup, feature)
-    count_feature_traced(verbs[verbs$match_lemma %in% lemmas, ], feature)$evidence
+    hit <- verbal & tokens$match_lemma %in% lemmas
+    entries <- normalize_terms(unlist(dict_lookup[[feature]], use.names = FALSE))
+    for (entry in entries[grepl("_", entries, fixed = TRUE)]) {
+      words <- strsplit(dictionary_phrases(entry)[1], " ", fixed = TRUE)[[1]]
+      if (words[1] %in% c("se", "s'")) {
+        hit <- hit | (verbal & tokens$match_lemma == words[2] & has_reflexive)
+      } else {
+        # UDPipe splits contracted articles (des -> de les).
+        contractions <- c(des = "de les", du = "de le", au = "\u00e0 le", aux = "\u00e0 les")
+        tail <- unlist(lapply(words[-1], function(w) {
+          if (w %in% names(contractions)) strsplit(contractions[[w]], " ")[[1]] else w
+        }))
+        if (length(tail) > ncol(following)) next
+        match_tail <- rep(TRUE, nrow(tokens))
+        for (k in seq_along(tail)) {
+          match_tail <- match_tail & normalize_terms(dplyr::coalesce(following[, k], "")) == tail[k]
+        }
+        hit <- hit | (verbal & tokens$match_lemma == words[1] & match_tail)
+      }
+    }
+    count_feature_traced(tokens[hit, ], feature)$evidence
   })
   make_block_result(doc_ids, do.call(bind_evidence, evidence))
 }

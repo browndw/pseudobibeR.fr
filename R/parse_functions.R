@@ -128,6 +128,7 @@ parse_biber_features <- function(tokens, measure, normalize, traced = FALSE) {
   )
   evidence <- do.call(bind_evidence, lapply(blocks, extract_evidence))
   lexical <- dictionary_evidence(tokens, .dict_only_features, cross_feature_precedence = TRUE)
+  lexical$evidence <- clause_initial_particles(lexical$evidence, tokens)
   evidence <- bind_evidence(evidence, lexical$evidence)
   evidence <- dplyr::distinct(evidence, .data$doc_id, .data$feature, .data$sentence_id,
                               .data$token_id, .keep_all = TRUE)

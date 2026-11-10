@@ -19,8 +19,9 @@ block_adj_prep_adv_fr(tokens, doc_ids, dict_lookup, word_lists_lookup)
 Block result with f_39-f_42 evidence.
 }
 \description{
-f_39: one occurrence per prepositional \code{case} marker; a multiword
-preposition (\verb{à cause de}, \verb{grâce à}) counts once, on its first word.
+f_39: one occurrence per prepositional \code{case} marker; a compound
+preposition listed in \code{prepositions_compound} (\verb{à cause de}, \verb{grâce à}) or
+marked \code{fixed} by the parser counts once, on its first word (D-56).
 f_40: adjectives in an \code{amod} relation and their conjuncts, excluding
 hyphenated forms and the quantifier tout (\verb{tous les jours}). f_41: adjectives heading a copula or in an
 \code{xcomp}/\code{acomp} relation to a linking verb, and their conjuncts.

@@ -54,6 +54,28 @@
   including when UDPipe tags `en chantant` as a noun (which also removes it
   from f_16). Postposed subjects (`Il est important de se reposer`), objects
   and prepositional infinitives remain f_24.
+* Scope alignments (D-56): f_50 counts discourse particles only at the start
+  of a clause (sentence-initial or after punctuation), as Biber and English
+  do, so adverbial *bien* and temporal *alors* no longer count; f_39 counts
+  listed compound prepositions (*à cause de*, *grâce à*) once, as Spanish
+  does; f_65 counts sentence-initial *et*, as Spanish does, and coordinated
+  clauses in compound tenses or with a copula (*il est parti et elle est
+  restée*), which were missed.
+* Defects fixed (D-55):
+  * Dictionary phrases containing *du/des/au/aux* never matched, because
+    UDPipe splits them (*du coup* → *de le coup*); both forms now match
+    (*du coup*, *au loin*, *au nord*, *du genre*).
+  * f_20 counts *il n'y a*, *il y en a* and colloquial *y a*, and no longer
+    counts locative *y* (*elle y a mangé*, *j'y ai pensé*).
+  * f_38 no longer counts prepositions introducing an infinitive or gérondif
+    (*facile de convaincre*, *avant de partir*, *en chantant*).
+  * f_06–f_08 count all possessives: *mon/ma/mes/nos* and *son/sa/ses* were
+    missing, as were *te* and *le mien/tien/sien*; the noun *son* and the verb
+    *tiens* are not counted.
+  * Multiword verb entries now match: *avoir l'air* (f_58), *se plaindre*
+    (f_55), *donner des instructions* (f_57).
+  * *Il fait froid* is recognized as impersonal (f_09) when UDPipe parses
+    *faire* as a copula; f_37 no longer accepts *au moins que*.
 * f_11 counts indefinite pronouns in pronoun use only, as in Spanish (D-52):
   the nouns `une personne` and `une chose`, determiner `quelque` and degree
   `tout petit` no longer count, and `quelque chose` counts once instead of

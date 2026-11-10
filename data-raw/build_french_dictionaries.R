@@ -129,6 +129,7 @@ word_lists <- list(
   colloquial_contractions = normalize_terms(word_lists_spec$colloquial_contractions, replace_spaces = FALSE),
   reduced_complement_predicates = normalize_terms(word_lists_spec$reduced_complement_predicates, replace_spaces = TRUE),
   orphan_prepositions = normalize_terms(word_lists_spec$orphan_prepositions, replace_spaces = TRUE),
+  prepositions_compound = normalize_terms(word_lists_spec$prepositions_compound, replace_spaces = FALSE),
   preinfinitival_light_adverbs = normalize_terms(word_lists_spec$preinfinitival_light_adverbs, replace_spaces = TRUE),
   resumptive_prepositional_frames = normalize_terms(word_lists_spec$resumptive_prepositional_frames, replace_spaces = FALSE),
   resumptive_en_verbs = normalize_terms(word_lists_spec$resumptive_en_verbs, replace_spaces = TRUE),

@@ -114,7 +114,18 @@ block_personal_pronouns_fr <- function(tokens, doc_ids, head_lookup, dict_lookup
                   stringr::str_detect(.data$dep_rel, "^(obj|xcomp|amod|advmod)")) %>%
     dplyr::semi_join(tokens[tokens$lemma == "faire", ],
                      by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int")) %>%
-    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$head_token_id_int) %>%
+    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$head_token_id_int)
+  # UDPipe may also parse il fait froid as copula faire + ADJ head; the
+  # subject then attaches to the weather word.
+  copular_faire <- tokens %>%
+    dplyr::filter(.data$lemma == "faire", .data$dep_rel == "cop") %>%
+    dplyr::distinct(.data$doc_id, .data$sentence_id, token_id_int = .data$head_token_id_int)
+  weather_faire <- tokens %>%
+    dplyr::filter(.data$match_token %in% weather_faire_terms) %>%
+    dplyr::semi_join(copular_faire, by = c("doc_id", "sentence_id", "token_id_int")) %>%
+    dplyr::distinct(.data$doc_id, .data$sentence_id, head_token_id_int = .data$token_id_int) %>%
+    dplyr::bind_rows(weather_faire) %>%
+    dplyr::distinct() %>%
     dplyr::mutate(is_weather_faire = TRUE)
   weather_complement_heads <- tokens %>%
     dplyr::filter(.data$dep_rel == "xcomp", .data$lemma %in% weather_lemmas) %>%
@@ -157,6 +168,19 @@ block_personal_pronouns_fr <- function(tokens, doc_ids, head_lookup, dict_lookup
       seq.int(hits$start_row[i], hits$end_row[i])
     })), ]
     dictionary_rows <- dictionary_rows[dictionary_rows$pos != "PUNCT", ]
+    # Possessive determiners must be DET/PRON (son "sound" is a noun).
+    # Possessive pronouns must be PRON or follow le/la/les, as UDPipe tags
+    # le mien as DET + NOUN (tiens, tienne are also forms of tenir).
+    possessive_det <- c("mon", "ma", "mes", "notre", "nos", "ton", "ta", "tes", "votre",
+                        "vos", "son", "sa", "ses", "leur", "leurs")
+    possessive_pron <- c("mien", "mienne", "miens", "miennes", "tien", "tienne", "tiens",
+                         "tiennes", "sien", "sienne", "siens", "siennes", "n\u00f4tre",
+                         "n\u00f4tres", "v\u00f4tre", "v\u00f4tres")
+    dictionary_rows <- dictionary_rows[
+      !(dictionary_rows$match_token %in% possessive_det & !dictionary_rows$pos %in% c("DET", "PRON")) &
+        !(dictionary_rows$match_token %in% possessive_pron & dictionary_rows$pos != "PRON" &
+            !normalize_terms(dplyr::coalesce(dictionary_rows$prev_token, "")) %in%
+            c("le", "la", "les")), ]
     # Personal pronouns only: UDPipe also marks demonstrative ce/ça, partitive
     # en and generic on as Person=3 (D-50).
     morph_rows <- tokens[tokens$pos == "PRON" & tokens$morph_person %in% person &

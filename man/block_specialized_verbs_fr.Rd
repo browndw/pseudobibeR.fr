@@ -18,6 +18,9 @@ Block result with f_55-f_58 evidence.
 }
 \description{
 One occurrence per VERB/AUX whose lemma is a single-word entry of the
-corresponding dictionary class.
+corresponding dictionary class. Multiword entries are matched on the verb:
+\verb{avoir_l_'_air} is avoir followed by \verb{l' air} (\verb{il a l'air fatigué}), and an
+entry starting with se (\code{se_plaindre}) is the verb with a reflexive clitic
+among the three preceding words (\verb{il se plaint}, \verb{je me suis plaint}).
 }
 \keyword{internal}

@@ -58,7 +58,7 @@ annotations <- udpipe::udpipe_annotate(
   parser = "default"
 )
 
-features <- biber(annotations, measure = "none", normalize = FALSE)
+features <- biber(annotations, measure = "none", normalize = FALSE, feature_names = "shared")
 feature_cols <- grep("^f_", names(features), value = TRUE)
 
 long <- tidyr::pivot_longer(

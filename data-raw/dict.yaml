@@ -1,22 +1,14 @@
-# French linguistic feature dictionaries for Biber (1985) framework
+# French feature dictionaries (Biber 1985, 1988)
 #
-# TOKENIZATION AND PATTERN FORMATTING:
-# French elisions (d', l', n', t', m', s') are handled specially:
-# 1. udpipe splits elisions: "d'ici" → ["d'", "ici"]
-# 2. Text reconstruction adds spaces: paste() → "d' ici"
-# 3. quanteda re-tokenizes and splits apostrophes: "d' ici" → ["d", "'", "ici"]
-# 4. Patterns use underscores for token boundaries:
-#    - Multiword: "loin d'ici" → "loin_d_'_ici" (matches ["loin", "d", "'", "ici"])
-#    - Single token: "t'" → "t_'" (matches ["t", "'"])
+# Entries are matched on the parser's word rows, sentence by sentence
+# (dictionary_evidence()). Underscores separate words; an apostrophe ends a
+# word ("loin_d_'_ici" matches loin d' ici). Straight and curly apostrophes and
+# split elisions are matched. A phrase takes precedence over words it contains.
+# Verb classes (f_52-f_58) match lemmas; keep verbs in the infinitive.
 #
-# KNOWN LIMITATIONS:
-# - Some items appear in multiple categories and may be counted twice:
-#   * donc: f_45_conjuncts AND f_50_discourse_particles
-#   * ensuite: f_05_time_adverbials AND f_45_conjuncts
-#   * vraiment: f_48_amplifiers AND f_49_emphatics
-#   * devoir: f_53_modal_necessity AND f_54_modal_predictive
-#   * risquer: f_52_modal_possibility AND f_54_modal_predictive
-# - Future enhancement: contextual disambiguation based on syntactic position
+# Ambiguous items (donc, ensuite, vraiment) are listed in one feature and
+# reassigned by position in disambiguate_stance_fr(), so each occurrence is
+# counted in one feature only.
 #
 f_04_place_adverbials:
   - à_bord
@@ -71,7 +63,7 @@ f_05_time_adverbials:
   - désormais
   - encore_une_fois
   - enfin
-  - ensuite # Total count here; conjunct uses subtracted via count_ensuite_conjunct_fr()
+  - ensuite # conjunct uses reassigned to f_45 by disambiguate_stance_fr()
   - éventuellement
   - hier
   - immédiatement
@@ -94,36 +86,66 @@ f_05_time_adverbials:
   - ultérieurement
   - une_fois
 f_06_first_person_pronouns:
+  # Possessive determiners count only as DET/PRON, possessive pronouns only
+  # as PRON (gate in block_personal_pronouns_fr).
   - je
   - m_'
+  - ma
   - me
+  - mes
+  - mien
+  - mienne
+  - miennes
+  - miens
   - moi
   - moi-même
+  - mon
+  - nos
   - notre
+  - nôtre
+  - nôtres
   - nous
   - nous-mêmes
 f_07_second_person_pronouns:
   - t'
   - ta
+  - te
   - tes
+  - tien
+  - tienne
+  - tiennes
+  - tiens
   - toi
+  - toi-même
   - ton
   - tu
   - vos
   - votre
   - vous
   - vous-même
+  - vous-mêmes
+  - vôtre
+  - vôtres
 f_08_third_person_pronouns:
   - elle
+  - elle-même
   - elles
+  - elles-mêmes
   - eux
   - eux-mêmes
   - il
   - ils
-  - les_siens
   - leur
   - leurs
   - lui
+  - lui-même
+  - sa
+  - ses
+  - sien
+  - sienne
+  - siennes
+  - siens
+  - son
 f_11_indefinite_pronouns:
   # Pronoun uses only (gate_indefinite_pronouns_fr, D-52); phrases count once.
   - aucun
@@ -156,8 +178,7 @@ f_45_conjuncts:
   - de_manière_similaire
   - de_même
   - de_plus
-  - donc # Total count here; discourse uses subtracted via count_donc_discourse_fr()
-  # ensuite - counted in f_05, conjunct uses added via count_ensuite_conjunct_fr()
+  - donc # discourse uses reassigned to f_50 by disambiguate_stance_fr()
   - inversement
   - néanmoins
   - nonobstant
@@ -204,7 +225,6 @@ f_48_amplifiers:
   - tout_à_fait
   - très
   - ultra
-  # vraiment - counted in f_49, amplifier uses added via count_vraiment_amplifier_fr()
 f_49_emphatics:
   - beaucoup
   - bien_sûr
@@ -214,13 +234,12 @@ f_49_emphatics:
   - sûr
   - tellement
   - tout_à
-  - vraiment # Total count here; amplifier uses subtracted via count_vraiment_amplifier_fr()
+  - vraiment # amplifier uses reassigned to f_48 by disambiguate_stance_fr()
 f_50_discourse_particles:
   - alors
   - bien
   - bref
   - de_toute_façon
-  # donc - counted in f_45, discourse uses added via count_donc_discourse_fr()
   - du_coup
   - eh_bien
   - en_fait
@@ -232,18 +251,9 @@ f_50_discourse_particles:
   - ô
   - voilà
 f_51_demonstratives:
-  - ça
-  - ce
-  - ceci
-  - cela
-  - celle
-  - celles
-  - celui
-  - ces
-  - cette
-  - ceux
-# Modals rely on lemma matching via dictionary_to_lemmas()/block_modals_fr(),
-# so keep entries in infinitive form even if downstream logic also inspects context.
+  # Detected structurally (ce/cet/cette/ces as determiners) in
+  # block_lexical_membership_fr(); no dictionary entries needed.
+# Modals rely on lemma matching (block_modals_fr()); keep verbs in the infinitive.
 f_52_modal_possibility:
   - pouvoir
   # sembler assigned to f_58_verb_seem
@@ -251,9 +261,8 @@ f_53_modal_necessity:
   - devoir  # Primary meaning; predictive uses ("il doit être 5h") assigned here
   - falloir
 f_54_modal_predictive:
-  # Pattern-based detection in block_modals_fr() - no dictionary entries needed
-  # Captures: aller + inf, sera/serait, risquer de + inf, être susceptible de + inf
-  # Adding lemmas here would cause double-counting with pattern logic
+  # Detected from morphology in block_modals_fr(): future and conditional
+  # forms and aller + infinitive (D-40). No dictionary entries needed.
 f_55_verb_public:
   # accepter → f_57_verb_suasive (core meaning: compliance)
   - affirmer

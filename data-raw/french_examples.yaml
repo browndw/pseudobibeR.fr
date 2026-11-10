@@ -6,10 +6,10 @@
   count: 2.0
 - feature: f_01_past_tense
   example: Le chat a marché lentement dans la rue.
-  count: 1.0
+  count: 0.0
 - feature: f_01_past_tense #
   example: Aujourd'hui encore, il dit qu’il est parti le lendemain.
-  count: 1.0
+  count: 0.0
 - feature: f_02_perfect_aspect
   example: J'ai fini mon travail.
   count: 1.0
@@ -66,7 +66,7 @@
   count: 2.0
 - feature: f_08_third_person_pronouns
   example: Elle lui a donné son livre.
-  count: 2.0
+  count: 3.0
 - feature: f_08_third_person_pronouns
   example: Ils sont partis sans eux.
   count: 2.0
@@ -419,7 +419,7 @@
   count: 1.0
 - feature: f_42_adverbs
   example: Il travaille toujours avec soin.
-  count: 1.0
+  count: 0.0
 - feature: f_45_conjuncts
   example: J'aime le café. Cependant, je préfère le thé.
   count: 1.0
@@ -454,7 +454,7 @@
   example: Eh bien, je ne sais pas quoi dire.
   count: 1.0
 - feature: f_50_discourse_particles
-  example: Bon, on y va maintenant?
+  example: Du coup, on y va maintenant ?
   count: 1.0
 - feature: f_51_demonstratives
   example: Ce livre est intéressant.

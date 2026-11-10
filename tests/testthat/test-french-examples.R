@@ -21,7 +21,7 @@ test_that("UDPipe french examples align with expected feature counts", {
     "Elle \u00e9tait partie avant midi." = "UDPipe tags partie as NOUN with \u00e9tait as copula",
     "La maison construite l'ann\u00e9e derni\u00e8re est magnifique." =
       "UDPipe parses construite as the main verb",
-    "Dis-moi ce que tu veux." = "ce que indirect questions pending a decision (free relatives deferred)"
+    "Dis-moi ce que tu veux." = "UDPipe misparses the imperative clitic, so the ce que free relative (D-37) is not found"
   )
 
   model_path <- get_udpipe_model_path()

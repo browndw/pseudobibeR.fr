@@ -37,6 +37,8 @@ analytic negator ne/pas/point/plus (\verb{a souvent mangé}, \verb{n'a jamais vu
 auxiliary. f_64: a coordinator joining two
 words of the same POS (NOUN, PROPN, ADJ, ADV, VERB, AUX) when the second
 conjunct has no subject of its own. f_65: a coordinator joining finite
-verbal predicates that have their own subject.
+predicates (finite verb, or a head with a finite auxiliary or copula) that
+have their own subject, and sentence-initial et attached to such a predicate
+(D-56).
 }
 \keyword{internal}

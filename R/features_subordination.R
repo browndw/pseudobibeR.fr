@@ -338,7 +338,7 @@ block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
   f37_spans <- span_of(
     si_mark & !indirect_si & !tokens$prev_token %in% "sauf",
     tokens$token == "sauf" & tokens$next_token %in% c("si", "s'") & sconj_next,
-    tokens$token == "moins" & tokens$prev_token %in% c("\u00e0", "au") &
+    tokens$token == "moins" & normalize_terms(dplyr::coalesce(tokens$prev_token, "")) == "\u00e0" &
       tokens$next_token %in% complementizers
   )
   f38_phrase_spans <- span_of(
@@ -412,9 +412,27 @@ block_clause_embedding_fr <- function(tokens, doc_ids, head_lookup) {
   f37 <- span_evidence(tokens, f37_spans, "f_37_if")
 
   counted <- c(complementizers, "parce", "quoique", "quoiqu'", "si", "s'")
+  # A preposition marking a non-finite clause (de/à/pour/sans + infinitive,
+  # en + gérondif) is not an adverbial subordinator; pour que, avant que and
+  # pendant que introduce finite clauses and remain.
+  finite_aux <- tokens %>%
+    dplyr::filter(
+      (stringr::str_detect(.data$dep_rel, "^(aux|cop)") & .data$morph_verbform %in% "Fin") |
+        stringr::str_detect(.data$dep_rel, "^nsubj") |
+        (.data$dep_rel == "mark" & .data$match_token %in% complementizers)
+    ) %>%
+    dplyr::distinct(.data$doc_id, .data$sentence_id, clause_id = .data$head_token_id_int)
+  head_form <- tokens$morph_verbform[match(
+    paste(tokens$doc_id, tokens$sentence_id, tokens$head_token_id_int),
+    paste(tokens$doc_id, tokens$sentence_id, tokens$token_id_int)
+  )]
+  head_has_finite_aux <- paste(tokens$doc_id, tokens$sentence_id, tokens$head_token_id_int) %in%
+    paste(finite_aux$doc_id, finite_aux$sentence_id, finite_aux$clause_id)
+  nonfinite_adp <- tokens$pos == "ADP" & head_form %in% c("Inf", "Ger", "Part") &
+    !head_has_finite_aux
   f38_rows <- tokens[tokens$pos %in% c("SCONJ", "ADP", "ADV") &
                        stringr::str_detect(tokens$dep_rel, "^mark") &
-                       !tokens$match_token %in% counted, ] %>%
+                       !tokens$match_token %in% counted & !nonfinite_adp, ] %>%
     outside_phrases()
   f38 <- bind_evidence(
     count_feature_traced(f38_rows, "f_38_other_adv_sub")$evidence,

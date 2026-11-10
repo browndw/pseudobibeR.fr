@@ -55,14 +55,39 @@ block_passive_voice_fr <- function(tokens, doc_ids, head_lookup, passive_rel_val
     dplyr::filter(.data$lemma == "\u00eatre", !stringr::str_detect(.data$dep_rel, "aux")) %>%
     count_feature_traced("f_19_be_main_verb")
 
-  f20 <- tokens %>%
-    dplyr::filter(
-      .data$lemma == "avoir",
-      .data$pos %in% c("VERB", "AUX"),
-      dplyr::coalesce(.data$prev_lemma, "") == "y",
-      dplyr::coalesce(.data$prev2_lemma, "") == "il",
-      dplyr::coalesce(.data$prev2_pos, "") == "PRON"
-    ) %>%
+  # Existential il y a (D-55): y (+ en) + avoir, with il, a verb (il va y
+  # avoir) or nothing (colloquial y a, y a-t-il) before y, skipping ne. Surface
+  # forms are used because UDPipe lemmatizes elle/je as il. avoir as the
+  # auxiliary of another verb (il y a mangé, "he ate there") is excluded;
+  # il y a eu remains.
+  y_pos <- ifelse(tokens$prev_token %in% "en" & normalize_terms(dplyr::coalesce(tokens$prev2_token, "")) == "y", 2L,
+                  ifelse(normalize_terms(dplyr::coalesce(tokens$prev_token, "")) == "y", 1L, NA_integer_))
+  lag_token <- function(k) {
+    out <- rep(NA_character_, nrow(tokens))
+    cols <- list(tokens$prev_token, tokens$prev2_token, tokens$prev3_token, tokens$prev4_token)
+    for (i in seq_along(k)) if (!is.na(k[i]) && k[i] <= 4) out[i] <- cols[[k[i]]][i]
+    normalize_terms(out)
+  }
+  lag_pos <- function(k) {
+    out <- rep(NA_character_, nrow(tokens))
+    cols <- list(tokens$prev_pos, tokens$prev2_pos, tokens$prev3_pos, tokens$prev4_pos)
+    for (i in seq_along(k)) if (!is.na(k[i]) && k[i] <= 4) out[i] <- cols[[k[i]]][i]
+    out
+  }
+  before <- lag_token(y_pos + 1L)
+  skip_ne <- before %in% c("ne", "n'")
+  before <- ifelse(skip_ne, lag_token(y_pos + 2L), before)
+  before_pos <- ifelse(skip_ne, lag_pos(y_pos + 2L), lag_pos(y_pos + 1L))
+  subject_ok <- is.na(before) | before %in% c("il", "qu'il") |
+    before_pos %in% c("VERB", "AUX", "PUNCT", "SCONJ", "CCONJ", "ADV")
+  participle_heads <- tokens %>%
+    dplyr::filter(.data$morph_verbform %in% "Part", .data$match_lemma != "avoir") %>%
+    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int)
+  aux_of_participle <- stringr::str_detect(tokens$dep_rel, "^aux") &
+    paste(tokens$doc_id, tokens$sentence_id, tokens$head_token_id_int) %in%
+    paste(participle_heads$doc_id, participle_heads$sentence_id, participle_heads$token_id_int)
+  f20 <- tokens[tokens$match_lemma == "avoir" & tokens$pos %in% c("VERB", "AUX") &
+                  !is.na(y_pos) & subject_ok & !aux_of_participle, ] %>%
     count_feature_traced("f_20_existential_there")
 
   make_block_result(doc_ids, bind_evidence(f17, f18, f19$evidence, f20$evidence))

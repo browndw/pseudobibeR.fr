@@ -46,11 +46,11 @@
 #' ## Pronouns and pro-verbs
 #'
 #' \describe{
-#' \item{f_06_first_person_pronouns}{First-person pronouns (e.g., \emph{je}, \emph{nous}).}
-#' \item{f_07_second_person_pronouns}{Second-person pronouns (e.g., \emph{tu}, \emph{vous}).}
+#' \item{f_06_first_person_pronouns}{First-person pronouns and possessives (e.g., \emph{je}, \emph{nous}, \emph{mon}, \emph{le mien}).}
+#' \item{f_07_second_person_pronouns}{Second-person pronouns and possessives (e.g., \emph{tu}, \emph{vous}, \emph{ton}, \emph{votre}).}
 #' \item{f_08_third_person_pronouns}{
 #'   Third-person personal pronouns other than expletives
-#'   (e.g., \emph{il}, \emph{elle}, \emph{ils}, \emph{lui}, \emph{se}).
+#'   and possessives (e.g., \emph{il}, \emph{elle}, \emph{ils}, \emph{lui}, \emph{se}, \emph{son}, \emph{leur}).
 #'   Demonstrative \emph{ce}/\emph{ça}, partitive \emph{en} and generic
 #'   \emph{on} (like English \emph{one}) are not counted.
 #' }
@@ -88,7 +88,7 @@
 #'
 #' \describe{
 #' \item{f_19_be_main_verb}{\emph{etre} used as a lexical verb.}
-#' \item{f_20_existential_there}{Existential constructions (e.g., \emph{il y a}).}
+#' \item{f_20_existential_there}{Existential \emph{il y a}, including \emph{il n'y a}, \emph{il y en a} and colloquial \emph{y a}; not locative \emph{y} (\emph{elle y a mangé}).}
 #' }
 #'
 #' ## Subordination features
@@ -114,7 +114,7 @@
 #' \item{f_29_that_subj}{Subject relatives introduced by \emph{qui} following a noun.}
 #' \item{f_30_that_obj}{Object relatives introduced by \emph{que}, excluding the \emph{que} of f_61 relatives.}
 #' \item{f_31_wh_subj}{Subject relatives with \emph{lequel/laquelle/...}.}
-#' \item{f_32_wh_obj}{Object relatives with \emph{dont}, \emph{lequel/laquelle/...}.}
+#' \item{f_32_wh_obj}{Relatives with \emph{lequel/laquelle/...} in a non-subject function without a preposition (rare); \emph{dont} and prepositional relatives are f_33.}
 #' \item{f_33_pied_piping}{
 #'   Pied-piping relatives including the preposition
 #'   (e.g., \emph{la maniere dans laquelle il procede}).
@@ -126,13 +126,13 @@
 #' \item{f_35_because}{Causal subordinator \emph{parce que}. \emph{puisque} and \emph{comme} are multifunctional (f_38); \emph{car} is a coordinator, like English \emph{for}, and is not counted.}
 #' \item{f_36_though}{Concessive subordinators \emph{bien que} and \emph{quoique}.}
 #' \item{f_37_if}{Conditional \emph{si} (including \emph{même si}, like English \emph{even if}), \emph{à moins que} and \emph{sauf si}. Indirect-question \emph{si} (\emph{je me demande si}) is excluded.}
-#' \item{f_38_other_adv_sub}{Other adverbial subordinators (e.g., \emph{tandis que}, \emph{lorsque}, \emph{puisque}, \emph{comme}, \emph{encore que}, \emph{à condition que}).}
+#' \item{f_38_other_adv_sub}{Other adverbial subordinators (e.g., \emph{tandis que}, \emph{lorsque}, \emph{puisque}, \emph{comme}, \emph{encore que}, \emph{à condition que}). Prepositions introducing an infinitive or gérondif (\emph{pour partir}, \emph{en chantant}) are not counted.}
 #' }
 #'
 #' ## Prepositional phrases, adjectives, and adverbs
 #'
 #' \describe{
-#' \item{f_39_prepositions}{Prepositions functioning as case markers.}
+#' \item{f_39_prepositions}{Prepositions functioning as case markers; listed compound prepositions (\emph{à cause de}, \emph{grâce à}) count once.}
 #' \item{f_40_adj_attr}{Attributive adjectives placed before or alongside a noun (e.g., \emph{une grande maison}).}
 #' \item{f_41_adj_pred}{Predicative adjectives following a copula (e.g., \emph{la maison est grande}).}
 #' \item{f_42_adverbs}{Adverbs not counted elsewhere (e.g., \emph{vraiment}).}
@@ -153,7 +153,7 @@
 #' \item{f_47_hedges}{Hedges or approximators (e.g., \emph{environ}, \emph{quelque peu}).}
 #' \item{f_48_amplifiers}{Amplifiers (e.g., \emph{tres}, \emph{particulierement}).}
 #' \item{f_49_emphatics}{Emphatic markers (e.g., \emph{vraiment}, \emph{bien}).}
-#' \item{f_50_discourse_particles}{Discourse particles often sentence-initial (e.g., \emph{eh bien}, \emph{bon}).}
+#' \item{f_50_discourse_particles}{Discourse particles at the start of a clause (e.g., \emph{eh bien}, \emph{du coup}, \emph{en fait}).}
 #' \item{f_51_demonstratives}{Demonstrative determiners (e.g., \emph{ce}, \emph{cet}, \emph{cette}, \emph{ces}).}
 #' }
 #'
@@ -188,16 +188,17 @@
 #'
 #' \describe{
 #' \item{f_64_phrasal_coordination}{Coordination of like phrases (e.g., \emph{pommes et oranges}).}
-#' \item{f_65_clausal_coordination}{Coordination of independent clauses (e.g., sentence-initial \emph{et}).}
+#' \item{f_65_clausal_coordination}{Coordination of clauses that each have their own subject, and sentence-initial \emph{et} (e.g., \emph{il pleut et nous restons}; \emph{Et il est parti.}).}
 #' }
 #'
 #' ## Negation
 #'
 #' \describe{
-#' \item{f_66_neg_synthetic}{Synthetic negation with determiners or adjectives (e.g., \emph{aucun}, \emph{nul}).}
+#' \item{f_66_neg_synthetic}{Negative words, including in concord with \emph{ne} (e.g., \emph{personne}, \emph{rien}, \emph{jamais}, \emph{aucun}, \emph{ni}).}
 #' \item{f_67_neg_analytic}{
-#'   Analytic negation with \emph{ne} ... adverb
-#'   (e.g., \emph{ne ... pas}, \emph{ne ... jamais}).
+#'   Analytic negation with \emph{pas} (with or without \emph{ne}), \emph{point}
+#'   or \emph{plus} with \emph{ne}, and constituent \emph{non}. \emph{ne}
+#'   alone is not counted.
 #' }
 #' }
 #'

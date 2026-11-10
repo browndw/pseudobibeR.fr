@@ -167,7 +167,9 @@ block_stranded_split_fr <- function(tokens, doc_ids, resumptive = NULL,
 #' auxiliary. f_64: a coordinator joining two
 #' words of the same POS (NOUN, PROPN, ADJ, ADV, VERB, AUX) when the second
 #' conjunct has no subject of its own. f_65: a coordinator joining finite
-#' verbal predicates that have their own subject.
+#' predicates (finite verb, or a head with a finite auxiliary or copula) that
+#' have their own subject, and sentence-initial et attached to such a predicate
+#' (D-56).
 #'
 #' @param tokens Prepared tokens.
 #' @param doc_ids Document IDs.
@@ -237,13 +239,33 @@ block_split_coordination_fr <- function(tokens, doc_ids, token_lookup, subject_h
       !.data$has_subject
     ) %>%
     count_feature_traced("f_64_phrasal_coordination")
-  f65 <- cc %>%
-    dplyr::filter(
-      .data$token_dep_rel %in% "conj",
-      .data$token_pos %in% c("VERB", "AUX"),
-      .data$has_subject,
-      !.data$token_morph_verbform %in% c("Inf", "Ger", "Part")
-    ) %>%
+  # Sentence-initial et attached to a finite predicate, as in Spanish (D-56):
+  # Et il est parti. A head is finite itself or has a finite aux/cop, so
+  # compound tenses (elle est restée) and copular clauses (elle est petite)
+  # count as clauses.
+  finite_heads <- dplyr::bind_rows(
+    tokens %>%
+      dplyr::filter(.data$pos %in% c("VERB", "AUX"), .data$morph_verbform %in% "Fin") %>%
+      dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int),
+    tokens %>%
+      dplyr::filter(stringr::str_detect(.data$dep_rel, "^(aux|cop)"),
+                    .data$morph_verbform %in% "Fin") %>%
+      dplyr::distinct(.data$doc_id, .data$sentence_id, token_id_int = .data$head_token_id_int)
+  )
+  f65_rows <- cc %>%
+    dplyr::filter(.data$token_dep_rel %in% "conj", .data$has_subject) %>%
+    dplyr::semi_join(finite_heads,
+                     by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int"))
+  initial_et <- tokens %>%
+    dplyr::filter(!.data$pos %in% c("PUNCT", "SYM")) %>%
+    dplyr::group_by(.data$doc_id, .data$sentence_id) %>%
+    dplyr::slice_min(.data$token_id_int, n = 1L, with_ties = FALSE) %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(.data$match_token == "et", .data$pos == "CCONJ") %>%
+    dplyr::semi_join(finite_heads,
+                     by = c("doc_id", "sentence_id", "head_token_id_int" = "token_id_int"))
+  f65 <- dplyr::bind_rows(f65_rows, initial_et) %>%
+    dplyr::distinct(.data$doc_id, .data$sentence_id, .data$token_id_int, .keep_all = TRUE) %>%
     count_feature_traced("f_65_clausal_coordination")
   make_block_result(doc_ids, bind_evidence(f63$evidence, f64$evidence, f65$evidence))
 }

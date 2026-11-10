@@ -144,7 +144,6 @@
 "clefts_focus","clefts_focus_03","f_19_be_main_verb",2
 "clefts_focus","clefts_focus_03","f_24_infinitives",1
 "clefts_focus","clefts_focus_03","f_29_that_subj",1
-"clefts_focus","clefts_focus_03","f_38_other_adv_sub",1
 "clefts_focus","clefts_focus_03","f_41_adj_pred",1
 "clefts_focus","clefts_focus_03","f_44_mean_word_length",4.5
 "combined_svc_pseudo_relative","combined_svc_pseudo_relative_01","f_01_past_tense",1
@@ -179,7 +178,6 @@
 "combined_svc_tough","combined_svc_tough_01","f_16_other_nouns",1
 "combined_svc_tough","combined_svc_tough_01","f_19_be_main_verb",1
 "combined_svc_tough","combined_svc_tough_01","f_24_infinitives",1
-"combined_svc_tough","combined_svc_tough_01","f_38_other_adv_sub",1
 "combined_svc_tough","combined_svc_tough_01","f_39_prepositions",1
 "combined_svc_tough","combined_svc_tough_01","f_41_adj_pred",1
 "combined_svc_tough","combined_svc_tough_01","f_44_mean_word_length",4.75
@@ -187,7 +185,6 @@
 "combined_svc_tough","combined_svc_tough_02","f_14_nominalizations",2
 "combined_svc_tough","combined_svc_tough_02","f_19_be_main_verb",1
 "combined_svc_tough","combined_svc_tough_02","f_24_infinitives",1
-"combined_svc_tough","combined_svc_tough_02","f_38_other_adv_sub",1
 "combined_svc_tough","combined_svc_tough_02","f_39_prepositions",1
 "combined_svc_tough","combined_svc_tough_02","f_41_adj_pred",1
 "combined_svc_tough","combined_svc_tough_02","f_44_mean_word_length",5
@@ -196,7 +193,6 @@
 "combined_svc_tough","combined_svc_tough_03","f_16_other_nouns",2
 "combined_svc_tough","combined_svc_tough_03","f_19_be_main_verb",1
 "combined_svc_tough","combined_svc_tough_03","f_24_infinitives",1
-"combined_svc_tough","combined_svc_tough_03","f_38_other_adv_sub",1
 "combined_svc_tough","combined_svc_tough_03","f_39_prepositions",1
 "combined_svc_tough","combined_svc_tough_03","f_41_adj_pred",1
 "combined_svc_tough","combined_svc_tough_03","f_44_mean_word_length",4.875
@@ -207,7 +203,6 @@
 "impersonal_constructions","impersonal_constructions_01","f_19_be_main_verb",1
 "impersonal_constructions","impersonal_constructions_01","f_24_infinitives",1
 "impersonal_constructions","impersonal_constructions_01","f_34_sentence_relatives",1
-"impersonal_constructions","impersonal_constructions_01","f_38_other_adv_sub",1
 "impersonal_constructions","impersonal_constructions_01","f_39_prepositions",1
 "impersonal_constructions","impersonal_constructions_01","f_41_adj_pred",1
 "impersonal_constructions","impersonal_constructions_01","f_44_mean_word_length",3.8
@@ -216,7 +211,6 @@
 "impersonal_constructions","impersonal_constructions_02","f_09_pronoun_it",1
 "impersonal_constructions","impersonal_constructions_02","f_14_nominalizations",1
 "impersonal_constructions","impersonal_constructions_02","f_24_infinitives",1
-"impersonal_constructions","impersonal_constructions_02","f_38_other_adv_sub",1
 "impersonal_constructions","impersonal_constructions_02","f_42_adverbs",1
 "impersonal_constructions","impersonal_constructions_02","f_44_mean_word_length",6.57142857142857
 "impersonal_constructions","impersonal_constructions_03","f_03_present_tense",2
@@ -278,7 +272,6 @@
 "modal_periphrastic_necessity","modal_periphrastic_necessity_01","f_08_third_person_pronouns",1
 "modal_periphrastic_necessity","modal_periphrastic_necessity_01","f_17_agentless_passives",1
 "modal_periphrastic_necessity","modal_periphrastic_necessity_01","f_24_infinitives",1
-"modal_periphrastic_necessity","modal_periphrastic_necessity_01","f_38_other_adv_sub",1
 "modal_periphrastic_necessity","modal_periphrastic_necessity_01","f_44_mean_word_length",6.16666666666667
 "modal_periphrastic_necessity","modal_periphrastic_necessity_01","f_55_verb_public",1
 "modal_periphrastic_necessity","modal_periphrastic_necessity_02","f_03_present_tense",1
@@ -286,7 +279,6 @@
 "modal_periphrastic_necessity","modal_periphrastic_necessity_02","f_16_other_nouns",1
 "modal_periphrastic_necessity","modal_periphrastic_necessity_02","f_19_be_main_verb",1
 "modal_periphrastic_necessity","modal_periphrastic_necessity_02","f_24_infinitives",1
-"modal_periphrastic_necessity","modal_periphrastic_necessity_02","f_38_other_adv_sub",1
 "modal_periphrastic_necessity","modal_periphrastic_necessity_02","f_41_adj_pred",1
 "modal_periphrastic_necessity","modal_periphrastic_necessity_02","f_44_mean_word_length",4.66666666666667
 "modal_periphrastic_necessity","modal_periphrastic_necessity_03","f_03_present_tense",1
@@ -302,14 +294,12 @@
 "modal_periphrastic_possibility","modal_periphrastic_possibility_01","f_06_first_person_pronouns",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_01","f_14_nominalizations",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_01","f_24_infinitives",1
-"modal_periphrastic_possibility","modal_periphrastic_possibility_01","f_38_other_adv_sub",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_01","f_44_mean_word_length",5.14285714285714
 "modal_periphrastic_possibility","modal_periphrastic_possibility_02","f_03_present_tense",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_02","f_05_time_adverbials",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_02","f_09_pronoun_it",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_02","f_16_other_nouns",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_02","f_24_infinitives",1
-"modal_periphrastic_possibility","modal_periphrastic_possibility_02","f_38_other_adv_sub",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_02","f_44_mean_word_length",4
 "modal_periphrastic_possibility","modal_periphrastic_possibility_02","f_51_demonstratives",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_03","f_03_present_tense",1
@@ -317,7 +307,6 @@
 "modal_periphrastic_possibility","modal_periphrastic_possibility_03","f_16_other_nouns",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_03","f_19_be_main_verb",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_03","f_24_infinitives",1
-"modal_periphrastic_possibility","modal_periphrastic_possibility_03","f_38_other_adv_sub",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_03","f_41_adj_pred",1
 "modal_periphrastic_possibility","modal_periphrastic_possibility_03","f_44_mean_word_length",5.14285714285714
 "modal_predictive_future","modal_predictive_future_01","f_03_present_tense",1
@@ -331,7 +320,6 @@
 "modal_predictive_future","modal_predictive_future_02","f_09_pronoun_it",1
 "modal_predictive_future","modal_predictive_future_02","f_19_be_main_verb",1
 "modal_predictive_future","modal_predictive_future_02","f_24_infinitives",1
-"modal_predictive_future","modal_predictive_future_02","f_38_other_adv_sub",1
 "modal_predictive_future","modal_predictive_future_02","f_41_adj_pred",1
 "modal_predictive_future","modal_predictive_future_02","f_42_adverbs",1
 "modal_predictive_future","modal_predictive_future_02","f_44_mean_word_length",5.66666666666667
@@ -342,7 +330,6 @@
 "modal_predictive_future","modal_predictive_future_03","f_19_be_main_verb",1
 "modal_predictive_future","modal_predictive_future_03","f_24_infinitives",1
 "modal_predictive_future","modal_predictive_future_03","f_37_if",1
-"modal_predictive_future","modal_predictive_future_03","f_38_other_adv_sub",1
 "modal_predictive_future","modal_predictive_future_03","f_41_adj_pred",1
 "modal_predictive_future","modal_predictive_future_03","f_44_mean_word_length",4.14285714285714
 "modal_predictive_future","modal_predictive_future_03","f_54_modal_predictive",1
@@ -351,7 +338,6 @@
 "modal_predictive_future","modal_predictive_future_04","f_14_nominalizations",1
 "modal_predictive_future","modal_predictive_future_04","f_17_agentless_passives",1
 "modal_predictive_future","modal_predictive_future_04","f_24_infinitives",1
-"modal_predictive_future","modal_predictive_future_04","f_38_other_adv_sub",1
 "modal_predictive_future","modal_predictive_future_04","f_39_prepositions",2
 "modal_predictive_future","modal_predictive_future_04","f_44_mean_word_length",4.71428571428571
 "modal_predictive_future","modal_predictive_future_04","f_54_modal_predictive",1
@@ -479,7 +465,6 @@
 "svc_relative_clauses","svc_relative_clauses_01","f_16_other_nouns",2
 "svc_relative_clauses","svc_relative_clauses_01","f_19_be_main_verb",1
 "svc_relative_clauses","svc_relative_clauses_01","f_24_infinitives",1
-"svc_relative_clauses","svc_relative_clauses_01","f_38_other_adv_sub",1
 "svc_relative_clauses","svc_relative_clauses_01","f_41_adj_pred",1
 "svc_relative_clauses","svc_relative_clauses_01","f_44_mean_word_length",6.625
 "svc_relative_clauses","svc_relative_clauses_01","f_54_modal_predictive",1
@@ -503,12 +488,12 @@
 "tough_de_impersonal","tough_de_impersonal_01","f_16_other_nouns",1
 "tough_de_impersonal","tough_de_impersonal_01","f_19_be_main_verb",1
 "tough_de_impersonal","tough_de_impersonal_01","f_24_infinitives",1
-"tough_de_impersonal","tough_de_impersonal_01","f_38_other_adv_sub",1
 "tough_de_impersonal","tough_de_impersonal_01","f_41_adj_pred",1
 "tough_de_impersonal","tough_de_impersonal_01","f_44_mean_word_length",4.5
 "tough_de_impersonal","tough_de_impersonal_01","f_57_verb_suasive",1
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_01","f_03_present_tense",2
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_01","f_04_place_adverbials",2
+"tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_01","f_08_third_person_pronouns",1
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_01","f_09_pronoun_it",1
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_01","f_10_demonstrative_pronoun",1
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_01","f_16_other_nouns",2
@@ -539,7 +524,6 @@
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_03","f_21_that_verb_comp",1
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_03","f_23_wh_clause",1
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_03","f_24_infinitives",2
-"tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_03","f_38_other_adv_sub",2
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_03","f_41_adj_pred",2
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_03","f_42_adverbs",2
 "tough_de_impersonal_complementizer_que","tough_de_impersonal_complementizer_que_03","f_44_mean_word_length",4.07692307692308
@@ -547,7 +531,6 @@
 "tough_with_experiencer_shift","tough_with_experiencer_shift_01","f_16_other_nouns",2
 "tough_with_experiencer_shift","tough_with_experiencer_shift_01","f_19_be_main_verb",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_01","f_24_infinitives",1
-"tough_with_experiencer_shift","tough_with_experiencer_shift_01","f_38_other_adv_sub",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_01","f_39_prepositions",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_01","f_41_adj_pred",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_01","f_44_mean_word_length",5
@@ -557,7 +540,6 @@
 "tough_with_experiencer_shift","tough_with_experiencer_shift_02","f_14_nominalizations",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_02","f_19_be_main_verb",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_02","f_24_infinitives",1
-"tough_with_experiencer_shift","tough_with_experiencer_shift_02","f_38_other_adv_sub",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_02","f_39_prepositions",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_02","f_41_adj_pred",1
 "tough_with_experiencer_shift","tough_with_experiencer_shift_02","f_44_mean_word_length",4.75
@@ -567,7 +549,6 @@
 "tough_à_gapped","tough_à_gapped_01","f_16_other_nouns",1
 "tough_à_gapped","tough_à_gapped_01","f_19_be_main_verb",1
 "tough_à_gapped","tough_à_gapped_01","f_24_infinitives",1
-"tough_à_gapped","tough_à_gapped_01","f_38_other_adv_sub",1
 "tough_à_gapped","tough_à_gapped_01","f_41_adj_pred",1
 "tough_à_gapped","tough_à_gapped_01","f_44_mean_word_length",5.4
 "tough_à_gapped","tough_à_gapped_01","f_57_verb_suasive",1
@@ -584,7 +565,6 @@
 "tough_à_gapped","tough_à_gapped_03","f_16_other_nouns",1
 "tough_à_gapped","tough_à_gapped_03","f_19_be_main_verb",1
 "tough_à_gapped","tough_à_gapped_03","f_24_infinitives",2
-"tough_à_gapped","tough_à_gapped_03","f_38_other_adv_sub",1
 "tough_à_gapped","tough_à_gapped_03","f_39_prepositions",1
 "tough_à_gapped","tough_à_gapped_03","f_41_adj_pred",1
 "tough_à_gapped","tough_à_gapped_03","f_44_mean_word_length",4.375
@@ -592,7 +572,6 @@
 "tough_à_gapped_passive","tough_à_gapped_passive_01","f_16_other_nouns",1
 "tough_à_gapped_passive","tough_à_gapped_passive_01","f_19_be_main_verb",1
 "tough_à_gapped_passive","tough_à_gapped_passive_01","f_24_infinitives",2
-"tough_à_gapped_passive","tough_à_gapped_passive_01","f_38_other_adv_sub",1
 "tough_à_gapped_passive","tough_à_gapped_passive_01","f_39_prepositions",1
 "tough_à_gapped_passive","tough_à_gapped_passive_01","f_41_adj_pred",1
 "tough_à_gapped_passive","tough_à_gapped_passive_01","f_44_mean_word_length",4.9

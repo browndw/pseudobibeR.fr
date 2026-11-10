@@ -5,7 +5,7 @@ Technical reference for Biber's (1988) 67 features as implemented in
 `R/*.R` on UDPipe `french-gsd-ud-2.5-191206` output, not only the theoretical
 intent. Where the code and other documentation disagree, this file follows the
 code and lists the disagreement at the end. Decision IDs (D-NN) refer to
-`CROSS_LANGUAGE_ALIGNMENT.md` in the family repository.
+[`CROSS_LANGUAGE_ALIGNMENT.md`](https://github.com/browndw/pseudobibeR/blob/main/CROSS_LANGUAGE_ALIGNMENT.md).
 
 The **English label** column is a functional label; the **French label** column
 names the French construction. Inventories are cited by name
@@ -79,9 +79,9 @@ names the French construction. Inventories are cited by name
 
 | Feature | English label | French label | What is counted | Exclusions, overlaps and limitations |
 |---|---|---|---|---|
-| `f_06_first_person_pronouns` | First-person pronouns | Pronoms de la première personne | Union, one per word: forms in `dict$f_06_first_person_pronouns` (`je`, `me`, `m'`, `moi`, `moi-même`, `nous`, `nous-mêmes`, `notre`) plus any `PRON` with `Person=1` and `PronType=Prs`. *Je pense que nous devrions partir.* (2) | ⚠️ Possessive determiners `mon/ma/mes/nos` are not counted: they are not listed and UDPipe gives possessive `DET` no `Person` (*Mon frère et moi…* = 1). `notre` counts through the dictionary. Morphology makes the count robust to UDPipe lemmatizing `je`/`nous` as `il`. Generic `on` is not counted (D-50). |
-| `f_07_second_person_pronouns` | Second-person pronouns | Pronoms de la deuxième personne | Dictionary forms (`tu`, `t'`, `toi`, `vous`, `vous-même`, possessives `ton`, `ta`, `tes`, `votre`, `vos`) plus `PRON` with `Person=2` and `PronType=Prs` (`te`). *Tu dis que vous êtes sortis ?* (2) | `vous` counts whether plural or polite singular. Second-person possessives count, unlike most first- and third-person ones. Reduced subject `t'` (*t'as*) also counts in f_59. |
-| `f_08_third_person_pronouns` | Third-person personal pronouns | Pronoms personnels de la troisième personne | Dictionary forms (`il`, `ils`, `elle`, `elles`, `lui`, `eux`, `eux-mêmes`, `leur`, `leurs`, `les siens`) plus `PRON` with `Person=3` and `PronType=Prs` (object clitics, reflexive `se`), minus f_09 occurrences. *Elle lui a donné son livre.* (2) | `ce`/`ça`, partitive `en` and generic `on` are counted nowhere (D-50). `son/sa/ses` are not counted, but determiner `leur(s)` is (surface match). Impersonal `il` not caught by the f_09 rules stays here. |
+| `f_06_first_person_pronouns` | First-person pronouns and possessives | Pronoms et possessifs de la première personne | Union, one per word: forms in `dict$f_06_first_person_pronouns` (`je`, `me`, `m'`, `moi`, `moi-même`, `nous`, `nous-mêmes`; possessive determiners `mon`, `ma`, `mes`, `notre`, `nos`; possessive pronouns `mien(ne)(s)`, `nôtre(s)`) plus `PRON` with `Person=1` and `PronType=Prs`. *Mon frère et moi avons visité le musée.* (2) | Possessive determiners count only as `DET`/`PRON`; possessive pronouns only as `PRON` or after `le/la/les` (UDPipe tags *le mien* as DET + NOUN) (D-55). UDPipe lemmatizes `je`/`nous` as `il`; detection uses surface forms. |
+| `f_07_second_person_pronouns` | Second-person pronouns and possessives | Pronoms et possessifs de la deuxième personne | Dictionary forms (`tu`, `te`, `t'`, `toi`, `toi-même`, `vous`, `vous-même(s)`; possessives `ton`, `ta`, `tes`, `votre`, `vos`, `tien(ne)(s)`, `vôtre(s)`) plus `PRON` with `Person=2` and `PronType=Prs`. *Ton père te cherche.* (2) | Same possessive gates as f_06; *je tiens* (tenir) is not a possessive. |
+| `f_08_third_person_pronouns` | Third-person personal pronouns and possessives | Pronoms personnels et possessifs de la troisième personne | Dictionary forms (`il`, `ils`, `elle(s)`, `lui`, `eux`, `-même(s)` forms, `leur(s)`; possessives `son`, `sa`, `ses`, `sien(ne)(s)`) plus `PRON` with `Person=3` and `PronType=Prs` (object clitics `le/la/les`, reflexive `se`). Impersonal f_09 occurrences are removed. *Elle lui a donné son livre.* (3) | Demonstrative `ce`/`ça`, partitive `en` and generic `on` are excluded (D-50). `son` the noun (*le son*) is excluded by the DET gate. |
 | `f_09_impersonal` (`f_09_pronoun_it`) | Impersonal or expletive subject pronoun | Pronom sujet impersonnel ou explétif | `PRON` with surface form `il`, `ce`, `c'`, `cela` or `ça` that is (a) any `expl*` dependent, or (b) the `nsubj*` of: a weather verb (`pleuvoir`, `neiger`, `geler`, `grêler`, `venter`, `bruiner`, `tonner`), directly or through an `xcomp` (*il pourrait pleuvoir*); `faire` with a weather complement (`froid`, `chaud`, `beau`, `nuit`…); `falloir`; an `ADJ` with its own clausal complement (que-clause or infinitive marked `de`/`à`/`que`); or `sembler`, `paraître`, `demeurer`, `rester`, `suffire`, `convenir`, `arriver`, `importer`, `valoir`, `agir`, `advenir`, `manquer` with a clausal complement. *Il pleut depuis ce matin.*; *Il y a trois ans, nous habitions à Paris.* | Matched on the surface form, so `elle` (lemma `il` in UDPipe) never qualifies. Excluded from f_08 and f_10. Referential *il dit que…* and *il semble fatigué* do not count. ⚠️ Relies on the parser's `expl` label and clausal attachments: *Il est clair qu'il est censé.* gives 2. Overlaps: f_20 (`il y a`), f_22, f_53 (`il faut`), f_58 (`il semble que`). |
 | `f_10_demonstrative_pronoun` | Demonstrative pronouns | Pronoms démonstratifs | `PRON` whose form is in `word_lists$demonstrative_matchlist` (`ce`, `c'`, `ça`, `cela`, `ceci`, `celui`, `celle(s)`, `ceux`, with `-ci`/`-là`) and `PronType=Dem` or no `PronType` (D-50). Clefts count. *C'est vrai.*; *Celui-ci est plus grand que celui-là.* (2) | Excludes f_09 occurrences and `ce`/`c'` directly before `que`/`qu'`/`qui`/`dont` (*Ce que tu dis est vrai* = 0; f_23/f_34). Determiners are f_51. |
 | `f_11_indefinite_pronouns` | Indefinite pronouns | Pronoms indéfinis | Matches of `dict$f_11_indefinite_pronouns`, then a pronoun-use gate (D-52). Phrases count once (`quelque chose`, `tout le monde`, `n'importe qui/quoi`, `quelques-uns`). `quelqu'un`, `chacun`, `quiconque`, `autrui` count with any tag. `personne` counts as `PRON`, or as a determinerless NOUN in a sentence with `ne`. `rien` counts without a determiner. `tout`/`aucun`/`nul` count only as `PRON` outside a `det` relation, plus `tout` tagged ADV on a verb (not before `en`/`à`). *Quelqu'un a frappé à la porte.* | *Une personne est venue.* = 0. Overlap with f_66 (`personne`, `rien`, `aucun`, `nul`) is intended (D-52). *Il a tout mangé* counts here (and in f_63). `certains`, `plusieurs` are not listed. A longer phrase of another feature wins (`en quelque sorte` is f_47). |
@@ -113,7 +113,7 @@ names the French construction. Inventories are cited by name
 | Feature | English label | French label | What is counted | Exclusions, overlaps and limitations |
 |---|---|---|---|---|
 | `f_19_copula_main_verb` (`f_19_be_main_verb`) | *être* as main verb | *Être* verbe principal (copule) | Every token with lemma `être` whose relation is not `aux*` (copula, root, other). *Elle est médecin.*; *Ce bruit est comme un avertissement.* | Tense and passive auxiliaries are excluded. Other linking verbs are not counted (`sembler`/`paraître` are f_58). ⚠️ *être* labelled `aux:pass` before a stative participle goes to f_17, not here. |
-| `f_20_existential` (`f_20_existential_there`) | Existential *il y a* | Construction existentielle *il y a* | Lemma `avoir` (`VERB`/`AUX`) immediately preceded by lemma `y` and, two words back, a `PRON` with lemma `il`; any tense. *Il y a beaucoup de monde aujourd'hui.*; *Il y avait trois personnes dans la salle.* | ⚠️ Strict adjacency: *il n'y a pas*, *il y en a* and *y a-t-il* are not counted. Subjectless *y a* is f_59. ⚠️ UDPipe lemmatizes `elle`/`je` as `il`, so *Elle y a mis son livre* counts. No semantic check (*il y a trois ans* counts). Impersonal `il` also counts in f_09. |
+| `f_20_existential` (`f_20_existential_there`) | Existential *il y a* | Construction existentielle *il y a* | `avoir` (`VERB`/`AUX`) immediately after `y`, or after `y en`; before `y` (skipping `ne`/`n'`): `il`, a verb (*il va y avoir*), punctuation/conjunction, or nothing (colloquial *y a*, *y a-t-il*). Surface forms, not lemmas (D-55). *Il n'y a rien.*; *Il y en a trois.*; *Il y a eu un accident.* | Another subject before `y` (*elle y a mangé*, *j'y ai pensé*, *on y a vécu*) is locative `y`, excluded; UDPipe lemmatizes `elle`/`je` as `il`, hence surface matching. `avoir` as auxiliary of another verb's participle (*il y a mangé*) is excluded. Single-token *y'a* is counted only in f_59. |
 
 ## H. Subordination
 
@@ -135,14 +135,14 @@ names the French construction. Inventories are cited by name
 | `f_34_sentence_relatives` | Sentence relatives | Relatives à antécédent phrastique | A relative pronoun immediately after `ce`, `cela`, `ceci`, `celui`, `celle(s)` or `ceux`, itself after punctuation; span from the anchor to the pronoun. *Il a réussi son examen, ce qui est remarquable.* | Sentence-initial *Ce que tu dis est vrai* is not f_34. No check that the antecedent is a clause: *…, celui qui parle* counts (and *celui* is also f_10). Excluded from f_29/f_30. |
 | `f_35_causal` (`f_35_because`) | Causal subordinator | Subordonnant causal *parce que* | `parce` followed by `que`/`qu'`, one span (D-44). *Je reste à la maison parce qu'il pleut.* | `car` (a coordinator, like *for*) is not counted (*Il est parti tôt car…* = 0). `puisque`, `comme` are f_38. |
 | `f_36_concessive` (`f_36_though`) | Concessive subordinators | Subordonnants concessifs | `quoique`/`quoiqu'` (`SCONJ`); `bien` + `que`/`qu'` tagged `SCONJ`, one span (D-44). *Bien qu'il soit fatigué, il continue à travailler.*; *Quoiqu'il dise, je partirai.* | `même si` is f_37; `encore que`, `alors que` are f_38. ⚠️ The `bien` of *bien que* also counts in f_50 (no cross-check between the dictionary and this block). |
-| `f_37_conditional` (`f_37_if`) | Conditional subordinators | Subordonnants conditionnels | `si`/`s'` (`SCONJ`, `mark`), including *même si*; `sauf si` and `à moins que` as one span each (D-44). *Si tu viens, je serai content.*; *Je sortirai sauf s'il pleut.* | Indirect-question `si` is excluded when its clause is `ccomp`/`xcomp` of a listed question/knowledge verb (`demander`, `savoir`, `ignorer`, `voir`, `dire`…): *Je me demande s'il viendra.* = 0. ⚠️ UDPipe also attaches some postposed conditionals as `ccomp`; they are kept unless the governor is listed. `à condition que` is f_38. |
-| `f_38_other_adv_sub` | Other adverbial subordinators | Autres subordonnants adverbiaux | Every `SCONJ`/`ADP`/`ADV` with a `mark` relation that is not `que`, `parce`, `quoique` or `si` and lies outside the f_35–f_37 phrases, plus `à condition que` (one span). *Tandis que je travaillais, elle dormait.*; *Comme il pleuvait, je suis resté.* | ⚠️ There is no inventory: infinitival markers labelled `mark` also count (*Il est facile de convaincre Jean.* = 1; frozen in the edge-case fixture). Includes `quand`, `lorsque`, `puisque`, `comme`, `encore que`. |
+| `f_37_conditional` (`f_37_if`) | Conditional subordinators | Subordonnants conditionnels | `si`/`s'` (`SCONJ`, `mark`), including *même si*; `sauf si` and `à moins que` as one span each (D-44; `moins` must follow `à`). *Si tu viens, je serai content.*; *Je sortirai sauf s'il pleut.* | Indirect-question `si` is excluded when its clause is `ccomp`/`xcomp` of a listed question/knowledge verb (`demander`, `savoir`, `ignorer`, `voir`, `dire`…): *Je me demande s'il viendra.* = 0. ⚠️ UDPipe also attaches some postposed conditionals as `ccomp`; they are kept unless the governor is listed. `à condition que` is f_38. |
+| `f_38_other_adv_sub` | Other adverbial subordinators | Autres subordonnants adverbiaux | Every `SCONJ`/`ADP`/`ADV` with a `mark` relation that is not `que`, `parce`, `quoique` or `si` and lies outside the f_35–f_37 spans, plus `à condition que` once (D-44). A preposition (`ADP`) marking a non-finite clause (`Inf`/`Ger`/`Part` head without a finite auxiliary, subject or `que`) is excluded (D-55). *Tandis que je travaillais, elle dormait.*; *Pour qu'il comprenne, j'explique.* | Infinitival *de/à/pour/sans* (*facile de convaincre*, *avant de partir*) and gérondif *en* are not counted. Conjunctions marking non-finite clauses still count, as English *while walking* does. |
 
 ## I. Prepositional phrases, adjectives and adverbs
 
 | Feature | English label | French label | What is counted | Exclusions, overlaps and limitations |
 |---|---|---|---|---|
-| `f_39_prepositions` | Prepositions | Prépositions | Tokens in a `case` relation that are `ADP` or head a `fixed` ADP (a fixed multiword preposition counts once). Contractions count through their `de`/`à` component. *Je vais à Paris avec mon ami.* (2) | `de`/`à` labelled `mark` before infinitives are not counted. ⚠️ A multiword preposition counts once only if parsed with `fixed`: *à cause de* is parsed as `à` + NOUN `cause` + `de` (f_39 = 2, plus one f_16 noun). Overlaps with f_04 (`devant`). |
+| `f_39_prepositions` | Prepositions | Prépositions | Tokens in a `case` relation that are `ADP` or head a `fixed` ADP. A compound preposition listed in `word_lists$prepositions_compound` (`à cause de`, `grâce à`, `au lieu de`, `près de`…) counts once, on its first word, replacing the prepositions it contains (D-56, as Spanish). Contractions count through their `de`/`à` component. *Je vais à Paris avec mon ami.* (2); *Il reste à cause de la pluie.* (1) | `de`/`à` labelled `mark` before infinitives are not counted. Unlisted compounds count each preposition. Overlaps with f_04 (`loin de`, `devant`). |
 | `f_40_adj_attr` | Attributive adjectives | Adjectifs épithètes | `ADJ` in `amod`, without a hyphen, lemma not `tout`, plus `ADJ` conjuncts of a counted adjective. Pre- and postnominal. *C'est une belle maison.*; *J'ai acheté un livre intéressant.* | Hyphenated adjectives are excluded. Disjoint from f_41. |
 | `f_41_adj_pred` | Predicative adjectives | Adjectifs attributs | `ADJ` heading a `cop` dependent, or `ADJ` in `xcomp`/`acomp` of a verb in `word_lists$linking_matchlist` (`être`, `devenir`, `rester`, `demeurer`, `sembler`, `paraître`, `avoir`), plus coordinated adjectives; minus f_40. *Le chat est noir.*; *Cette histoire est vraie.* | ⚠️ Participial adjectives whose *être* is labelled `aux:pass` are not here (f_17). |
 | `f_42_adverbs` | Adverbs (residual) | Adverbes (catégorie résiduelle) | `ADV` tokens except `ne`/`n'` (D-42), minus any adverb inside an f_04, f_05, f_46, f_47 or f_48 occurrence (D-15). *Elle parle très rapidement.* (1; `très` is f_48) | Emphatics, conjuncts, discourse particles and negation are not excluded: *ne … pas* adds 1 (`pas`). `PART` tokens are not counted. *Il travaille toujours avec soin.* = 0 (`toujours` is f_05). ⚠️ Mis-tagged ADV count (`vas` in *Où vas-tu ?*). |
@@ -169,7 +169,7 @@ f_45–f_50) is dropped. After matching, three words are moved by position:
 | `f_47_hedges` | Hedges | Enclosures (modalisateurs d'approximation) | `environ`, `peut-être`, `à peu près`, `plus ou moins`, `en quelque sorte`, `quelque peu`, `du genre`, `quelque chose comme`. *Il y avait environ cinquante personnes.* | `quelque chose comme` takes precedence over f_11 `quelque chose`. Removed from f_42. |
 | `f_48_amplifiers` | Amplifiers | Intensifieurs | `très`, `absolument`, `complètement`, `totalement`, `parfaitement`, `fortement`, `tout à fait`, colloquial `super`, `hyper`, `ultra`, `grave`, `de ouf`, `fort`; plus `vraiment` next to an `ADJ`/`ADV`. *C'est très important.*; *C'est vraiment magnifique !* | No POS filter: adjectival *grave* (*C'est grave.* = 1) and *fort* count. Removed from f_42. |
 | `f_49_emphatics` | Emphatics | Emphatiques | `vraiment`, `bien sûr`, `certes`, `effectivement`, `évidemment`, `beaucoup`, `tellement`, `sûr`, `tout à`. *Je l'ai vraiment fait hier.*; *Il a beaucoup travaillé pour réussir.* | `sûr` matches the adjective (*T'es sûr de toi ?*). `tout à` matches *tout à coup*, *tout à l'heure*; *tout à fait* is f_48 by precedence. Not removed from f_42. |
-| `f_50_discourse_particles` | Discourse particles | Particules discursives | `alors`, `bien`, `bref`, `eh bien`, `du coup`, `en fait`, `de toute façon`, `voilà`, `euh`, `hein`, `ha`, `hé`, `ho`, `ô`; plus `donc` at a sentence edge or in a question. *Eh bien, je ne sais pas quoi dire.* | ⚠️ No position or POS filter: every `bien` (*c'est bien*, *bien que*) and `alors` (*alors que*) counts unless inside a longer match of another feature (*bien sûr* → f_49). `bon` is not listed (*Bon, on y va maintenant?* = 0). |
+| `f_50_discourse_particles` | Discourse particles | Particules discursives | `alors`, `bien`, `bref`, `eh bien`, `du coup`, `en fait`, `de toute façon`, `voilà`, `euh`, `hein`, `ha`, `hé`, `ho`, `ô`, kept only clause-initially: the match starts the sentence or follows punctuation (D-56), as in Biber and English; plus `donc` at a sentence edge or in a question. *Eh bien, je ne sais pas quoi dire.*; *Du coup, on y va.* | Adverbial *bien* (*il mange bien*), temporal *alors* (*il était alors jeune*) and nominal *du bien* are not counted. `bon` is not listed. |
 | `f_51_demonstratives` | Demonstrative determiners | Déterminants démonstratifs | Surface `ce`, `cet`, `cette`, `ces` in a `det` relation, tagged `DET` or `PRON`. *Ce livre est intéressant.*; *Cette maison est la mienne.* | Hard-coded; `dict$f_51_demonstratives` is not used. Pronouns are f_10. |
 
 ## L. Modals
@@ -192,10 +192,10 @@ condition applies.
 
 | Feature | English label | French label | What is counted | Exclusions, overlaps and limitations |
 |---|---|---|---|---|
-| `f_55_verb_public` | Public (speech-act) verbs | Verbes de communication publique | `affirmer`, `annoncer`, `déclarer`, `expliquer`, `répondre`, `promettre`, `reconnaître`, `signaler`, `écrire`, `parler`… *Il a affirmé que c'était vrai.*; *Elle a annoncé son départ.* | ⚠️ `dire` is not listed (*Il dit la vérité* = 0), although it governs f_60. `se_plaindre` never matches. |
+| `f_55_verb_public` | Public (speech-act) verbs | Verbes de communication publique | `affirmer`, `annoncer`, `déclarer`, `expliquer`, `répondre`, `promettre`, `reconnaître`, `signaler`, `écrire`, `parler`… *Il a affirmé que c'était vrai.*; *Elle a annoncé son départ.* | ⚠️ `dire` is not listed (*Il dit la vérité* = 0), although it governs f_60. `se_plaindre` never matches. `se plaindre` matches *plaindre* with a reflexive clitic among the three preceding words (D-55). |
 | `f_56_verb_private` | Private (cognition) verbs | Verbes de cognition | `penser`, `croire`, `comprendre`, `espérer`, `supposer`, `trouver`, `sentir`, `apprendre`, `décider`, `oublier`… *Je pense qu'il a raison.*; *Elle croit en ses capacités.* | ⚠️ `savoir` is not listed. Polysemous verbs (`trouver`, `sentir`, `apprendre`) count in every sense. |
-| `f_57_verb_suasive` | Suasive verbs | Verbes suasifs | `proposer`, `ordonner`, `demander`, `exiger`, `recommander`, `suggérer`, `conseiller`, `accepter`, `inviter`, `persuader`… *Je te propose de venir avec nous.*; *Il a ordonné que la porte soit fermée.* | `demander` counts in its question sense too (*je me demande si*). `donner_des_instructions` never matches. |
-| `f_58_verb_seem` | Verbs of seeming | Verbes d'apparence | `sembler`, `paraître`, `apparaître`, any use. *Il semble fatigué aujourd'hui.*; *Elle paraît heureuse.* | ⚠️ `avoir l'air` is listed but never matched (*Il a l'air content* = 0). `apparaître` also covers 'come into view'. *Il semble que* also counts in f_09. |
+| `f_57_verb_suasive` | Suasive verbs | Verbes suasifs | `proposer`, `ordonner`, `demander`, `exiger`, `recommander`, `suggérer`, `conseiller`, `accepter`, `inviter`, `persuader`… *Je te propose de venir avec nous.*; *Il a ordonné que la porte soit fermée.* | `demander` counts in its question sense too (*je me demande si*). `donner_des_instructions` never matches. `donner des instructions` matches *donner* followed by *des/de les instructions* (D-55). |
+| `f_58_verb_seem` | Verbs of seeming | Verbes d'apparence | `sembler`, `paraître`, `apparaître`, any use, and `avoir l'air` (avoir followed by *l' air*). *Il semble fatigué aujourd'hui.*; *Elle avait l'air heureuse.* | Multiword entries are matched on the verb (D-55); *il a de l'air* is not counted. |
 
 ## N. Reduced forms and dispreferred structures
 
@@ -216,7 +216,7 @@ each occurrence.
 | Feature | English label | French label | What is counted | Exclusions, overlaps and limitations |
 |---|---|---|---|---|
 | `f_64_phrasal_coordination` | Phrasal coordination | Coordination de syntagmes | A `CCONJ` in `cc` whose head is a `conj` with the same UPOS (`NOUN`, `PROPN`, `ADJ`, `ADV`, `VERB`, `AUX`) as the first conjunct, when that second conjunct has no subject of its own. The coordinator is counted. *J'ai acheté des pommes et des oranges.*; *C'est grand et beau.* | Verbs sharing a subject count here (*Il lit et écrit.*). Mixed NOUN/PROPN pairs are not counted. Subject detection also uses subject-pronoun lemmas attached as `obj`/`iobj`. |
-| `f_65_clausal_coordination` | Clausal coordination | Coordination de propositions | A `CCONJ` in `cc` whose head is a `conj` `VERB`/`AUX` with its own subject and not `Inf`/`Ger`/`Part`. *Il pleut et nous restons à l'intérieur.*; *Elle travaille et lui étudie.* | ⚠️ Sentence-initial *Et* (attached to the root) is not counted. Coordinated copular clauses (*Il est grand et elle est petite*) count in neither f_64 nor f_65. Second clauses in compound tenses are headed by a participle and are excluded. |
+| `f_65_clausal_coordination` | Clausal coordination | Coordination de propositions | A `CCONJ` in `cc` whose head is a `conj` predicate with its own subject and a finite form (finite verb, or a head with a finite auxiliary or copula); and sentence-initial *et* attached to such a predicate (D-56, as Spanish). *Il pleut et nous restons.*; *Il est parti et elle est restée.*; *Et il est parti.* | Fragments (*Et alors ?*, *Et la maison ?*) are excluded. Predicates sharing a subject (*Il lit et écrit*) are f_64. |
 
 ## P. Negation
 
@@ -257,61 +257,9 @@ patched with surface-form lists.
   morphology is read from the `morph` column. The observations above were
   checked on UDPipe only.
 
-## Discrepancies noted while drafting
+## Resolved review items
 
-The code is described above. These sources disagree with it.
-
-1. **`R/biber.R` roxygen, f_65** says "e.g., sentence-initial *et*". The code
-   requires a `conj` predicate with its own subject; *Et il est parti.* gives 0.
-2. **`R/biber.R` roxygen, f_32** lists `dont`. `dont` is f_33 only (code, D-24,
-   NEWS).
-3. **`R/biber.R` roxygen, f_50** gives `bon` as an example. `bon` is not in
-   `dict$f_50_discourse_particles` (*Bon, on y va* = 0).
-4. **`R/biber.R` roxygen, f_66/f_67** are outdated. f_66 is described as
-   "determiners or adjectives (*aucun*, *nul*)"; the code counts all of
-   `neg_synthetic_determiners`. f_67 is described as "*ne* … adverb (*ne … pas*,
-   *ne … jamais*)"; the code counts `pas` without `ne`, puts `jamais` in f_66
-   and never counts `ne` (D-41).
-5. **f_38 documentation** (`block_clause_embedding_fr()`, `biber.R`) lists
-   adverbial subordinators, but the code counts any unlisted `mark`, including
-   infinitival `de`/`à`/`pour`. *Il est facile de convaincre Jean.* gives
-   f_38 = 1, and `tests/testthat/fixtures/french_edge_case_features.csv`
-   freezes such counts.
-6. **f_20** roxygen and NEWS say "each *il y a*". The adjacency rule misses
-   *il n'y a*, *il y en a*, and it counts *elle/j' + y + avoir* because of the
-   UDPipe `il` lemma.
-7. **Possessive coverage, f_06–f_08** is inconsistent. `notre` (f_06),
-   `ton/ta/tes/votre/vos` (f_07) and `leur/leurs` (f_08) are in the
-   dictionaries; `mon/ma/mes/nos` and `son/sa/ses` are not. Morphology cannot
-   fill the gap (no `Person` on possessive `DET`).
-8. **Multiword verb-class entries** never match, because
-   `dictionary_to_lemmas()` returns single-word entries only:
-   `se_plaindre` (f_55), `donner_des_instructions` (f_57), `avoir_l_'_air`
-   (f_58).
-9. **`data-raw/dict.yaml` comments** are outdated. The header lists
-   double-counting overlaps (`devoir` in f_53 and f_54, `risquer` in f_52 and
-   f_54) that no longer exist. Comments cite `count_ensuite_conjunct_fr()`,
-   `count_donc_discourse_fr()` and `count_vraiment_amplifier_fr()`, which are
-   replaced by `disambiguate_stance_fr()`. The f_54 comment lists *risquer de*
-   and *être susceptible de*, which D-40 removed. `dict$f_51_demonstratives`
-   lists pronouns (`ça`, `celui`…) and is unused by the code.
-10. **`data-raw/french_examples.yaml` expectations** contradict the code or
-    decisions: f_01 *Le chat a marché…* and *…il est parti le lendemain*
-    expect 1 (D-33 gives 0); f_06 *Mon frère et moi…* expects 2 (gives 1);
-    f_42 *Il travaille toujours avec soin.* expects 1 (D-15 gives 0); f_50
-    *Bon, on y va maintenant?* expects 1 (gives 0). Parser misses also differ
-    from expectations: f_02 *Elle était partie*, f_09 *Il est clair qu'il est
-    censé* (2), f_13 *Quand partez-vous ?*, f_17 *La porte est restée fermée*
-    (1), f_23 *Dis-moi…*/*Explique-moi…*, f_25 *En se remplissant…* (1), f_27
-    *La maison construite…*. Only the first example per feature is tested.
-11. **`block_adj_prep_adv_fr()` roxygen** says a multiword preposition counts
-    once. That holds only when the parser uses `fixed` (*à cause de* gives 2).
-12. **f_37** also accepts `au moins que` (the code tests for a preceding `à` or
-    `au`). This is undocumented and probably unintended.
-13. **`word_lists$impersonal_verbs`** contains `s'agir` and `y_avoir`, which can
-    never equal a lemma, and `faire`, which the code removes. The effective
-    weather list is `pleuvoir`, `neiger`, `geler`, `grêler`, `venter`,
-    `bruiner`, `tonner`.
-14. **`tests/testthat/test-french-examples.R`** gives the reason for the *Dis-moi
-    ce que tu veux.* known miss as "free relatives deferred". D-37 has
-    since activated them; the miss is a parse failure.
+Discrepancies found while drafting this reference were resolved as D-55
+(defects) and D-56 (f_50 clause-initial, f_39 compound prepositions, f_65
+sentence-initial *et*) in
+[`CROSS_LANGUAGE_ALIGNMENT.md`](https://github.com/browndw/pseudobibeR/blob/main/CROSS_LANGUAGE_ALIGNMENT.md).
