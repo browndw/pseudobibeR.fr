@@ -19,6 +19,7 @@ test_that("udpipe connector handles missing xpos", {
 
   expect_equal(doc$f_01_past_tense, 0)
   expect_equal(doc$f_02_perfect_aspect, 1)
-  expect_equal(doc$f_03_present_tense, 0)
+  # The present auxiliary avons counts as present tense (D-33).
+  expect_equal(doc$f_03_present_tense, 1)
   expect_equal(doc$f_06_first_person_pronouns, 1)
 })

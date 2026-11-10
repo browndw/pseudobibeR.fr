@@ -2,21 +2,32 @@
 % Please edit documentation in R/features_subordination.R
 \name{block_clause_embedding_fr}
 \alias{block_clause_embedding_fr}
-\title{Extract clause embedding and complementizer features}
+\title{Clause embedding, adverbial subordination and that-deletion (French)}
 \usage{
 block_clause_embedding_fr(tokens, doc_ids, head_lookup)
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens with context columns.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{head_lookup}{Head token lookup table}
+\item{head_lookup}{Head token attributes.}
 }
 \value{
-Data frame with subordinator features f_21 through f_38, plus f_60
+Block result with f_21-f_23 and f_35-f_38 evidence.
 }
 \description{
-Extract clause embedding and complementizer features
+f_21/f_22: complementizer que whose clause (headed by any part of speech,
+including copular predicates) is a ccomp/xcomp/csubj of a verb (f_21), or
+whose governing predicate is an adjective (f_22).
+f_23: interrogative words introducing an embedded complement clause, and
+free relatives with ce que/ce qui that complement a verb (one occurrence,
+recorded as the two-word span); relative clauses on nouns, sentence
+relatives and direct questions are excluded. f_35 parce que; f_36 bien
+que, quoique; f_37 conditional si (not indirect-question si: a ccomp/xcomp
+clause governed by a question or knowledge verb), a moins que, sauf si; f_38 other \code{mark} subordinators
+(puisque, comme, quand...) plus a condition que, once per phrase. que
+inside these phrases is not an f_21/f_22 complementizer. f_60 is computed
+by \code{block_reduced_complements_fr()}.
 }
 \keyword{internal}

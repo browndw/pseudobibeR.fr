@@ -2,43 +2,50 @@
 % Please edit documentation in R/features_tense_pronouns.R
 \name{block_personal_pronouns_fr}
 \alias{block_personal_pronouns_fr}
-\title{Extract personal pronoun and question features}
+\title{Personal pronouns, pronoun it and wh-questions (French)}
 \usage{
 block_personal_pronouns_fr(
   tokens,
   doc_ids,
   head_lookup,
-  de_markers,
-  que_markers,
+  dict_lookup,
   clause_complements,
   weather_lemmas,
+  weather_faire_terms,
   raising_verbs,
+  impersonal_clause_verbs,
   wh_question_lemmas
 )
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{head_lookup}{Head token lookup table}
+\item{head_lookup}{Head token attributes.}
 
-\item{de_markers}{De marker lookup table}
+\item{dict_lookup}{Dictionary.}
 
-\item{que_markers}{Que marker lookup table}
+\item{clause_complements}{Heads with a ccomp/csubj/xcomp dependent.}
 
-\item{clause_complements}{Clause complement lookup table}
-
-\item{weather_lemmas}{Weather verb lemmas}
-
-\item{raising_verbs}{Raising verb lemmas}
-
-\item{wh_question_lemmas}{WH question word lemmas}
+\item{weather_lemmas, weather_faire_terms, raising_verbs, impersonal_clause_verbs, wh_question_lemmas}{Lemma inventories.}
 }
 \value{
-Data frame with f_09_pronoun_it and f_13_wh_question
+Block result with f_06-f_09 and f_13 evidence.
 }
 \description{
-Extract personal pronoun and question features
+f_06-f_08: union of dictionary forms and personal pronouns
+(\code{PronType=Prs}) with the matching \code{Person} value, one occurrence per word.
+Demonstrative ce/ça (f_10), partitive en and generic on are not personal
+pronouns (D-50). Pronouns counted as f_09
+(impersonal/expletive) are excluded from f_08.
+f_09: impersonal/expletive subject pronouns (il, ce/c', cela, ça; matched
+on the surface form, so elle never qualifies): any \code{expl} relation, or a
+subject of a weather verb (directly or through an infinitival complement,
+\verb{il pourrait pleuvoir}), of faire with a weather complement (\verb{il fait froid}) or of falloir, or of an adjective, raising verb or
+listed impersonal verb that has its own clausal complement (a que-clause,
+or an infinitive introduced by de/à: \verb{il semble que}, \verb{il est facile de}).
+f_13: interrogative words in a sentence containing a question mark,
+excluding words inside a relative clause (\code{acl}).
 }
 \keyword{internal}

@@ -4,17 +4,21 @@
 \alias{dictionary_to_lemmas}
 \title{Extract lemmas from a dictionary entry}
 \usage{
-dictionary_to_lemmas(dict_lookup, feature)
+dictionary_to_lemmas(dict_lookup, feature, head_word = FALSE)
 }
 \arguments{
 \item{dict_lookup}{The dict object}
 
 \item{feature}{Feature name}
+
+\item{head_word}{Return the first word of every entry.}
 }
 \value{
 Character vector of lemmas
 }
 \description{
-Extract lemmas from a dictionary entry
+Only single-word entries are returned, so that multiword phrases do not
+contribute their first word (a preposition or article) as a lemma. With
+\code{head_word = TRUE}, the first word of every entry is returned instead.
 }
 \keyword{internal}

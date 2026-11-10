@@ -2,19 +2,32 @@
 % Please edit documentation in R/features_subordination.R
 \name{block_relatives_fr}
 \alias{block_relatives_fr}
-\title{Extract relative clause features}
+\title{Relative clause features (French)}
 \usage{
-block_relatives_fr(tokens, doc_ids)
+block_relatives_fr(tokens, doc_ids, head_lookup, resumptive = NULL)
 }
 \arguments{
-\item{tokens}{Annotated token data frame with relative pronouns marked}
+\item{tokens}{Prepared tokens with context and clause flags.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
+
+\item{head_lookup}{Head token attributes.}
+
+\item{resumptive}{Rows from \code{resumptive_relative_rows_fr()}; their que
+counts in f_61, not in f_30.}
 }
 \value{
-Data frame with f_29_that_subj through f_34_sentence_relatives
+Block result with f_29-f_34 evidence.
 }
 \description{
-Extract relative clause features
+Exclusive partition (D-24/D-25), one relative pronoun per bin.
+A nominal relative is a relative clause (\code{acl}) attached to a noun or
+proper noun. Precedence: f_33 pied-piping (dont, contracted auquel/duquel
+forms, or a preposition before qui/quoi/lequel), then f_34 sentence
+relatives (punctuation + ce/cela... + relative pronoun), then the nominal
+bins: f_29 qui (subject), f_30 que (object/complement), f_31/f_32 lequel
+family in subject/other roles. French marks the role of qui/que by form.
+que of a resumptive or orphan-preposition relative (f_61) is not in f_30.
+où and free relatives (ce qui, celui qui) are not nominal-bin relatives.
 }
 \keyword{internal}

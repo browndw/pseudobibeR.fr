@@ -2,31 +2,30 @@
 % Please edit documentation in R/features_modals_verbs.R
 \name{block_adj_prep_adv_fr}
 \alias{block_adj_prep_adv_fr}
-\title{Extract adjective, preposition, and adverb features}
+\title{Adjective, preposition, and adverb features (French)}
 \usage{
-block_adj_prep_adv_fr(
-  tokens,
-  doc_ids,
-  dict_lookup,
-  word_lists_lookup,
-  negation_adverbs
-)
+block_adj_prep_adv_fr(tokens, doc_ids, dict_lookup, word_lists_lookup)
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{dict_lookup}{Dictionary lookup}
+\item{dict_lookup}{Dictionary.}
 
-\item{word_lists_lookup}{Word lists lookup}
-
-\item{negation_adverbs}{Vector of negation adverbs}
+\item{word_lists_lookup}{Word lists.}
 }
 \value{
-Data frame with f_39_prepositions through f_42_adverbs
+Block result with f_39-f_42 evidence.
 }
 \description{
-Extract adjective, preposition, and adverb features
+f_39: one occurrence per prepositional \code{case} marker; a multiword
+preposition (\verb{à cause de}, \verb{grâce à}) counts once, on its first word.
+f_40: adjectives in an \code{amod} relation and their conjuncts, excluding
+hyphenated forms and the quantifier tout (\verb{tous les jours}). f_41: adjectives heading a copula or in an
+\code{xcomp}/\code{acomp} relation to a linking verb, and their conjuncts.
+f_42: adverb candidates other than the concord clitic ne; the pipeline then
+removes adverbs inside f_04,
+f_05, f_46, f_47 and f_48 occurrences (\code{exclude_specialized_adverbs()}).
 }
 \keyword{internal}

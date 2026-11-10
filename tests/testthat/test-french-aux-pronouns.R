@@ -33,7 +33,8 @@ test_that("synthetic French tokens cover f01-f08", {
 
   expect_equal(doc1$f_01_past_tense, 1)
   expect_equal(doc1$f_02_perfect_aspect, 1)
-  expect_equal(doc1$f_03_present_tense, 0)
+  # The present auxiliary avons counts as present tense (D-33).
+  expect_equal(doc1$f_03_present_tense, 1)
   expect_equal(doc1$f_04_place_adverbials, 1)
   expect_equal(doc1$f_05_time_adverbials, 1)
   expect_equal(doc1$f_06_first_person_pronouns, 2)
@@ -82,7 +83,8 @@ test_that("spaCy morph column fills feats when absent", {
 
   expect_equal(docA$f_01_past_tense, 0)
   expect_equal(docA$f_02_perfect_aspect, 1)
-  expect_equal(docA$f_03_present_tense, 1)
+  # Present auxiliary plus travaillons (D-33).
+  expect_equal(docA$f_03_present_tense, 2)
 
   expect_equal(docB$f_01_past_tense, 1)
   expect_equal(docB$f_02_perfect_aspect, 0)
@@ -163,7 +165,9 @@ test_that("French impersonal, existential, and nominal features counted", {
   expect_equal(docimp$f_20_existential_there, 1)
 
   expect_equal(docnom$f_14_nominalizations, 1)
-  expect_equal(docnom$f_15_gerunds, 1)
+  # The gérondif is adverbial (f_25); f_15 is reserved for nominal infinitives.
+  expect_equal(docnom$f_15_gerunds, 0)
+  expect_equal(docnom$f_25_present_participle, 1)
 })
 
   # nolint end

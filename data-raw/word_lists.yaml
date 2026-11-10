@@ -75,6 +75,26 @@ impersonal_verbs:
   - tonner
   - venter
   - y_avoir # ex_: il_y_a
+# Standalone demonstrative pronouns for f_10 (forms of celui/celle/ceux/celles,
+# with -ci/-là, and ce/ceci/cela/ça). Demonstrative determiners are f_51.
+demonstrative_matchlist:
+  - ce
+  - c'
+  - ceci
+  - cela
+  - ça
+  - celle
+  - celle-ci
+  - celle-là
+  - celles
+  - celles-ci
+  - celles-là
+  - celui
+  - celui-ci
+  - celui-là
+  - ceux
+  - ceux-ci
+  - ceux-là
 linking_matchlist:
   - avoir
   - demeurer
@@ -232,22 +252,151 @@ nominalization_stoplist:
   - abîme
   - prisme
 
-gerund_stoplist:
-  # Common adjectives ending in -ant
+# f_62 (D-48): short adverbs that normally precede an infinitive (pour mieux
+# comprendre, sans trop savoir), so their position is not an interruption.
+# UD French-GSD: mieux 8:1, bien 4:1 before:after; -ment adverbs 9:70.
+preinfinitival_light_adverbs:
+  - bien
+  - mal
+  - mieux
+  - trop
+  - peu
+  - assez
+  - beaucoup
+  - tant
+  - tout
+
+# f_61 (D-29, D-47): colloquial competitors of pied-piping in que-relatives.
+# Orphan prepositions/adverbs with no complement (la fille que je sors avec).
+orphan_prepositions:
+  - avec
+  - pour
+  - sans
+  - contre
+  - dessus
+  - dessous
+  - dedans
+# Verb + preposition frames with a resumptive tonic pronoun (que je compte
+# sur lui); parallel to Spanish hablar_de/depender_de/confiar_en.
+resumptive_prepositional_frames:
+  - parler_de
+  - dépendre_de
+  - compter_sur
+  - fier_à
+# Verbs whose de-complement dont would replace, with resumptive en
+# (le film que je t'en ai parlé / dont je t'ai parlé).
+resumptive_en_verbs:
+  - parler
+  - souvenir
+  - rêver
+  - occuper
+  - dépendre
+
+# f_60 (D-27, D-46): predicates whose que-clause competes with a bare
+# infinitive or unmarked finite complement (je crois avoir compris / je crois
+# que j'ai compris). Parallel to Spanish reduced_complement_predicates.
+reduced_complement_predicates:
+  - croire
+  - penser
+  - espérer
+  - dire
+  - affirmer
+  - prétendre
+
+# f_59 (D-26, D-30, D-45): colloquial reductions that compete with an
+# available full form (p'tit/petit, chuis/je suis, y'a/il y a). Obligatory
+# elision (j'ai, l'homme, c'est) has no competitor and is never counted.
+# Productive t'/j' reductions and subjectless "y a" are rule-based.
+colloquial_contractions:
+  - "p'tit"
+  - "p'tite"
+  - "p'tits"
+  - "p'tites"
+  - "m'sieur"
+  - "m'dame"
+  - "chuis"
+  - "chui"
+  - "ch'suis"
+  - "j'suis"
+  - "chais"
+  - "ch'ais"
+  - "j'sais"
+  - "y'a"
+
+# -ant nouns, adjectives and adverbs that are not gérondifs when UDPipe tags
+# `en` + present participle as NOUN (`en chantant` -> NOUN obl). Used by the
+# f_25 recovery only.
+gerondif_noun_stoplist:
   - agaçant
+  - assistant
+  - autant
+  - avant
   - bruyant
+  - cependant
+  - chant
+  - commerçant
   - constant
+  - consultant
+  - croissant
+  - croyant
+  - débutant
+  - devant
+  - diamant
+  - dorénavant
+  - durant
   - élégant
+  - éléphant
+  - enfant
+  - étudiant
+  - fabricant
   - fatigant
+  - gagnant
   - géant
-  - géant
-  - grand
+  - habitant
+  - implant
   - important
   - inquiétant
+  - maintenant
   - méchant
+  - militant
+  - occupant
+  - participant
+  - passant
+  - pendant
+  - perdant
   - plaisant
+  - pourtant
   - puissant
+  - représentant
+  - restaurant
   - savant
+  - tant
+
+# Common infinitives that parsers may tag as nouns when used nominally
+# (le savoir, le boire et le manger); verb inventories supply the rest.
+nominal_infinitive_lemmas:
+  - boire
+  - chanter
+  - courir
+  - devenir
+  - dormir
+  - déjeuner
+  - dîner
+  - écrire
+  - fumer
+  - lire
+  - manger
+  - marcher
+  - nager
+  - parler
+  - penser
+  - rire
+  - savoir
+  - sourire
+  - souper
+  - travailler
+  - vivre
+  - voyager
   
   # Nouns ending in -ant
   - chant
@@ -406,26 +555,43 @@ multiword_patterns:
   - tout_le_monde
   - un_peu
   - une_fois
+# Negation (D-18/D-20, Tottie): synthetic negation (f_66) is a negative word,
+# counted per occurrence, including in concord with ne. sans is deferred, as
+# Spanish sin. Analytic negation (f_67) is the particle pas, point or plus; the
+# concord clitic ne is not a negator by itself and is not counted.
 neg_synthetic_determiners:
   - aucun
-  - aucun_des
   - aucune
-  - ni
+  - aucuns
+  - aucunes
   - nul
   - nulle
-  - sans
-  - sans_que
+  - nuls
+  - nulles
+  - personne
+  - rien
+  - jamais
+  - ni
+  - aucunement
+  - nullement
 negation_particles:
   - ne
 neg_analytic_adverbs:
-  - aucunement
-  - guère
-  - jamais
-  - nulle_part
-  - nullement
   - pas
-  - pas_du_tout
-  - personne
-  - plus
   - point
-  - rien
+  - plus
+
+# Accent variants: the build script adds unaccented twins of accented entries
+# (très -> tres) so that unaccented input is recognized, except when the
+# unaccented form is a different grammatical word listed here (là/la, sûr/sur,
+# à/a, où/ou). Nominalization suffixes are kept exact (-ité must not become -ite).
+accent_contrastive_forms:
+  - a
+  - la
+  - ou
+  - du
+  - des
+  - sur
+  - mur
+  - cote
+  - cite

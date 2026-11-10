@@ -2,23 +2,28 @@
 % Please edit documentation in R/features_passive.R
 \name{block_passive_voice_fr}
 \alias{block_passive_voice_fr}
-\title{Extract passive voice and stative verb features}
+\title{Passive voice and stative features (French)}
 \usage{
 block_passive_voice_fr(tokens, doc_ids, head_lookup, passive_rel_values)
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens with sentence-local context columns.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{head_lookup}{Head token lookup table}
+\item{head_lookup}{Head token attributes.}
 
-\item{passive_rel_values}{Dependency relation values indicating passive voice}
+\item{passive_rel_values}{Dependency labels of passive auxiliaries.}
 }
 \value{
-Data frame with f_17_agentless_passives, f_18_by_passives, f_19_be_main_verb, f_20_existential_there
+Block result with f_17-f_20 evidence.
 }
 \description{
-Extract passive voice and stative verb features
+f_17/f_18: one occurrence per passive predicate (head of a passive
+auxiliary), recorded as the span from the auxiliary to the predicate
+(\verb{été rédigé}). A predicate with an agent
+(\code{obl:agent}/\code{agent}, or an oblique introduced by \code{par}) is f_18;
+otherwise f_17. f_19: être not used as an auxiliary. f_20: each
+\verb{il y a} (avoir preceded by \code{y} and the pronoun \code{il}).
 }
 \keyword{internal}

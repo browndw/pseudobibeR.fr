@@ -2,17 +2,20 @@
 % Please edit documentation in R/audit_features.R
 \name{print.audit_features_result}
 \alias{print.audit_features_result}
-\title{Print audit results compactly}
+\title{Print an audit result}
 \usage{
 \method{print}{audit_features_result}(x, n = 10, ...)
 }
 \arguments{
-\item{x}{An \code{audit_features_result} object.}
+\item{x}{An \code{audit_features_result}.}
 
-\item{n}{Maximum number of rows to print.}
+\item{n}{Maximum number of rows to display.}
 
-\item{...}{Unused.}
+\item{...}{Arguments passed to the tibble print method.}
+}
+\value{
+\code{x}, invisibly.
 }
 \description{
-Print audit results compactly
+Print an audit result
 }

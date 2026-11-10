@@ -253,13 +253,17 @@ test_that("French adverbial subordinators counted", {
   expect_equal(docsr$f_34_sentence_relatives, 1)
   expect_equal(docsr$f_35_because, 0)
 
-  expect_equal(docbc$f_35_because, 2)
+  # D-44: car is a coordinator (English "for") and is not counted.
+  expect_equal(docbc$f_35_because, 1)
   expect_equal(docbc$f_36_though, 0)
 
-  expect_equal(docconc$f_36_though, 3)
+  # D-44: bien que and quoique; meme si counts through si (English "even if").
+  expect_equal(docconc$f_36_though, 2)
   expect_equal(docconc$f_37_if, 1)
 
-  expect_equal(doccond$f_37_if, 3)
+  # D-44: a condition que ("provided that") is f_38.
+  expect_equal(doccond$f_37_if, 2)
+  expect_equal(doccond$f_38_other_adv_sub, 1)
   expect_equal(doccond$f_35_because, 0)
 
   expect_equal(docmisc$f_38_other_adv_sub, 1)

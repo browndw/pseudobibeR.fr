@@ -66,10 +66,12 @@ test_that("Stranded prepositions and split infinitives counted", {
     "docPREP", 1L, 2L, "est", "etre", "AUX", "AUX", "root", NA_integer_, "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin",
     "docPREP", 1L, 3L, "la", "le", "DET", "DET", "det", 4L, "Definite=Def|Gender=Fem|Number=Sing|PronType=Art",
     "docPREP", 1L, 4L, "personne", "personne", "NOUN", "NOUN", "nsubj", 2L, "Gender=Fem|Number=Sing",
-    "docPREP", 1L, 5L, "avec", "avec", "ADP", "ADP", "case", 6L, NA_character_,
-    "docPREP", 1L, 6L, "qui", "qui", "PRON", "PRON", "obl", 8L, "PronType=Rel",
-    "docPREP", 1L, 7L, "je", "je", "PRON", "PRON", "nsubj", 8L, "PronType=Prs|Person=1|Number=Sing",
-    "docPREP", 1L, 8L, "parle", "parler", "VERB", "VERB", "acl:relcl", 4L, "Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin",
+    # D-47: orphan preposition (la personne que je parle avec); pied-piping
+    # (avec qui) is f_33.
+    "docPREP", 1L, 5L, "que", "que", "PRON", "PRON", "obj", 7L, "PronType=Rel",
+    "docPREP", 1L, 6L, "je", "je", "PRON", "PRON", "nsubj", 7L, "PronType=Prs|Person=1|Number=Sing",
+    "docPREP", 1L, 7L, "parle", "parler", "VERB", "VERB", "acl:relcl", 4L, "Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin",
+    "docPREP", 1L, 8L, "avec", "avec", "ADP", "ADP", "obl", 7L, NA_character_,
     "docPREP", 1L, 9L, ".", ".", "PUNCT", "PUNCT", "punct", 2L, NA_character_,
     "docSPLIT", 1L, 1L, "Je", "je", "PRON", "PRON", "nsubj", 2L, "PronType=Prs|Person=1|Number=Sing",
     "docSPLIT", 1L, 2L, "essaie", "essayer", "VERB", "VERB", "root", NA_integer_, "Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin",

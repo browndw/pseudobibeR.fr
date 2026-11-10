@@ -66,15 +66,13 @@ test_that("modal detection covers lemma and periphrastic forms", {
   expect_equal(get_doc("docPWR")$f_52_modal_possibility, 1)
   expect_equal(get_doc("docPWR")$f_54_modal_predictive, 0)
 
-  expect_equal(get_doc("docPOS")$f_52_modal_possibility, 1)
-
-  # risquer de + inf is predictive, not possibility
+  # Adjectival/nominal periphrases and risquer de are not modal features,
+  # as in the English and Spanish packages.
+  expect_equal(get_doc("docPOS")$f_52_modal_possibility, 0)
   expect_equal(get_doc("docRIS")$f_52_modal_possibility, 0)
-  expect_equal(get_doc("docRIS")$f_54_modal_predictive, 1)
-
-  expect_equal(get_doc("docNEC")$f_53_modal_necessity, 1)
-
-  expect_equal(get_doc("docSUS")$f_54_modal_predictive, 1)
+  expect_equal(get_doc("docRIS")$f_54_modal_predictive, 0)
+  expect_equal(get_doc("docNEC")$f_53_modal_necessity, 0)
+  expect_equal(get_doc("docSUS")$f_54_modal_predictive, 0)
 
   expect_equal(get_doc("docNEG")$f_52_modal_possibility, 1)
 

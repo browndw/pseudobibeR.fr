@@ -1,3 +1,7 @@
+# Tests address features by their shared identifiers; display names are
+# covered in test-feature-names.R.
+options(pseudobibeR.feature_names = "shared")
+
 # nolint start: line_length_linter, object_name_linter
 
 udpipe_model_filename <- "french-gsd-ud-2.5-191206.udpipe"

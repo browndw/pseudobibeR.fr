@@ -1,21 +1,21 @@
 Package: pseudobibeR.fr
 Title: Aggregate Counts of French Linguistic Features
-Version: 0.0.0.94
+Version: 0.95
 Authors@R: 
     c(
      person(given = "David",
-         family = "Brown",
-         role = c("aut", "cre"),
-         email = "dwb2@andrew.cmu.edu",
-         comment = c(ORCID = "0000-0001-7745-6354")),
+            family = "Brown",
+            role = c("aut", "cre"),
+            email = "dwb2@andrew.cmu.edu",
+            comment = c(ORCID = "0000-0001-7745-6354")),
      person(given = "Marina",
-         family = "Seghier",
-         role = "aut",
-         email = "ms@up8.edu"),
+            family = "Seghier",
+            role = "aut",
+            email = "ms@up8.edu"),
      person(given = "Alice",
-         family = "Millour",
-         role = "aut",
-         email = "am@up8.edu")
+            family = "Millour",
+            role = "aut",
+            email = "am@up8.edu")
     )
 Description: Calculates lexicogrammatical and functional features for
     French texts following the framework introduced by Biber (1985)
@@ -26,16 +26,15 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Language: fr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 LazyData: TRUE
 Depends: 
     R (>= 3.5.0)
 Imports:
     dplyr,
-    purrr,
     quanteda,
     quanteda.textstats,
     rlang,
+    stringi,
     stringr,
     tibble,
     magrittr
@@ -47,6 +46,7 @@ Suggests:
     gtsummary,
     knitr,
     mda.biber,
+    purrr,
     reticulate,
     rmarkdown,
     spacyr,
@@ -55,3 +55,4 @@ Suggests:
     udpipe,
     yaml
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.1

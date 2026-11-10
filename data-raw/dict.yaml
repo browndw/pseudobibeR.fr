@@ -124,16 +124,26 @@ f_08_third_person_pronouns:
   - leur
   - leurs
   - lui
-f_11_indefinite_pronoun:
+f_11_indefinite_pronouns:
+  # Pronoun uses only (gate_indefinite_pronouns_fr, D-52); phrases count once.
+  - aucun
+  - aucune
   - autrui
   - chacun
-  - chose
+  - chacune
   - n_'_importe_qui
   - n_'_importe_quoi
+  - nul
+  - nulle
   - personne
   - quelqu'un
-  - quelque
+  - quelqu'une
+  - quelque_chose
   - quelquechose
+  - quelques-uns
+  - quelques-unes
+  - quelques_-uns
+  - quelques_-unes
   - quiconque
   - rien
   - tout

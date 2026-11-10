@@ -2,21 +2,22 @@
 % Please edit documentation in R/features_modals_verbs.R
 \name{block_specialized_verbs_fr}
 \alias{block_specialized_verbs_fr}
-\title{Extract specialized verb class features}
+\title{Specialized verb class features (French)}
 \usage{
 block_specialized_verbs_fr(tokens, doc_ids, dict_lookup)
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{dict_lookup}{Dictionary lookup}
+\item{dict_lookup}{Dictionary.}
 }
 \value{
-Data frame with f_55_verb_public through f_58_verb_seem
+Block result with f_55-f_58 evidence.
 }
 \description{
-Extract specialized verb class features
+One occurrence per VERB/AUX whose lemma is a single-word entry of the
+corresponding dictionary class.
 }
 \keyword{internal}

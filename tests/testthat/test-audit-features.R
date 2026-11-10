@@ -289,11 +289,11 @@ test_that("audit_features returns exact relative anchors", {
       "DET", "NOUN", "PRON", "PRON", "VERB", "PUNCT", "PUNCT",
       "PRON", "VERB", "PUNCT", "PRON", "PRON", "VERB"
     ),
-    head_token_id = c(2L, 4L, 4L, 0L, 4L, 4L, 2L, 5L, 5L, 5L, 0L, 5L, 5L, 2L, 0L, 2L, 6L, 6L, 0L),
+    head_token_id = c(2L, 0L, 4L, 2L, 2L, 2L, 2L, 0L, 5L, 5L, 2L, 2L, 2L, 2L, 0L, 2L, 2L, 6L, 4L),
     dep_rel = c(
-      "det", "nsubj", "nsubj", "acl:relcl", "punct", "punct",
-      "det", "obl", "obl", "nsubj", "acl:relcl", "punct", "punct",
-      "nsubj", "root", "punct", "obj", "nsubj", "acl:relcl"
+      "det", "root", "nsubj", "acl:relcl", "punct", "punct",
+      "det", "root", "iobj", "nsubj", "acl:relcl", "punct", "punct",
+      "nsubj", "root", "punct", "parataxis", "nsubj", "acl:relcl"
     ),
     morph = c(
       NA, NA, "PronType=Rel", "VerbForm=Fin|Tense=Pres", NA, NA,
@@ -373,8 +373,9 @@ test_that("audit_features returns exact negation and clause anchors", {
   expect_true(any(result$keyword == "parce que"))
   expect_true(any(result$keyword == "cependant"))
   expect_true(any(result$keyword == "Aucun"))
+  # Analytic negation is anchored on the negative word that shares a head with ne.
   analytic_keywords <- result$keyword[result$feature == "f_67_neg_analytic"]
-  expect_true(any(grepl("ne", analytic_keywords) & grepl("pas", analytic_keywords)))
+  expect_equal(analytic_keywords, "pas")
 })
 
 test_that("audit_features returns exact coordination and split anchors", {
@@ -383,36 +384,36 @@ test_that("audit_features returns exact coordination and split anchors", {
     sentence_id = c(rep(1L, 4), rep(1L, 4), rep(1L, 4), rep(1L, 5), rep(1L, 5)),
     token_id = c(1:4, 1:4, 1:4, 1:5, 1:5),
     token = c(
-      "avec", "qui", "viens", ".",
+      "fille", "que", "sors", "avec",
       "de", "vraiment", "comprendre", ".",
       "a", "probablement", "été", "vu",
       "pommes", "et", "oranges", ".", ".",
       "il", "vient", "et", "elle", "part"
     ),
     lemma = c(
-      "avec", "qui", "venir", ".",
+      "fille", "que", "sortir", "avec",
       "de", "vraiment", "comprendre", ".",
       "avoir", "probablement", "être", "voir",
       "pomme", "et", "orange", ".", ".",
       "il", "venir", "et", "elle", "partir"
     ),
     pos = c(
-      "ADP", "PRON", "VERB", "PUNCT",
+      "NOUN", "PRON", "VERB", "ADP",
       "ADP", "ADV", "VERB", "PUNCT",
       "AUX", "ADV", "AUX", "VERB",
       "NOUN", "CCONJ", "NOUN", "PUNCT", "PUNCT",
       "PRON", "VERB", "CCONJ", "PRON", "VERB"
     ),
     tag = c(
-      "ADP", "PRON", "VERB", "PUNCT",
+      "NOUN", "PRON", "VERB", "ADP",
       "ADP", "ADV", "VERB", "PUNCT",
       "AUX", "ADV", "AUX", "VERB",
       "NOUN", "CCONJ", "NOUN", "PUNCT", "PUNCT",
       "PRON", "VERB", "CCONJ", "PRON", "VERB"
     ),
-    head_token_id = c(2L, 3L, 0L, 3L, 3L, 3L, 0L, 3L, 4L, 4L, 4L, 0L, 0L, 3L, 1L, 3L, 3L, 2L, 0L, 5L, 5L, 2L),
+    head_token_id = c(0L, 3L, 1L, 3L, 3L, 3L, 0L, 3L, 4L, 4L, 4L, 0L, 0L, 3L, 1L, 3L, 3L, 2L, 0L, 5L, 5L, 2L),
     dep_rel = c(
-      "case", "nsubj", "root", "punct",
+      "root", "obj", "acl:relcl", "advmod",
       "mark", "advmod", "xcomp", "punct",
       "aux", "advmod", "aux:pass", "root",
       "root", "cc", "conj", "punct", "punct",
@@ -433,7 +434,8 @@ test_that("audit_features returns exact coordination and split anchors", {
 
   expect_true(all(result$match_type == "exact"))
   expect_true(all(c("f_61_stranded_preposition", "f_62_split_infinitive", "f_63_split_auxiliary", "f_64_phrasal_coordination", "f_65_clausal_coordination") %in% result$feature))
-  expect_true(any(grepl("avec qui", result$keyword)))
+  # D-47: an orphan preposition in a que-relative (la fille que je sors avec).
+  expect_equal(result$keyword[result$feature == "f_61_stranded_preposition"], "avec")
   expect_true(any(result$feature == "f_62_split_infinitive"))
   expect_true(any(result$feature == "f_63_split_auxiliary"))
   expect_true(any(result$feature == "f_64_phrasal_coordination"))

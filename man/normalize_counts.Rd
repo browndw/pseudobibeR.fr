@@ -2,17 +2,18 @@
 % Please edit documentation in R/utils_extraction.R
 \name{normalize_counts}
 \alias{normalize_counts}
-\title{Normalize feature counts to per-1000-word rates}
+\title{Normalize feature counts to per-1,000-word rates}
 \usage{
 normalize_counts(counts)
 }
 \arguments{
-\item{counts}{A data frame with feature counts and a tot_counts column}
+\item{counts}{A data frame with feature counts and a \code{tot_counts} column.}
 }
 \value{
-A data frame with normalized counts (tot_counts column removed)
+A data frame with normalized counts (\code{tot_counts} removed).
 }
 \description{
-Normalize feature counts to per-1000-word rates
+Metrics (f_43, f_44) and the internal denominator are not rates and are
+left unchanged.
 }
 \keyword{internal}

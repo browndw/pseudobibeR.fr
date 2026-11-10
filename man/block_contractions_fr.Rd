@@ -2,19 +2,36 @@
 % Please edit documentation in R/features_coordination_negation.R
 \name{block_contractions_fr}
 \alias{block_contractions_fr}
-\title{Extract contraction features}
+\title{Contraction features (French)}
 \usage{
-block_contractions_fr(tokens, doc_ids)
+block_contractions_fr(tokens, doc_ids, word_lists_lookup)
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens with context columns.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
+
+\item{word_lists_lookup}{Word lists.}
 }
 \value{
-Data frame with f_59_contractions
+Block result with f_59 evidence.
 }
 \description{
-Extract contraction features
+f_59 counts colloquial reductions that compete with an available full form
+(D-26, D-30, D-45), as English contractions compete with full forms:
+\itemize{
+\item listed forms (\code{colloquial_contractions}: p'tit, m'sieur, chuis,
+j'sais, y'a...), longest match, straight or curly apostrophe, once
+across native splits;
+\item subject tu reduced to t' before a finite singular verb (t'es,
+t'as, t'avais) with no subject before it, skipping ne (excludes object
+or reflexive te: je t'aime, tu t'es trompé, ça t'a plu);
+\item subject je reduced to j' before a consonant other than h
+(j'pense, j'veux);
+\item il y a without il (y a, y en a), excluding y a-t-il.
+}
+Obligatory elision (j'ai, l'homme, c'est, qu'il, aujourd'hui) has no
+competing form and is not counted. One occurrence per reduction, recorded
+as the span from the reduced word to its host.
 }
 \keyword{internal}

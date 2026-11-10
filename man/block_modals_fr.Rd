@@ -2,21 +2,29 @@
 % Please edit documentation in R/features_modals_verbs.R
 \name{block_modals_fr}
 \alias{block_modals_fr}
-\title{Extract modal verb features}
+\title{Modal verb features (French)}
 \usage{
 block_modals_fr(tokens, doc_ids, dict_lookup)
 }
 \arguments{
-\item{tokens}{Annotated token data frame with context columns}
+\item{tokens}{Prepared tokens with context columns.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{dict_lookup}{Dictionary lookup}
+\item{dict_lookup}{Dictionary.}
 }
 \value{
-Data frame with f_52_modal_possibility through f_54_modal_predictive
+Block result with f_52-f_54 evidence.
 }
 \description{
-Extract modal verb features
+Modal features count modal verbs and periphrases grammaticalized as modals,
+as in the English and Spanish packages; adjectival or nominal constructions
+(\verb{être obligé de}, \verb{être susceptible de}, \verb{avoir la possibilité de}) and
+\verb{risquer de} are not counted.
+f_52: possibility lemmas (pouvoir). f_53: necessity lemmas (devoir,
+falloir). f_54: finite future and conditional verbs or auxiliaries
+(\code{viendra}, \verb{aurait aimé}) and aller in the present or imperfect governing
+an infinitive (\verb{va partir}, recorded as the span from aller to the
+infinitive). Each word counts once.
 }
 \keyword{internal}

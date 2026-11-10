@@ -91,12 +91,24 @@
 - feature: f_10_demonstrative_pronoun
   example: Cela est une phrase d’exemple.
   count: 1.0
+- feature: f_10_demonstrative_pronoun
+  example: C'est vrai.
+  count: 1.0
+- feature: f_10_demonstrative_pronoun
+  example: Ce que tu dis est vrai.
+  count: 0.0
 - feature: f_11_indefinite_pronouns
   example: Quelqu'un a frappé à la porte.
   count: 1.0
 - feature: f_11_indefinite_pronouns
   example: Personne ne sait ce qui s'est passé.
   count: 1.0
+- feature: f_11_indefinite_pronouns
+  example: Quelque chose a changé.
+  count: 1.0
+- feature: f_11_indefinite_pronouns
+  example: Une personne est venue.
+  count: 0.0
 - feature: f_12_proverb_do
   example: Tu vas au cinéma? Oui, je le fais souvent.
   count: 1.0
@@ -128,14 +140,17 @@
   example: Son passage à l’antenne a surpris tout le monde.
   count: 1.0
 - feature: f_15_gerunds
-  example: En travaillant dur, tu réussiras.
+  example: Fumer tue.
   count: 1.0
 - feature: f_15_gerunds
-  example: Il est parti en chantant.
+  example: Le savoir est une richesse.
   count: 1.0
-- feature: f_15_gerunds #
-  example: Elle a avancé en titubant légèrement.
-  count: 1.0
+- feature: f_15_gerunds
+  example: Le boire et le manger sont essentiels.
+  count: 2.0
+- feature: f_15_gerunds
+  example: Il est important de se reposer.
+  count: 0.0
 - feature: f_17_agentless_passives
   example: Le repas a été préparé avec soin.
   count: 1.0
@@ -230,6 +245,15 @@
   example: Il commence à douter.
   count: 1.0
 - feature: f_25_present_participle
+  example: En travaillant dur, tu réussiras.
+  count: 1.0
+- feature: f_25_present_participle
+  example: Il est parti en chantant.
+  count: 1.0
+- feature: f_25_present_participle #
+  example: Elle a avancé en titubant légèrement.
+  count: 1.0
+- feature: f_25_present_participle
   example: En mangeant, il lisait son journal.
   count: 1.0
 - feature: f_25_present_participle
@@ -295,13 +319,15 @@
 - feature: f_31_wh_subj #
   example: Les documents, lesquels manquent seront ajoutés.
   count: 1.0
-- feature: f_32_wh_obj
+# dont incorporates de and belongs exclusively to f_33 (D-24); lequel-family
+# relatives in a non-subject role without a preposition are very rare in French.
+- feature: f_33_pied_piping
   example: Les raisons dont il parle sont claires.
   count: 1.0
-- feature: f_32_wh_obj
+- feature: f_33_pied_piping
   example: Les projets dont nous discutons avancent vite.
   count: 1.0
-- feature: f_32_wh_obj #
+- feature: f_33_pied_piping
   example: Les artistes dont je parle arrivent demain.
   count: 1.0
 - feature: f_33_pied_piping
@@ -324,11 +350,17 @@
   count: 1.0
 - feature: f_35_because
   example: Il est parti tôt car il avait un rendez-vous.
-  count: 1.0
+  count: 0.0
+- feature: f_35_because
+  example: Puisque tu insistes, je viens.
+  count: 0.0
 - feature: f_36_though
   example: Bien qu'il soit fatigué, il continue à travailler.
   count: 1.0
 - feature: f_36_though
+  example: Quoiqu'il dise, je partirai.
+  count: 1.0
+- feature: f_37_if
   example: Même si tu n'es pas d'accord, je le ferai.
   count: 1.0
 - feature: f_37_if
@@ -340,11 +372,23 @@
 - feature: f_37_if #
   example: S'il est toujours là, j'irai.
   count: 1.0
+- feature: f_37_if
+  example: Je sortirai sauf s'il pleut.
+  count: 1.0
+- feature: f_37_if
+  example: Je me demande s'il viendra.
+  count: 0.0
 - feature: f_38_other_adv_sub
   example: Tandis que je travaillais, elle dormait.
   count: 1.0
 - feature: f_38_other_adv_sub
   example: Il lit pendant que je cuisine.
+  count: 1.0
+- feature: f_38_other_adv_sub
+  example: Comme il pleuvait, je suis resté.
+  count: 1.0
+- feature: f_38_other_adv_sub
+  example: Il partira à condition qu'on le paie.
   count: 1.0
 - feature: f_39_prepositions
   example: Le livre est sur la table.
@@ -433,8 +477,8 @@
 - feature: f_53_modal_necessity
   example: Il faut partir maintenant.
   count: 1.0
-- feature: f_53_modal_necessity #
-  example: Il est nécessaire de se faire aider.
+- feature: f_53_modal_necessity
+  example: Vous devez signer ce formulaire.
   count: 1.0
 - feature: f_54_modal_predictive
   example: Je vais aller au marché.
@@ -445,8 +489,8 @@
 - feature: f_54_modal_predictive #
   example: Nous verrons cela.
   count: 1.0
-- feature: f_54_modal_predictive #
-  example: Il risque de pleuvoir ce soir.
+- feature: f_54_modal_predictive
+  example: Elle partirait si elle le pouvait.
   count: 1.0
 - feature: f_55_verb_public
   example: Il a affirmé que c'était vrai.
@@ -478,6 +522,12 @@
 - feature: f_59_contractions #
   example: T'es sûr de toi ?
   count: 1.0
+- feature: f_59_contractions
+  example: Y a du monde ce soir.
+  count: 1.0
+- feature: f_59_contractions
+  example: J'ai vu l'homme qu'il aime.
+  count: 0.0
 - feature: f_60_that_deletion
   example: Je pense il viendra demain.
   count: 1.0
@@ -485,29 +535,62 @@
   example: Elle croit c'est impossible.
   count: 1.0
 - feature: f_60_that_deletion
-  example: On suppose ça a fonctionné.
+  example: Je crois avoir compris.
   count: 1.0
-- feature: f_60_that_deletion #
-  example: Ça se voit il est sérieux.
+- feature: f_60_that_deletion
+  example: Il dit avoir vu le voleur.
+  count: 1.0
+- feature: f_60_that_deletion
+  example: Elle affirme être innocente.
+  count: 1.0
+- feature: f_60_that_deletion
+  example: Il m'a dit de partir.
+  count: 0.0
+- feature: f_60_that_deletion
+  example: Je veux partir.
+  count: 0.0
+- feature: f_60_that_deletion
+  example: On suppose ça a fonctionné.
+  count: 0.0
+- feature: f_61_stranded_preposition
+  example: C'est la fille que je sors avec.
   count: 1.0
 - feature: f_61_stranded_preposition
-  example: Pour qui est-ce que tu as fait le gâteau?
+  example: C'est un ami que je compte sur lui.
+  count: 1.0
+- feature: f_61_stranded_preposition
+  example: C'est le film que je t'en ai parlé.
   count: 1.0
 - feature: f_61_stranded_preposition
   example: C'est la personne avec qui j'ai des problèmes.
-  count: 1.0
+  count: 0.0
 - feature: f_62_split_infinitive
   example: J'essaie de vraiment comprendre le problème.
   count: 1.0
 - feature: f_62_split_infinitive
   example: Elle a très certainement promis de ne jamais oublier.
+  count: 0.0
+- feature: f_62_split_infinitive
+  example: Il est parti sans vraiment savoir pourquoi.
   count: 1.0
+- feature: f_62_split_infinitive
+  example: Il travaille pour mieux comprendre.
+  count: 0.0
 - feature: f_63_split_auxiliary
   example: Il a probablement été vu hier.
   count: 1.0
 - feature: f_63_split_auxiliary #
   example: Elle a très certainement terminé son travail.
   count: 1.0
+- feature: f_63_split_auxiliary
+  example: Il n'a jamais vu la mer.
+  count: 1.0
+- feature: f_63_split_auxiliary
+  example: Il peut facilement résoudre le problème.
+  count: 1.0
+- feature: f_63_split_auxiliary
+  example: Il n'a pas mangé.
+  count: 0.0
 - feature: f_64_phrasal_coordination
   example: J'ai acheté des pommes et des oranges.
   count: 1.0
@@ -529,15 +612,20 @@
 - feature: f_66_neg_synthetic
   example: Nul ne sait ce qui s'est passé.
   count: 1.0
+# jamais is a negative word (synthetic, like Spanish nunca), with or without ne.
+- feature: f_66_neg_synthetic
+  example: Elle n'est jamais venue ici.
+  count: 1.0
+- feature: f_66_neg_synthetic
+  example: Il parle jamais de ça.
+  count: 1.0
+# Analytic negation is the particle pas/point/plus; ne alone is not counted.
 - feature: f_67_neg_analytic
   example: Je ne parle pas anglais.
   count: 1.0
 - feature: f_67_neg_analytic
-  example: Elle n'est jamais venue ici.
-  count: 1.0
-- feature: f_67_neg_analytic #
-  example: Il parle jamais de ça.
-  count: 1.0
-- feature: f_67_neg_analytic #
   example: Je suis pas sortie hier.
+  count: 1.0
+- feature: f_67_neg_analytic
+  example: Il n'en veut plus.
   count: 1.0

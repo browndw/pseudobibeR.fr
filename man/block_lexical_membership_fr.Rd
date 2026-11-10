@@ -2,21 +2,42 @@
 % Please edit documentation in R/features_coordination_negation.R
 \name{block_lexical_membership_fr}
 \alias{block_lexical_membership_fr}
-\title{Extract lexical membership features}
+\title{Lexical membership features (French)}
 \usage{
-block_lexical_membership_fr(tokens, doc_ids, word_lists_lookup)
+block_lexical_membership_fr(
+  tokens,
+  doc_ids,
+  word_lists_lookup,
+  pronoun_it_evidence = empty_evidence_tibble(),
+  nominal_infinitives = tokens[0, ],
+  gerondif_nouns = tokens[0, ]
+)
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens with context columns.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{word_lists_lookup}{Word lists lookup}
+\item{word_lists_lookup}{Word lists.}
+
+\item{pronoun_it_evidence}{f_09 evidence excluded from f_10.}
+
+\item{nominal_infinitives}{Rows from \code{nominal_infinitive_rows_fr()}.}
+
+\item{gerondif_nouns}{Rows from \code{gerondif_noun_rows_fr()}.}
 }
 \value{
-Data frame with f_10_demonstrative_pronoun through f_51_demonstratives
+Block result with f_10, f_14-f_16 and f_51 evidence.
 }
 \description{
-Extract lexical membership features
+f_10: standalone demonstrative pronouns (\code{demonstrative_matchlist}: ce/c',
+ça, cela, ceci, celui...) tagged PRON with \code{PronType=Dem} or no PronType,
+excluding f_09 occurrences (c'est important de...) and the ce of
+ce que/ce qui/ce dont relatives (D-50). Clefts (c'est X qui) remain f_10.
+f_14: nouns with a nominalization suffix, minus a stoplist. f_15:
+infinitives functioning as nouns (\code{nominal_infinitive_rows_fr()}); the
+gérondif is adverbial and belongs to f_25. f_16: other non-hyphenated
+nouns, excluding gérondifs mistagged as nouns. f_14, f_15 and f_16 are
+disjoint by occurrence. f_51: demonstrative determiners.
 }
 \keyword{internal}

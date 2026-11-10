@@ -87,10 +87,9 @@ test_that("f_63_split_auxiliary detects French compound verbs with xcomp/ccomp",
   expect_equal(features$f_63_split_auxiliary[features$doc_id == "doc3"], 1)
 })
 
-test_that("f_15_gerunds detects both VERB and NOUN tagged present participles with 'en'", {
-  # Not a bug, but verification of dual-path detection
-  # udpipe inconsistently tags "en + present participle" as VERB or NOUN
-  # Code handles both via morphological features AND lexical fallback
+test_that("gérondifs count in f_25 whether UDPipe tags them VERB or NOUN", {
+  # UDPipe French-GSD tags `en chantant` as NOUN obl about as often as VERB
+  # advcl; gerondif_noun_rows_fr() recovers the NOUN reading for f_25.
   
   tokens <- tibble::tribble(
     ~doc_id, ~sentence_id, ~token_id, ~token, ~lemma, ~pos, ~tag, ~dep_rel, ~head_token_id, ~feats,
@@ -124,13 +123,13 @@ test_that("f_15_gerunds detects both VERB and NOUN tagged present participles wi
   
   features <- biber(tokens, measure = "none", normalize = FALSE)
   
-  # Gerunds require: (1) VERB with Part+Pres OR (2) NOUN ending 'ant' preceded by 'en' with dep_rel nmod/obl/advcl
-  # doc1: VERB with Part+Pres = detected
-  # doc2: NOUN ending 'ant' with dep_rel 'advcl', preceded by 'en' = detected (fallback path)
-  # doc3: VERB with Part+Pres BUT no 'en' = still detected (primary path doesn't require 'en')
-  expect_equal(features$f_15_gerunds[features$doc_id == "doc1"], 1)
-  expect_equal(features$f_15_gerunds[features$doc_id == "doc2"], 1)
-  expect_equal(features$f_15_gerunds[features$doc_id == "doc3"], 1)
+  ids <- c("doc1", "doc2", "doc3")
+  expect_equal(features$f_15_gerunds[match(ids, features$doc_id)], c(0, 0, 0))
+  # doc1 VERB-tagged and doc2 NOUN-tagged gérondif; doc3 is an adnominal
+  # participle without `en` (f_28), not a gérondif.
+  expect_equal(features$f_25_present_participle[match(ids, features$doc_id)], c(1, 1, 0))
+  expect_equal(features$f_28_present_participle_whiz[match(ids, features$doc_id)], c(0, 0, 1))
+  expect_equal(features$f_16_other_nouns[features$doc_id == "doc2"], 0)
 })
 
 test_that("Apostrophe multiword patterns match correctly after quanteda tokenization", {

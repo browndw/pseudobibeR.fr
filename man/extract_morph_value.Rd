@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_extraction.R
 \name{extract_morph_value}
 \alias{extract_morph_value}
-\title{Extract a specific morphological feature value from UD feats string}
+\title{Extract a morphological feature value from a UD feats string}
 \usage{
 extract_morph_value(feats, key)
 }
@@ -15,6 +15,6 @@ extract_morph_value(feats, key)
 Character vector of extracted values
 }
 \description{
-Extract a specific morphological feature value from UD feats string
+Extract a morphological feature value from a UD feats string
 }
 \keyword{internal}

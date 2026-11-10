@@ -2,7 +2,9 @@
 % Please edit documentation in R/audit_features.R
 \name{audit_features}
 \alias{audit_features}
-\title{Audit feature-bearing sentence chunks}
+\alias{audit_features.spacyr_parsed}
+\alias{audit_features.udpipe_connlu}
+\title{Audit the occurrences behind feature counts}
 \usage{
 audit_features(
   tokens,
@@ -11,52 +13,78 @@ audit_features(
   sample_n = NULL,
   seed = NULL,
   max_per_doc = NULL,
-  window = 5
+  window = 5,
+  feature_names = getOption("pseudobibeR.feature_names", "language")
+)
+
+\method{audit_features}{spacyr_parsed}(
+  tokens,
+  feature = NULL,
+  category = NULL,
+  sample_n = NULL,
+  seed = NULL,
+  max_per_doc = NULL,
+  window = 5,
+  feature_names = getOption("pseudobibeR.feature_names", "language")
+)
+
+\method{audit_features}{udpipe_connlu}(
+  tokens,
+  feature = NULL,
+  category = NULL,
+  sample_n = NULL,
+  seed = NULL,
+  max_per_doc = NULL,
+  window = 5,
+  feature_names = getOption("pseudobibeR.feature_names", "language")
 )
 }
 \arguments{
-\item{tokens}{A dataset of tokens created by \code{spacyr::spacy_parse()} or
-\code{udpipe::udpipe_annotate()}.}
+\item{tokens}{Annotated tokens, as accepted by \code{\link[=biber]{biber()}}.}
 
-\item{feature}{Optional feature identifier such as \code{"f_19_be_main_verb"}.}
+\item{feature}{One or more feature names: display names (see
+\link{feature_names}, e.g. \code{"f_19_copula_main_verb"}) or shared identifiers
+(\code{"f_19_be_main_verb"}).}
 
-\item{category}{Optional category code or label such as \code{"G"},
-\code{"Passives"}, or \code{"Modals"}. Expands to all features in the category.}
+\item{category}{A category letter (\code{"A"} to \code{"P"}), its full label (for
+example \code{"L. Modals"}), or a short alias such as \code{"Modals"},
+\code{"Passives"} or \code{"Negation"}. Supply exactly one of \code{feature} and
+\code{category}.}
 
-\item{sample_n}{Optional maximum number of rows to return after filtering.
-When supplied, rows are sampled at random.}
+\item{sample_n}{Optional maximum number of rows to return, sampled at random.}
 
-\item{seed}{Optional random seed used when \code{sample_n} or \code{max_per_doc} is
-supplied.}
+\item{seed}{Optional random seed used when sampling; the caller's random
+state is restored afterwards.}
 
-\item{max_per_doc}{Optional maximum number of rows to keep per source
-document before global sampling.}
+\item{max_per_doc}{Optional maximum number of rows per document, applied
+before \code{sample_n}.}
 
-\item{window}{Number of tokens to show on the left and right side of an
-exact match when KWIC-style anchors are available.}
+\item{window}{Number of context tokens shown on each side of the match.}
+
+\item{feature_names}{\code{"language"} (default) to report features with the
+French display names in \link{feature_names}, or \code{"shared"} for the identifiers
+shared by the companion packages. \code{feature} accepts either name.}
 }
 \value{
-A tibble with one row per matching sentence chunk and columns for the
-source document, sentence, feature, category, feature count within the
-chunk, reconstructed sentence text, and \code{left}/\code{keyword}/\code{right} context
-columns when exact token anchors are available. The return value has class
-\code{audit_features_result}, which provides a compact print method.
+An \code{audit_features_result} tibble with columns \code{feature},
+\code{category}, \code{doc_id}, \code{sentence_id}, \code{count} (always 1), \code{token_count}
+(sentence length), \code{match_type} (\code{"exact"}), \code{left}, \code{keyword}, \code{right}
+and \code{chunk} (the full sentence). Lexical metrics (f_43, f_44) cannot be
+audited.
 }
 \description{
-Returns sentence-level chunks whose parsed tokens trigger one or more
-\code{pseudobibeR.fr} feature counts. This is intended as an audit aid for
-collaborators who want to inspect representative examples without reviewing
-every matching sentence in a large corpus.
-}
-\details{
-The function reuses the same parser-specific feature extraction logic as
-\code{\link[=biber]{biber()}} by temporarily treating each sentence as its own document. This
-keeps auditing aligned with the package's counting heuristics for both
-lexical and syntactic features.
+Returns one row per occurrence counted by \code{\link[=biber]{biber()}}, with its sentence
+context, so that counts can be inspected directly. Rows come from the same
+extraction run as the counts: for every countable feature the number of
+rows per document equals the raw count from
+\code{biber(tokens, normalize = FALSE)}.
 }
 \examples{
 audit_features(spacy_samples, feature = "f_19_be_main_verb", sample_n = 5)
 if (requireNamespace("udpipe", quietly = TRUE)) {
   audit_features(udpipe_samples, category = "Modals", sample_n = 10, seed = 1)
 }
+}
+\seealso{
+\code{\link[=biber]{biber()}}
 }

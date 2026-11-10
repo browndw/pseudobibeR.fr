@@ -2,19 +2,39 @@
 % Please edit documentation in R/features_coordination_negation.R
 \name{block_stranded_split_fr}
 \alias{block_stranded_split_fr}
-\title{Extract stranded preposition and split infinitive features}
+\title{Stranded preposition and split infinitive features (French)}
 \usage{
-block_stranded_split_fr(tokens, doc_ids)
+block_stranded_split_fr(
+  tokens,
+  doc_ids,
+  resumptive = NULL,
+  word_lists_lookup = list(),
+  nominal_infinitives = tokens[0, ]
+)
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens with context columns.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
+
+\item{resumptive}{Rows from \code{resumptive_relative_rows_fr()}.}
+
+\item{word_lists_lookup}{Word lists.}
+
+\item{nominal_infinitives}{Rows counted in f_15.}
 }
 \value{
-Data frame with f_61_stranded_preposition and f_62_split_infinitive
+Block result with f_61 and f_62 evidence.
 }
 \description{
-Extract stranded preposition and split infinitive features
+f_61: colloquial competitors of pied-piping (D-29, D-47) from
+\code{resumptive_relative_rows_fr()}: orphan preposition, resumptive PP or
+resumptive en, one per relative. Pied-piping itself is f_33.
+f_62 (D-28, D-48): a preposition linked to an infinitive and separated from
+it by adverbs (and clitic pronouns), at least one adverb being neither a
+negation nor a light adverb that normally precedes the infinitive
+(\code{preinfinitival_light_adverbs}: bien, mieux, trop...). \verb{de vraiment comprendre} and \verb{sans vraiment savoir} count; \verb{pour mieux comprendre} and
+\verb{de ne pas venir} do not. Nominal infinitives are excluded. One occurrence
+per infinitive, recorded as the span from the preposition.
 }
 \keyword{internal}

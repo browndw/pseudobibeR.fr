@@ -8,6 +8,7 @@ S3method(print,audit_features_result)
 export(audit_features)
 export(biber)
 importFrom(magrittr,"%>%")
-importFrom(rlang,":=")
-importFrom(rlang,.data)
-importFrom(utils,tail)
+importFrom(rlang,
+  ":=",
+  .data
+)

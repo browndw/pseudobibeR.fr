@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_extraction.R
 \name{normalize_terms}
 \alias{normalize_terms}
-\title{Normalize terms by converting to lowercase and replacing Unicode apostrophes}
+\title{Normalize terms for matching}
 \usage{
 normalize_terms(values)
 }
@@ -13,6 +13,7 @@ normalize_terms(values)
 Normalized character vector
 }
 \description{
-Normalize terms by converting to lowercase and replacing Unicode apostrophes
+Lower-cases and maps typographic apostrophes (U+2019, U+2018, U+02BC) to
+the ASCII apostrophe.
 }
 \keyword{internal}

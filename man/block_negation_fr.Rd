@@ -2,7 +2,7 @@
 % Please edit documentation in R/features_coordination_negation.R
 \name{block_negation_fr}
 \alias{block_negation_fr}
-\title{Extract negation features}
+\title{Negation features (French)}
 \usage{
 block_negation_fr(
   tokens,
@@ -13,20 +13,27 @@ block_negation_fr(
 )
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens with context columns.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{neg_synthetic_terms}{Synthetic negation term lemmas}
+\item{neg_synthetic_terms}{Synthetic negation lemmas.}
 
-\item{negation_part_lemmas}{Negation particle lemmas}
+\item{negation_part_lemmas}{Concord particle lemmas (ne).}
 
-\item{negation_adverbs}{Negation adverb lemmas}
+\item{negation_adverbs}{Analytic negation particles (pas, point, plus).}
 }
 \value{
-Data frame with f_66_neg_synthetic and f_67_neg_analytic
+Block result with f_66 and f_67 evidence.
 }
 \description{
-Extract negation features
+Tottie's distinction (D-18), parallel to Spanish D-20 and D-17.
+f_66 synthetic negation: each negative word (aucun, nul, personne, rien,
+jamais, ni, aucunement, nullement), including in concord with ne
+(\verb{Personne n'a rien dit} = 2). Excluded: words with an article (\verb{une personne}, \verb{un rien}), nouns other than determinerless personne in a
+sentence with ne (a common misparse of \verb{Je ne vois personne}), and
+non-negative jamais after si/à/que (\verb{si jamais}, \verb{à jamais}, \verb{plus que jamais}). f_67 analytic negation: the particle pas (with or without ne,
+\verb{c'est pas grave}), point or plus sharing a head with ne (\verb{il n'en veut plus}, not comparative \verb{plus grand}), and constituent non (\verb{non négligeable}), not the reply \code{Non.}. ne alone (\verb{ne ... que}, expletive ne)
+is not counted.
 }
 \keyword{internal}

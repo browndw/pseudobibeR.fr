@@ -2,23 +2,28 @@
 % Please edit documentation in R/features_tense_pronouns.R
 \name{block_aux_tense_fr}
 \alias{block_aux_tense_fr}
-\title{Extract tense and auxiliary-related features}
+\title{Perfect aspect and pro-verb faire (French)}
 \usage{
 block_aux_tense_fr(tokens, doc_ids, head_lookup, proverb_pronouns)
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{head_lookup}{Head token lookup table}
+\item{head_lookup}{Head token attributes.}
 
-\item{proverb_pronouns}{Vector of proverb pronoun lemmas}
+\item{proverb_pronouns}{Object pronoun lemmas for f_12.}
 }
 \value{
-Data frame with f_02_perfect_aspect and f_12_proverb_do
+Block result with f_02 and f_12 evidence.
 }
 \description{
-Extract tense and auxiliary-related features
+f_02: one occurrence per participle governed by a tense auxiliary
+(avoir/être), anchored on the auxiliary. Passive auxiliaries (\code{aux:pass})
+are excluded. The participle must carry \code{VerbForm=Part}.
+f_12: lexical faire with an object pronoun from \code{proverb_object_pronouns}
+(\verb{je le fais}), excluding causative (\code{aux:caus}) and reflexive (\verb{se faire})
+uses, parallel to Spanish D-22.
 }
 \keyword{internal}

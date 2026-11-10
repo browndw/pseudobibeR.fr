@@ -2,24 +2,25 @@
 % Please edit documentation in R/parse_functions.R
 \name{parse_biber_features}
 \alias{parse_biber_features}
-\title{Main feature extraction orchestrator}
+\title{Extract French features from prepared tokens}
 \usage{
-parse_biber_features(tokens, measure, normalize, engine = c("spacy", "udpipe"))
+parse_biber_features(tokens, measure, normalize, traced = FALSE)
 }
 \arguments{
-\item{tokens}{Annotated token data}
+\item{tokens}{Prepared tokens (see \code{prepare_parsed_tokens()}).}
 
-\item{measure}{Type-token ratio measure}
+\item{measure}{Lexical-diversity measure.}
 
-\item{normalize}{Whether to normalize counts}
+\item{normalize}{Normalize counts per 1,000 word tokens.}
 
-\item{engine}{Parser engine ("spacy" or "udpipe")}
+\item{traced}{Return the evidence alongside the counts.}
 }
 \value{
-Data frame of extracted features
+Feature data frame, or a list with \code{counts} and \code{evidence}.
 }
 \description{
-This function coordinates all feature extraction by calling the modular
-block functions and assembling the results.
+Every count is the number of evidence rows for its feature; each word or
+construction counts at most once per feature, and identity respects
+document and sentence boundaries.
 }
 \keyword{internal}

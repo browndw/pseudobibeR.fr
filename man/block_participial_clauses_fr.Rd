@@ -2,19 +2,36 @@
 % Please edit documentation in R/features_subordination.R
 \name{block_participial_clauses_fr}
 \alias{block_participial_clauses_fr}
-\title{Extract participial clause features}
+\title{Infinitive and participial clause features (French)}
 \usage{
-block_participial_clauses_fr(tokens, doc_ids)
+block_participial_clauses_fr(
+  tokens,
+  doc_ids,
+  head_lookup,
+  nominal_infinitives = tokens[0, ],
+  gerondif_nouns = tokens[0, ]
+)
 }
 \arguments{
-\item{tokens}{Annotated token data frame with participle markers}
+\item{tokens}{Prepared tokens with context and clause flags.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
+
+\item{head_lookup}{Head token attributes.}
+
+\item{nominal_infinitives}{Rows counted in f_15.}
+
+\item{gerondif_nouns}{Gérondifs mistagged as nouns (\code{gerondif_noun_rows_fr()}),
+added to f_25.}
 }
 \value{
-Data frame with f_24_infinitives through f_28_present_participle_whiz
+Block result with f_24-f_28 evidence.
 }
 \description{
-Extract participial clause features
+f_24 verbal infinitives, excluding nominal infinitives (f_15). f_25/f_26 present/past participial adverbial
+clauses that are clause-initial, follow punctuation, or follow \code{en}.
+f_27/f_28 past/present participles in a plain \code{acl} relation to a noun,
+without their own auxiliary, copula or subject, and not set off by
+punctuation; comma-delimited participial clauses remain f_26.
 }
 \keyword{internal}

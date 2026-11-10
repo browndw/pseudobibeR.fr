@@ -2,7 +2,7 @@
 % Please edit documentation in R/features_coordination_negation.R
 \name{block_split_coordination_fr}
 \alias{block_split_coordination_fr}
-\title{Extract coordination features}
+\title{Split auxiliary and coordination features (French)}
 \usage{
 block_split_coordination_fr(
   tokens,
@@ -14,22 +14,29 @@ block_split_coordination_fr(
 )
 }
 \arguments{
-\item{tokens}{Annotated token data frame}
+\item{tokens}{Prepared tokens.}
 
-\item{doc_ids}{Document IDs}
+\item{doc_ids}{Document IDs.}
 
-\item{token_lookup}{Token lookup table}
+\item{token_lookup}{Token attributes keyed by token ID.}
 
-\item{subject_heads}{Subject head lookup}
+\item{subject_heads}{Clause heads with an explicit subject.}
 
-\item{head_lookup}{Head token lookup}
+\item{head_lookup}{Head token attributes.}
 
-\item{negation_part_lemmas}{Negation particle lemmas}
+\item{negation_part_lemmas}{Negation particle lemmas.}
 }
 \value{
-Data frame with f_63_split_auxiliary, f_64_phrasal_coordination, f_65_clausal_coordination
+Block result with f_63-f_65 evidence.
 }
 \description{
-Extract coordination features
+f_63 (D-49): avoir/être, or modal pouvoir/devoir, separated from its own
+participle/infinitive by adverbs, at least one of them other than the
+analytic negator ne/pas/point/plus (\verb{a souvent mangé}, \verb{n'a jamais vu},
+\verb{peut facilement résoudre}; not \verb{n'a pas mangé}). One occurrence per
+auxiliary. f_64: a coordinator joining two
+words of the same POS (NOUN, PROPN, ADJ, ADV, VERB, AUX) when the second
+conjunct has no subject of its own. f_65: a coordinator joining finite
+verbal predicates that have their own subject.
 }
 \keyword{internal}
