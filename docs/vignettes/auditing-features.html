@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -71,14 +74,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-428bd9602493cdd309990225bd4a24e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e09c63d380c7b066796810cca0e2acfe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,11 +114,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
@@ -125,8 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <span class="navbar-title">pseudobibeR.fr</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -188,6 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -196,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -212,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -304,18 +308,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>passive_audit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>audit_features_result: 8 rows  (8 exact, 0 sentence) 
+<pre><code>audit_features_result: 8 exact occurrences
 # A tibble: 8 × 11
   doc_id feature category sentence_id count token_count match_type left  keyword
   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;          &lt;int&gt; &lt;int&gt;       &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  
-1 MC-BE… f_18_b… F                 11     1          NA exact      nous… est tr…
-2 IC-LE… f_18_b… F                 24     1          NA exact      , le… sont d…
-3 LA-AD… f_18_b… F                 10     1          NA exact      Invi… sont c…
-4 IC-CO… f_18_b… F                  3     1          NA exact      En f… sera f…
-5 LL-AL… f_18_b… F                 16     1          NA exact      L' e… était …
-6 EC-EI… f_18_b… F                  8     1          NA exact      De m… sont p…
-7 PH-AS… f_18_b… F                  3     1          NA exact      nota… est fi…
-8 SS-SS… f_18_b… F                  1     1          NA exact      évol… été ma…
+1 SS-SS… f_18_a… F                  9     1          35 exact      art … été co…
+2 SS-ST… f_18_a… F                  8     1          58 exact      pari… est pa…
+3 HI-RH… f_18_a… F                 13     1          25 exact      de l… est ma…
+4 LI-MP… f_18_a… F                 12     1          31 exact      le p… est ré…
+5 LL-ML… f_18_a… F                  4     1          13 exact      Par … est en…
+6 LA-AD… f_18_a… F                  7     1          91 exact      comm… été ju…
+7 LA-AD… f_18_a… F                 12     1          76 exact      si l… est pa…
+8 SS-ST… f_18_a… F                 21     1          60 exact      on r… est tr…
 # ℹ 2 more variables: right &lt;chr&gt;, chunk &lt;chr&gt;</code></pre>
 </div>
 </div>
@@ -324,18 +328,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(discipline_lookup, <span class="at">by =</span> <span class="st">"doc_id"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(discipline, doc_id, sentence_id, keyword, left, right, chunk)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>audit_features_result: 8 rows  
+<pre><code>audit_features_result: 8 exact occurrences
 # A tibble: 8 × 7
   discipline                    doc_id     sentence_id keyword left  right chunk
   &lt;chr&gt;                         &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-1 Media-culture                 MC-BE-ML-…          11 est tr… nous… de m… "Et …
-2 Information_and_communication IC-LE-MB-…          24 sont d… , le… plus… "De …
-3 Law                           LA-AD-JM-…          10 sont c… Invi… ceux… "Inv…
-4 Information_and_communication IC-CO-GL-…           3 sera f… En f… la s… "En …
-5 Linguistics-language_learning LL-AL-XL-…          16 était … L' e… le p… "L' …
-6 Economics                     EC-EI-AB-…           8 sont p… De m… l’ i… "De …
-7 Philosophy                    PH-AS-PS-…           3 est fi… nota… la c… "Aut…
-8 Social_sciences               SS-SS-CS-…           1 été ma… évol… la c… "Les…</code></pre>
+1 Social_sciences               SS-SS-JM-…           9 été co… art … "par… "Le …
+2 Social_sciences               SS-ST-MB-…           8 est pa… pari… "en … "Cet…
+3 History                       HI-RH-SA-…          13 est ma… de l… "par… "La …
+4 Literature                    LI-MP-SB-…          12 est ré… le p… "par… "La …
+5 Linguistics-language_learning LL-ML-TB-…           4 est en… Par … "com… "Par…
+6 Law                           LA-AD-GD-…           7 été ju… comm… "et … "LES…
+7 Law                           LA-AD-SP-…          12 est pa… si l… "par… "L' …
+8 Social_sciences               SS-ST-LL-…          21 est tr… on r… "par… "Si …</code></pre>
 </div>
 </div>
 <p>The compact print method gives you a quick summary of how many returned rows are exact anchors versus sentence-level fallback rows.</p>
@@ -357,36 +361,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(discipline_lookup, <span class="at">by =</span> <span class="st">"doc_id"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(discipline, feature, match_type, keyword, chunk)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>audit_features_result: 12 rows  (12 exact, 0 sentence) 
-# A tibble: 10 × 5
-   discipline                    feature             match_type keyword    chunk
-   &lt;chr&gt;                         &lt;chr&gt;               &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;
- 1 Information_and_communication f_23_wh_clause      exact      qui        "Afi…
- 2 Literature                    f_30_that_obj       exact      que        "Inc…
- 3 Law                           f_30_that_obj       exact      que        "C' …
- 4 Law                           f_24_infinitives    exact      de porter  "Dan…
- 5 Media-culture                 f_38_other_adv_sub  exact      de         "Par…
- 6 Literature                    f_21_that_verb_comp exact      que        "De …
- 7 Economics                     f_38_other_adv_sub  exact      en         "Par…
- 8 Media-culture                 f_24_infinitives    exact      dévoiler   "La …
- 9 Economics                     f_24_infinitives    exact      établir    "Le …
-10 Information_and_communication f_24_infinitives    exact      pérenniser "Sel…
-... 2 more rows</code></pre>
+<pre><code>audit_features_result: 12 exact occurrences
+# A tibble: 12 × 5
+   discipline                    feature                match_type keyword chunk
+   &lt;chr&gt;                         &lt;chr&gt;                  &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;
+ 1 Literature                    f_24_infinitives       exact      mettre  "Afi…
+ 2 Social_anthropology           f_28_present_particip… exact      passant "Tou…
+ 3 Law                           f_24_infinitives       exact      faire   "Cou…
+ 4 Information_and_communication f_27_past_participle_… exact      confir… "Dès…
+ 5 Law                           f_37_conditional       exact      Si      "Si …
+ 6 Law                           f_24_infinitives       exact      tenter  "Dan…
+ 7 Social_anthropology           f_24_infinitives       exact      observ… "Cet…
+ 8 Literature                    f_23_wh_clause         exact      qui     "On …
+ 9 Linguistics-language_learning f_24_infinitives       exact      privil… "Ce …
+10 Economics                     f_29_qui_subj          exact      qui     "Dep…
+# ℹ 2 more rows</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>subordination_audit <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(feature, match_type, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>audit_features_result: 5 rows  (5 exact, 0 sentence) 
-# A tibble: 5 × 3
-  feature             match_type     n
-  &lt;chr&gt;               &lt;chr&gt;      &lt;int&gt;
-1 f_24_infinitives    exact          5
-2 f_23_wh_clause      exact          2
-3 f_30_that_obj       exact          2
-4 f_38_other_adv_sub  exact          2
-5 f_21_that_verb_comp exact          1</code></pre>
+<pre><code>audit_features_result: 7 exact occurrences
+# A tibble: 7 × 3
+  feature                                  match_type     n
+  &lt;chr&gt;                                    &lt;chr&gt;      &lt;int&gt;
+1 f_24_infinitives                         exact          6
+2 f_22_que_adj_comp                        exact          1
+3 f_23_wh_clause                           exact          1
+4 f_27_past_participle_reduced_relative    exact          1
+5 f_28_present_participle_reduced_relative exact          1
+6 f_29_qui_subj                            exact          1
+7 f_37_conditional                         exact          1</code></pre>
 </div>
 </div>
 <p>Because the audit locators now cover complement clauses, relatives, adverbial subordinators, and reduced clause types, many rows in this category should be returned with exact anchors.</p>
@@ -406,18 +412,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>verb_class_audit <span class="sc">|&gt;</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(feature, doc_id, sentence_id, match_type, keyword, chunk)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>audit_features_result: 8 rows  (0 exact, 8 sentence) 
+<pre><code>audit_features_result: 8 exact occurrences
 # A tibble: 8 × 6
-  feature           doc_id            sentence_id match_type keyword chunk      
-  &lt;chr&gt;             &lt;chr&gt;                   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;      
-1 f_57_verb_suasive LA-DF-ED-XX-04-04          12 sentence   &lt;NA&gt;    "En ratifi…
-2 f_57_verb_suasive EC-EP-BC-01-10-02           3 sentence   &lt;NA&gt;    "À les réf…
-3 f_56_verb_private SS-SS-MA-34-02-02           9 sentence   &lt;NA&gt;    "3 Les ten…
-4 f_58_verb_seem    EC-EP-SD-02-06-00          17 sentence   &lt;NA&gt;    "Enfin , l…
-5 f_55_verb_public  SS-ST-SC-XX-11-04          18 sentence   &lt;NA&gt;    "C' est ce…
-6 f_56_verb_private LA-AD-RA-XX-XX-05          12 sentence   &lt;NA&gt;    "En effet …
-7 f_56_verb_private LI-MP-SB-XX-23-03          12 sentence   &lt;NA&gt;    "La mise e…
-8 f_58_verb_seem    MC-BE-DK-01-01-01          11 sentence   &lt;NA&gt;    "Un doctor…</code></pre>
+  feature           doc_id            sentence_id match_type keyword   chunk    
+  &lt;chr&gt;             &lt;chr&gt;                   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    
+1 f_57_verb_suasive LA-DF-ED-XX-04-04          12 exact      acceptent En ratif…
+2 f_56_verb_private EC-EP-BC-01-10-02           7 exact      constate  Aujourd’…
+3 f_56_verb_private SS-SS-MA-34-02-02           6 exact      rappeler  2 Les te…
+4 f_57_verb_suasive EC-EP-SD-02-06-00          15 exact      suggèrent Nos résu…
+5 f_55_verb_public  SS-ST-SC-XX-11-04          12 exact      répondre  Laissons…
+6 f_58_verb_seem    LA-AD-RA-XX-XX-05          21 exact      paraît    Cette di…
+7 f_56_verb_private LI-MP-SB-XX-23-03           8 exact      penser    Et pourt…
+8 f_58_verb_seem    MC-BE-DK-01-01-01          11 exact      semble    Un docto…</code></pre>
 </div>
 </div>
 <p>In this case, <code>match_type</code> helps you distinguish rows backed by exact token-span locators from rows returned through sentence-level fallback.</p>
@@ -446,21 +452,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(discipline_lookup, <span class="at">by =</span> <span class="st">"doc_id"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(discipline, feature, keyword, left, right, chunk)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>audit_features_result: 14 rows  
-# A tibble: 10 × 6
-   discipline                    feature            keyword    left  right chunk
-   &lt;chr&gt;                         &lt;chr&gt;              &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
- 1 Linguistics-language_learning f_60_that_deletion mettre     La p… à le… La p…
- 2 Law                           f_60_that_deletion tenir      autr… comp… D' a…
- 3 Social_anthropology           f_66_neg_synthetic sans       et d… rapp… 2 Di…
- 4 Information_and_communication f_60_that_deletion promouvoir un t… de l… Cett…
- 5 Media-culture                 f_60_that_deletion nécessaire L’ e… .     L’ e…
- 6 Literature                    f_67_neg_analytic  ne m' éta… de v… poss… Or c…
- 7 Linguistics-language_learning f_67_neg_analytic  n' est pl… que … en f… Il e…
- 8 Philosophy                    f_60_that_deletion qualifiée  L’ é… de p… L’ é…
- 9 Media-culture                 f_60_that_deletion appréhend… Pour… ce q… Pour…
-10 Information_and_communication f_60_that_deletion médiatiser de l… les … L' a…
-... 4 more rows</code></pre>
+<pre><code>audit_features_result: 14 exact occurrences
+# A tibble: 14 × 6
+   discipline                    feature              keyword left   right chunk
+   &lt;chr&gt;                         &lt;chr&gt;                &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;
+ 1 Social_sciences               f_67_neg_analytic    pas     "Cepe… n' i… "Cep…
+ 2 Information_and_communication f_63_split_auxiliary est     "soci… souv… "À l…
+ 3 Media-culture                 f_67_neg_analytic    pas     "L’ A… loin… "Le …
+ 4 Linguistics-language_learning f_67_neg_analytic    non     "pour… seul… "Nou…
+ 5 Law                           f_67_neg_analytic    pas     "la p… pour… "Tou…
+ 6 Media-culture                 f_67_neg_analytic    non     "dont… à le… "L' …
+ 7 Literature                    f_67_neg_analytic    point   "homm… pour… "Par…
+ 8 Economics                     f_67_neg_analytic    plus    "long… le c… "Sa …
+ 9 Media-culture                 f_63_split_auxiliary est     "La n… ici … "La …
+10 Law                           f_63_split_auxiliary a       "les … donc… "L' …
+# ℹ 4 more rows</code></pre>
 </div>
 </div>
 <p>This pattern is especially useful when you want to inspect recently added or parser-sensitive heuristics side by side.</p>
@@ -561,7 +567,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -570,8 +577,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -585,6 +653,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -747,44 +816,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -882,6 +961,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 

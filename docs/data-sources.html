@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -35,14 +38,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="./favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-428bd9602493cdd309990225bd4a24e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e09c63d380c7b066796810cca0e2acfe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,11 +78,11 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
@@ -89,8 +93,7 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">pseudobibeR.fr</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -152,6 +155,7 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -161,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -204,23 +208,23 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="mrzecnshxu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mrzecnshxu table {
+<div id="ejqyfsoarj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ejqyfsoarj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mrzecnshxu thead, #mrzecnshxu tbody, #mrzecnshxu tfoot, #mrzecnshxu tr, #mrzecnshxu td, #mrzecnshxu th {
+#ejqyfsoarj thead, #ejqyfsoarj tbody, #ejqyfsoarj tfoot, #ejqyfsoarj tr, #ejqyfsoarj td, #ejqyfsoarj th {
   border-style: none;
 }
 
-#mrzecnshxu p {
+#ejqyfsoarj p {
   margin: 0;
   padding: 0;
 }
 
-#mrzecnshxu .gt_table {
+#ejqyfsoarj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -246,12 +250,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_caption {
+#ejqyfsoarj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mrzecnshxu .gt_title {
+#ejqyfsoarj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -263,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#mrzecnshxu .gt_subtitle {
+#ejqyfsoarj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -275,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#mrzecnshxu .gt_heading {
+#ejqyfsoarj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -287,13 +291,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_bottom_border {
+#ejqyfsoarj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_col_headings {
+#ejqyfsoarj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -308,7 +312,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_col_heading {
+#ejqyfsoarj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -328,7 +332,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#mrzecnshxu .gt_column_spanner_outer {
+#ejqyfsoarj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -340,15 +344,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#mrzecnshxu .gt_column_spanner_outer:first-child {
+#ejqyfsoarj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mrzecnshxu .gt_column_spanner_outer:last-child {
+#ejqyfsoarj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mrzecnshxu .gt_column_spanner {
+#ejqyfsoarj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -360,11 +364,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#mrzecnshxu .gt_spanner_row {
+#ejqyfsoarj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mrzecnshxu .gt_group_heading {
+#ejqyfsoarj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -390,7 +394,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#mrzecnshxu .gt_empty_group_heading {
+#ejqyfsoarj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -405,15 +409,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#mrzecnshxu .gt_from_md > :first-child {
+#ejqyfsoarj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mrzecnshxu .gt_from_md > :last-child {
+#ejqyfsoarj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mrzecnshxu .gt_row {
+#ejqyfsoarj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -432,7 +436,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#mrzecnshxu .gt_stub {
+#ejqyfsoarj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -445,7 +449,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mrzecnshxu .gt_stub_row_group {
+#ejqyfsoarj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -459,15 +463,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#mrzecnshxu .gt_row_group_first td {
+#ejqyfsoarj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mrzecnshxu .gt_row_group_first th {
+#ejqyfsoarj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mrzecnshxu .gt_summary_row {
+#ejqyfsoarj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -477,16 +481,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mrzecnshxu .gt_first_summary_row {
+#ejqyfsoarj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_first_summary_row.thick {
+#ejqyfsoarj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mrzecnshxu .gt_last_summary_row {
+#ejqyfsoarj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -496,7 +500,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_grand_summary_row {
+#ejqyfsoarj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -506,7 +510,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mrzecnshxu .gt_first_grand_summary_row {
+#ejqyfsoarj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -516,7 +520,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_last_grand_summary_row_top {
+#ejqyfsoarj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -526,11 +530,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_striped {
+#ejqyfsoarj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mrzecnshxu .gt_table_body {
+#ejqyfsoarj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -539,7 +543,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_footnotes {
+#ejqyfsoarj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -553,7 +557,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_footnote {
+#ejqyfsoarj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -562,7 +566,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mrzecnshxu .gt_sourcenotes {
+#ejqyfsoarj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -576,7 +580,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mrzecnshxu .gt_sourcenote {
+#ejqyfsoarj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -584,72 +588,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mrzecnshxu .gt_left {
+#ejqyfsoarj .gt_left {
   text-align: left;
 }
 
-#mrzecnshxu .gt_center {
+#ejqyfsoarj .gt_center {
   text-align: center;
 }
 
-#mrzecnshxu .gt_right {
+#ejqyfsoarj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mrzecnshxu .gt_font_normal {
+#ejqyfsoarj .gt_font_normal {
   font-weight: normal;
 }
 
-#mrzecnshxu .gt_font_bold {
+#ejqyfsoarj .gt_font_bold {
   font-weight: bold;
 }
 
-#mrzecnshxu .gt_font_italic {
+#ejqyfsoarj .gt_font_italic {
   font-style: italic;
 }
 
-#mrzecnshxu .gt_super {
+#ejqyfsoarj .gt_super {
   font-size: 65%;
 }
 
-#mrzecnshxu .gt_footnote_marks {
+#ejqyfsoarj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mrzecnshxu .gt_asterisk {
+#ejqyfsoarj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mrzecnshxu .gt_indent_1 {
+#ejqyfsoarj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mrzecnshxu .gt_indent_2 {
+#ejqyfsoarj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mrzecnshxu .gt_indent_3 {
+#ejqyfsoarj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mrzecnshxu .gt_indent_4 {
+#ejqyfsoarj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mrzecnshxu .gt_indent_5 {
+#ejqyfsoarj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mrzecnshxu .katex-display {
+#ejqyfsoarj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mrzecnshxu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ejqyfsoarj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -671,61 +675,61 @@ ul.task-list li input[type="checkbox"] {
 <td class="gt_row gt_left" headers="Discipline">Economics</td>
 <td class="gt_row gt_right" headers="Documents">16</td>
 <td class="gt_row gt_right" headers="Tokens">12,185</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">762</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">762</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Discipline">History</td>
 <td class="gt_row gt_right" headers="Documents">13</td>
 <td class="gt_row gt_right" headers="Tokens">10,411</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">801</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">801</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Discipline">Information and Communication</td>
 <td class="gt_row gt_right" headers="Documents">15</td>
 <td class="gt_row gt_right" headers="Tokens">11,639</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">776</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">776</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Discipline">Law</td>
 <td class="gt_row gt_right" headers="Documents">19</td>
 <td class="gt_row gt_right" headers="Tokens">15,147</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">797</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">797</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Discipline">Linguistics/Language Learning</td>
 <td class="gt_row gt_right" headers="Documents">15</td>
 <td class="gt_row gt_right" headers="Tokens">11,588</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">773</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">773</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Discipline">Literature</td>
 <td class="gt_row gt_right" headers="Documents">20</td>
 <td class="gt_row gt_right" headers="Tokens">16,191</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">810</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">810</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Discipline">Media/Culture</td>
 <td class="gt_row gt_right" headers="Documents">18</td>
 <td class="gt_row gt_right" headers="Tokens">14,594</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">811</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">811</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Discipline">Philosophy</td>
 <td class="gt_row gt_right" headers="Documents">13</td>
 <td class="gt_row gt_right" headers="Tokens">10,268</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">790</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">790</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Discipline">Social Anthropology</td>
 <td class="gt_row gt_right" headers="Documents">13</td>
 <td class="gt_row gt_right" headers="Tokens">10,279</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">791</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">791</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Discipline">Social Sciences</td>
 <td class="gt_row gt_right" headers="Documents">17</td>
 <td class="gt_row gt_right" headers="Tokens">13,143</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">773</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">773</td>
 </tr>
 </tbody>
 </table>
@@ -750,23 +754,23 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="mmzeykctwo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mmzeykctwo table {
+<div id="ngyrfqlxrk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ngyrfqlxrk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mmzeykctwo thead, #mmzeykctwo tbody, #mmzeykctwo tfoot, #mmzeykctwo tr, #mmzeykctwo td, #mmzeykctwo th {
+#ngyrfqlxrk thead, #ngyrfqlxrk tbody, #ngyrfqlxrk tfoot, #ngyrfqlxrk tr, #ngyrfqlxrk td, #ngyrfqlxrk th {
   border-style: none;
 }
 
-#mmzeykctwo p {
+#ngyrfqlxrk p {
   margin: 0;
   padding: 0;
 }
 
-#mmzeykctwo .gt_table {
+#ngyrfqlxrk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -792,12 +796,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_caption {
+#ngyrfqlxrk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mmzeykctwo .gt_title {
+#ngyrfqlxrk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -809,7 +813,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#mmzeykctwo .gt_subtitle {
+#ngyrfqlxrk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -821,7 +825,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#mmzeykctwo .gt_heading {
+#ngyrfqlxrk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -833,13 +837,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_bottom_border {
+#ngyrfqlxrk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_col_headings {
+#ngyrfqlxrk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -854,7 +858,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_col_heading {
+#ngyrfqlxrk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -874,7 +878,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#mmzeykctwo .gt_column_spanner_outer {
+#ngyrfqlxrk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -886,15 +890,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#mmzeykctwo .gt_column_spanner_outer:first-child {
+#ngyrfqlxrk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mmzeykctwo .gt_column_spanner_outer:last-child {
+#ngyrfqlxrk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mmzeykctwo .gt_column_spanner {
+#ngyrfqlxrk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -906,11 +910,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#mmzeykctwo .gt_spanner_row {
+#ngyrfqlxrk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mmzeykctwo .gt_group_heading {
+#ngyrfqlxrk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -936,7 +940,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#mmzeykctwo .gt_empty_group_heading {
+#ngyrfqlxrk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -951,15 +955,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#mmzeykctwo .gt_from_md > :first-child {
+#ngyrfqlxrk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mmzeykctwo .gt_from_md > :last-child {
+#ngyrfqlxrk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mmzeykctwo .gt_row {
+#ngyrfqlxrk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -978,7 +982,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#mmzeykctwo .gt_stub {
+#ngyrfqlxrk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -991,7 +995,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mmzeykctwo .gt_stub_row_group {
+#ngyrfqlxrk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1005,15 +1009,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#mmzeykctwo .gt_row_group_first td {
+#ngyrfqlxrk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mmzeykctwo .gt_row_group_first th {
+#ngyrfqlxrk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mmzeykctwo .gt_summary_row {
+#ngyrfqlxrk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1023,16 +1027,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mmzeykctwo .gt_first_summary_row {
+#ngyrfqlxrk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_first_summary_row.thick {
+#ngyrfqlxrk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mmzeykctwo .gt_last_summary_row {
+#ngyrfqlxrk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1042,7 +1046,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_grand_summary_row {
+#ngyrfqlxrk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1052,7 +1056,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mmzeykctwo .gt_first_grand_summary_row {
+#ngyrfqlxrk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1062,7 +1066,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_last_grand_summary_row_top {
+#ngyrfqlxrk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1072,11 +1076,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_striped {
+#ngyrfqlxrk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mmzeykctwo .gt_table_body {
+#ngyrfqlxrk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1085,7 +1089,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_footnotes {
+#ngyrfqlxrk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1099,7 +1103,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_footnote {
+#ngyrfqlxrk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1108,7 +1112,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mmzeykctwo .gt_sourcenotes {
+#ngyrfqlxrk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1122,7 +1126,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#mmzeykctwo .gt_sourcenote {
+#ngyrfqlxrk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1130,72 +1134,72 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#mmzeykctwo .gt_left {
+#ngyrfqlxrk .gt_left {
   text-align: left;
 }
 
-#mmzeykctwo .gt_center {
+#ngyrfqlxrk .gt_center {
   text-align: center;
 }
 
-#mmzeykctwo .gt_right {
+#ngyrfqlxrk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mmzeykctwo .gt_font_normal {
+#ngyrfqlxrk .gt_font_normal {
   font-weight: normal;
 }
 
-#mmzeykctwo .gt_font_bold {
+#ngyrfqlxrk .gt_font_bold {
   font-weight: bold;
 }
 
-#mmzeykctwo .gt_font_italic {
+#ngyrfqlxrk .gt_font_italic {
   font-style: italic;
 }
 
-#mmzeykctwo .gt_super {
+#ngyrfqlxrk .gt_super {
   font-size: 65%;
 }
 
-#mmzeykctwo .gt_footnote_marks {
+#ngyrfqlxrk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mmzeykctwo .gt_asterisk {
+#ngyrfqlxrk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mmzeykctwo .gt_indent_1 {
+#ngyrfqlxrk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mmzeykctwo .gt_indent_2 {
+#ngyrfqlxrk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mmzeykctwo .gt_indent_3 {
+#ngyrfqlxrk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mmzeykctwo .gt_indent_4 {
+#ngyrfqlxrk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mmzeykctwo .gt_indent_5 {
+#ngyrfqlxrk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mmzeykctwo .katex-display {
+#ngyrfqlxrk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mmzeykctwo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ngyrfqlxrk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1218,42 +1222,42 @@ ul.task-list li input[type="checkbox"] {
 <td class="gt_row gt_left" headers="Register">Academic</td>
 <td class="gt_row gt_right" headers="Documents">159</td>
 <td class="gt_row gt_right" headers="Tokens">125,445</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">789</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">789</td>
 <td class="gt_row gt_left" headers="Description">Research articles (Chambers–Le Baron corpus)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Register">Fiction</td>
 <td class="gt_row gt_right" headers="Documents">46</td>
 <td class="gt_row gt_right" headers="Tokens">397,777</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">8,647</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">8,647</td>
 <td class="gt_row gt_left" headers="Description">Literary texts sampled by line chunks (150 lines per file)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Register">News</td>
 <td class="gt_row gt_right" headers="Documents">503</td>
 <td class="gt_row gt_right" headers="Tokens">362,136</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">720</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">720</td>
 <td class="gt_row gt_left" headers="Description">Journalistic articles (Chambers-Rostand corpus)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Register">Spoken</td>
 <td class="gt_row gt_right" headers="Documents">87</td>
 <td class="gt_row gt_right" headers="Tokens">160,026</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">1,839</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">1,839</td>
 <td class="gt_row gt_left" headers="Description">Oral narratives (French Oral Narrative Corpus)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Register">Twitter</td>
 <td class="gt_row gt_right" headers="Documents">7,197</td>
 <td class="gt_row gt_right" headers="Tokens">199,263</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">28</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">28</td>
 <td class="gt_row gt_left" headers="Description">French tweets (excluded from MDA due to extreme brevity)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Register">Wikipedia</td>
 <td class="gt_row gt_right" headers="Documents">1,318</td>
 <td class="gt_row gt_right" headers="Tokens">370,282</td>
-<td class="gt_row gt_right" headers="Mean tokens/doc">281</td>
+<td class="gt_row gt_right" headers="Mean-tokens/doc">281</td>
 <td class="gt_row gt_left" headers="Description">Wikipedia articles</td>
 </tr>
 </tbody>
@@ -1428,7 +1432,8 @@ fr_features_spacy.rda   # Extracted features (spaCy)</code></pre>
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1437,8 +1442,69 @@ fr_features_spacy.rda   # Extracted features (spaCy)</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1452,6 +1518,7 @@ fr_features_spacy.rda   # Extracted features (spaCy)</code></pre>
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1614,44 +1681,54 @@ fr_features_spacy.rda   # Extracted features (spaCy)</code></pre>
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1749,6 +1826,9 @@ fr_features_spacy.rda   # Extracted features (spaCy)</code></pre>
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 

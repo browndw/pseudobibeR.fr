@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -90,14 +93,15 @@ div.csl-indent {
 <link href="../favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-428bd9602493cdd309990225bd4a24e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e09c63d380c7b066796810cca0e2acfe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -129,11 +133,11 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
@@ -144,8 +148,7 @@ div.csl-indent {
     <span class="navbar-title">pseudobibeR.fr</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -207,6 +210,7 @@ div.csl-indent {
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -215,7 +219,7 @@ div.csl-indent {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -240,7 +244,7 @@ div.csl-indent {
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -389,20 +393,326 @@ div.csl-indent {
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>features_ud <span class="sc">|&gt;</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(doc_id, discipline, f_01_past_tense, f_14_nominalizations, f_52_modal_possibility)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 159 × 5
-   doc_id discipline f_01_past_tense f_14_nominalizations f_52_modal_possibility
-   &lt;chr&gt;  &lt;fct&gt;                &lt;dbl&gt;                &lt;dbl&gt;                  &lt;dbl&gt;
- 1 EC-EI… Economics             4                    58.7                   0   
- 2 EC-EI… Economics             0                    73.0                   5.12
- 3 EC-EI… Economics             1.32                 75.1                   3.95
- 4 EC-EI… Economics             0                    65.6                   0   
- 5 EC-EI… Economics             0                    42.2                   7.24
- 6 EC-EI… Economics             2.48                 50.8                  13.6 
- 7 EC-EI… Economics             0                    62.3                   3.74
- 8 EC-EP… Economics             0                    78.0                   5.47
- 9 EC-EP… Economics             0                    99.7                   2.66
-10 EC-EP… Economics             1.31                 77.2                   6.54
-# ℹ 149 more rows</code></pre>
+<pre><code>               doc_id                    discipline f_01_past_tense
+1   EC-EI-AB-XX-96-03                     Economics        6.349206
+2   EC-EI-CC-XX-91-02                     Economics        3.016591
+3   EC-EI-CG-XX-88-01                     Economics        1.579779
+4   EC-EI-DL-XX-86-01                     Economics        1.564945
+5   EC-EI-PA-XX-93-03                     Economics        0.000000
+6   EC-EI-PM-XX-93-03                     Economics        5.805515
+7   EC-EI-YB-XX-96-03                     Economics        0.000000
+8   EC-EP-AP-01-12-03                     Economics        0.000000
+9   EC-EP-BC-01-10-02                     Economics        0.000000
+10  EC-EP-BV-01-10-02                     Economics        1.677852
+11  EC-EP-DP-01-14-04                     Economics        0.000000
+12  EC-EP-GG-02-08-01                     Economics        1.515152
+13  EC-EP-HL-02-10-02                     Economics       24.615385
+14  EC-EP-MG-01-07-01                     Economics       11.023622
+15  EC-EP-OG-02-08-01                     Economics        0.000000
+16  EC-EP-SD-02-06-00                     Economics        6.420546
+17  HI-RA-JL-56-04-03                       History       23.988006
+18  HI-RA-JT-57-02-03                       History        0.000000
+19  HI-RA-LM-56-04-03                       History        4.524887
+20  HI-RA-MT-54-03-01                       History       11.782032
+21  HI-RA-PG-55-01-01                       History        4.538578
+22  HI-RH-AL-XX-26-03                       History       10.000000
+23  HI-RH-FG-XX-29-04                       History       12.176560
+24  HI-RH-JL-XX-25-02                       History       10.043042
+25  HI-RH-MC-XX-24-02                       History        1.438849
+26  HI-RH-MG-XX-28-04                       History       19.374069
+27  HI-RH-PB-XX-28-04                       History        0.000000
+28  HI-RH-SA-XX-25-02                       History        4.032258
+29  HI-RH-SS-XX-29-04                       History       14.880952
+30  IC-CO-AK-XX-XX-03 Information_and_communication        0.000000
+31  IC-CO-EG-XX-XX-02 Information_and_communication        4.424779
+32  IC-CO-FR-XX-XX-98 Information_and_communication        4.815409
+33  IC-CO-GL-XX-XX-98 Information_and_communication        1.497006
+34  IC-CO-LB-XX-XX-01 Information_and_communication        9.259259
+35  IC-CO-MB-XX-XX-03 Information_and_communication        1.494768
+36  IC-LE-CA-XX-XX-05 Information_and_communication        4.310345
+37  IC-LE-CM-XX-XX-06 Information_and_communication        0.000000
+38  IC-LE-FG-XX-XX-06 Information_and_communication        4.658385
+39  IC-LE-HF-XX-XX-06 Information_and_communication        1.499250
+40  IC-LE-MB-XX-XX-06 Information_and_communication        0.000000
+41  IC-LE-OG-XX-XX-05 Information_and_communication        0.000000
+42  IC-LE-PB-XX-XX-05 Information_and_communication       12.539185
+43  IC-LE-SG-XX-XX-04 Information_and_communication        1.600000
+44  IC-LE-SO-XX-XX-04 Information_and_communication        7.610350
+45  LA-AD-CD-XX-XX-01                           Law        1.501502
+46  LA-AD-DR-XX-XX-03                           Law       23.668639
+47  LA-AD-EC-XX-XX-03                           Law        7.267442
+48  LA-AD-GD-XX-XX-01                           Law        7.299270
+49  LA-AD-JM-XX-XX-02                           Law       10.174419
+50  LA-AD-LL-XX-XX-03                           Law       19.345238
+51  LA-AD-MN-XX-XX-01                           Law        7.204611
+52  LA-AD-MP-XX-XX-03                           Law       20.569620
+53  LA-AD-NB-XX-XX-02                           Law        4.470939
+54  LA-AD-PT-XX-XX-05                           Law        8.733624
+55  LA-AD-RA-XX-XX-05                           Law        9.077156
+56  LA-AD-SP-XX-XX-02                           Law        0.000000
+57  LA-DF-BF-XX-01-01                           Law        7.739938
+58  LA-DF-EB-XX-02-02                           Law        3.105590
+59  LA-DF-ED-XX-02-02                           Law        4.360465
+60  LA-DF-ED-XX-04-04                           Law        0.000000
+61  LA-DF-GC-XX-01-01                           Law        2.915452
+62  LA-DF-JD-XX-03-03                           Law        3.030303
+63  LA-DF-NR-XX-03-03                           Law        0.000000
+64  LL-AL-AF-01-01-98 Linguistics-language_learning        9.448819
+65  LL-AL-CD-03-01-00 Linguistics-language_learning        0.000000
+66  LL-AL-CD-06-01-03 Linguistics-language_learning        1.550388
+67  LL-AL-CG-07-01-04 Linguistics-language_learning        0.000000
+68  LL-AL-ED-08-01-05 Linguistics-language_learning        0.000000
+69  LL-AL-FM-01-02-98 Linguistics-language_learning        0.000000
+70  LL-AL-MB-06-01-03 Linguistics-language_learning        1.589825
+71  LL-AL-XL-06-01-03 Linguistics-language_learning        1.494768
+72  LL-ML-BV-XX-02-01 Linguistics-language_learning        1.560062
+73  LL-ML-FG-XX-06-03 Linguistics-language_learning        0.000000
+74  LL-ML-JC-XX-06-03 Linguistics-language_learning        1.457726
+75  LL-ML-LC-XX-06-03 Linguistics-language_learning        8.823529
+76  LL-ML-RV-XX-02-01 Linguistics-language_learning        1.655629
+77  LL-ML-SB-XX-02-01 Linguistics-language_learning        3.184713
+78  LL-ML-TB-XX-03-02 Linguistics-language_learning        3.062787
+79  LI-LO-AG-XX-05-04                    Literature        1.432665
+80  LI-LO-CE-XX-10-05                    Literature        0.000000
+81  LI-LO-HB-XX-08-05                    Literature        4.504505
+82  LI-LO-HS-XX-09-05                    Literature        1.540832
+83  LI-LO-JD-XX-04-04                    Literature        6.015038
+84  LI-LO-JR-XX-11-05                    Literature        1.461988
+85  LI-LO-MC-XX-07-04                    Literature        4.261364
+86  LI-LO-MF-XX-10-05                    Literature        0.000000
+87  LI-LO-OG-XX-07-04                    Literature        2.762431
+88  LI-MP-AD-XX-23-03                    Literature        5.988024
+89  LI-MP-BS-XX-23-03                    Literature       29.282577
+90  LI-MP-DR-XX-23-03                    Literature        7.215007
+91  LI-MP-HJ-XX-15-00                    Literature        1.457726
+92  LI-MP-MB-XX-14-00                    Literature        0.000000
+93  LI-MP-MB-XX-17-01                    Literature        1.445087
+94  LI-MP-MD-XX-07-98                    Literature        8.888889
+95  LI-MP-MH-XX-23-03                    Literature        3.125000
+96  LI-MP-SB-XX-23-03                    Literature        1.557632
+97  LI-MP-SK-XX-13-00                    Literature        2.989537
+98  LI-MP-TK-XX-23-03                    Literature        1.432665
+99  MC-BE-CG-01-01-01                 Media-culture        1.373626
+100 MC-BE-CG-02-02-02                 Media-culture        0.000000
+101 MC-BE-DK-01-01-01                 Media-culture        1.512859
+102 MC-BE-EP-03-01-04                 Media-culture        3.169572
+103 MC-BE-FT-04-01-04                 Media-culture        8.042895
+104 MC-BE-ML-01-01-01                 Media-culture        0.000000
+105 MC-BE-ML-02-01-02                 Media-culture        2.928258
+106 MC-BE-PL-01-02-01                 Media-culture        3.076923
+107 MC-BE-SG-01-01-01                 Media-culture        2.980626
+108 MC-BE-TV-02-01-02                 Media-culture       16.620499
+109 MC-DE-CE-XX-XX-04                 Media-culture        2.998501
+110 MC-DE-EP-XX-XX-05                 Media-culture        0.000000
+111 MC-DE-FR-XX-XX-04                 Media-culture       20.143885
+112 MC-DE-JD-XX-XX-05                 Media-culture        7.575758
+113 MC-DE-MD-XX-XX-05                 Media-culture        0.000000
+114 MC-DE-ND-XX-XX-04                 Media-culture        6.006006
+115 MC-DE-PG-XX-XX-02                 Media-culture        0.000000
+116 MC-DE-VT-XX-XX-03                 Media-culture        2.890173
+117 PH-AS-LG-XX-01-03                    Philosophy        5.738881
+118 PH-AS-MG-XX-01-03                    Philosophy        0.000000
+119 PH-AS-NC-XX-03-05                    Philosophy       16.551724
+120 PH-AS-NG-XX-04-04                    Philosophy        2.898551
+121 PH-AS-PS-XX-03-05                    Philosophy        1.392758
+122 PH-AS-PZ-XX-03-05                    Philosophy        0.000000
+123 PH-PH-BP-30-02-03                    Philosophy        2.677376
+124 PH-PH-CN-30-02-03                    Philosophy        0.000000
+125 PH-PH-DK-29-02-02                    Philosophy        3.149606
+126 PH-PH-EG-30-02-03                    Philosophy        5.747126
+127 PH-PH-HP-29-02-02                    Philosophy        0.000000
+128 PH-PH-JD-30-01-03                    Philosophy        0.000000
+129 PH-PH-SC-29-01-02                    Philosophy        3.034901
+130 SA-AN-AD-27-02-03           Social_anthropology        3.159558
+131 SA-AN-AM-27-01-03           Social_anthropology        0.000000
+132 SA-AN-DT-27-01-03           Social_anthropology        9.375000
+133 SA-AN-GB-27-03-03           Social_anthropology        0.000000
+134 SA-AN-JD-27-02-03           Social_anthropology        1.589825
+135 SA-AN-YP-27-03-03           Social_anthropology        3.058104
+136 SA-ET-BP-XX-06-04           Social_anthropology        1.477105
+137 SA-ET-CG-XX-06-04           Social_anthropology       10.785824
+138 SA-ET-DL-XX-07-05           Social_anthropology       14.836795
+139 SA-ET-FD-XX-08-05           Social_anthropology        4.746835
+140 SA-ET-FS-XX-04-03           Social_anthropology        0.000000
+141 SA-ET-OT-XX-06-04           Social_anthropology        1.461988
+142 SA-ET-YL-XX-08-05           Social_anthropology        1.526718
+143 SS-SS-CS-33-02-01               Social_sciences        0.000000
+144 SS-SS-DL-33-02-01               Social_sciences        0.000000
+145 SS-SS-FJ-32-02-00               Social_sciences        1.474926
+146 SS-SS-JM-34-02-02               Social_sciences        0.000000
+147 SS-SS-MA-34-02-02               Social_sciences        0.000000
+148 SS-SS-PR-33-01-01               Social_sciences        4.518072
+149 SS-ST-FH-XX-11-04               Social_sciences       12.102874
+150 SS-ST-FP-XX-XX-02               Social_sciences       12.552301
+151 SS-ST-JC-XX-XX-02               Social_sciences       31.007752
+152 SS-ST-LG-XX-11-04               Social_sciences        2.873563
+153 SS-ST-LL-XX-11-04               Social_sciences        2.980626
+154 SS-ST-MB-XX-07-93               Social_sciences        0.000000
+155 SS-ST-MR-XX-XX-02               Social_sciences        0.000000
+156 SS-ST-RR-XX-11-04               Social_sciences        1.582278
+157 SS-ST-SB-XX-11-04               Social_sciences        4.392387
+158 SS-ST-SC-XX-11-04               Social_sciences        1.672241
+159 SS-ST-SV-XX-11-04               Social_sciences        3.205128
+    f_14_nominalizations f_52_modal_possibility
+1               69.84127               0.000000
+2               85.97285               6.033183
+3               90.04739               1.579779
+4               82.94210               0.000000
+5               52.08333               8.928571
+6               59.50653              15.965167
+7               72.99270               4.379562
+8               87.55760               3.072197
+9              117.92453               3.144654
+10              98.99329               3.355705
+11              92.62166               0.000000
+12              77.27273               4.545455
+13              56.92308               0.000000
+14              86.61417               3.149606
+15              89.74359               3.205128
+16             101.12360               4.815409
+17              49.47526               0.000000
+18              76.80492               4.608295
+19              61.84012               0.000000
+20              91.31075               2.945508
+21              62.02723               0.000000
+22              91.66667               0.000000
+23              68.49315               1.522070
+24              70.30129               7.173601
+25              97.84173               1.438849
+26              59.61252               5.961252
+27              92.12481               0.000000
+28              47.04301               6.720430
+29              72.91667               2.976190
+30              78.34101               6.144393
+31              69.32153               1.474926
+32              94.70305               1.605136
+33              50.89820               0.000000
+34              80.24691               6.172840
+35              77.72795               1.494768
+36              64.65517               4.310345
+37              91.34615               1.602564
+38              85.40373               0.000000
+39              76.46177               1.499250
+40              90.63893               0.000000
+41              81.37715               7.824726
+42              84.63950               3.134796
+43             115.20000               0.000000
+44              97.41248               1.522070
+45              42.04204               0.000000
+46              44.37870               1.479290
+47              66.86047               2.906977
+48              72.99270               0.000000
+49              47.96512               0.000000
+50              86.30952               0.000000
+51              67.72334               1.440922
+52              90.18987               1.582278
+53              77.49627               0.000000
+54              71.32460              10.189229
+55              77.15582               0.000000
+56              61.28550               1.494768
+57              69.65944               0.000000
+58              59.00621               1.552795
+59              63.95349               2.906977
+60              73.02534               2.980626
+61              52.47813               4.373178
+62              59.09091               1.515152
+63              63.73293               4.552352
+64              89.76378               1.574803
+65              81.81818               4.545455
+66              72.86822               1.550388
+67              95.46166               0.000000
+68              71.76287               9.360374
+69              64.22018               6.116208
+70             119.23688               0.000000
+71              94.17040               2.989537
+72              68.64275               6.240250
+73              73.05195               8.116883
+74              43.73178               1.457726
+75              47.05882               1.470588
+76             100.99338               4.966887
+77              85.98726               1.592357
+78              64.31853               1.531394
+79              67.33524               0.000000
+80              87.02065               2.949853
+81              69.06907               1.501502
+82              83.20493               3.081664
+83              48.12030               1.503759
+84              78.94737               5.847953
+85              39.77273               0.000000
+86              84.69539               4.457652
+87              74.58564               0.000000
+88              68.86228               5.988024
+89              54.17277               0.000000
+90              66.37807               1.443001
+91              56.85131               0.000000
+92              69.38160               9.049774
+93              56.35838               0.000000
+94              65.18519               4.444444
+95              79.68750               3.125000
+96              59.19003               1.557632
+97              74.73842               0.000000
+98              61.60458               2.865330
+99              43.95604               0.000000
+100             73.80608               4.341534
+101             62.02723               3.025719
+102             55.46751               1.584786
+103             48.25737               4.021448
+104             97.97823               3.110420
+105             55.63690               1.464129
+106             84.61538               3.076923
+107             71.53502               1.490313
+108             27.70083               4.155125
+109             47.97601               2.998501
+110             70.04471               5.961252
+111             56.11511               0.000000
+112             74.24242               9.090909
+113             39.16084               1.398601
+114             64.56456               0.000000
+115             62.77372               2.919708
+116             63.58382               1.445087
+117             43.04161               0.000000
+118             85.38350               7.235890
+119             45.51724               4.137931
+120             62.31884               2.898551
+121             37.60446              11.142061
+122             34.09091               7.102273
+123             45.51539               8.032129
+124             68.14815               1.481481
+125             64.56693               3.149606
+126             47.41379               5.747126
+127             82.65802               4.862237
+128            116.31420               7.552870
+129             75.87253               4.552352
+130             90.04739               1.579779
+131             83.58209               1.492537
+132             70.31250               3.125000
+133             36.12717               2.890173
+134             79.49126               4.769475
+135             73.39450               0.000000
+136             75.33235               1.477105
+137             78.58243               6.163328
+138             63.79822               4.451039
+139             53.79747               0.000000
+140             65.54878               1.524390
+141             86.25731               1.461988
+142             48.85496               3.053435
+143             94.42724               0.000000
+144             90.49080               6.134969
+145             75.22124               5.899705
+146             67.17557               0.000000
+147             95.91195               1.572327
+148             70.78313               7.530120
+149             80.18154               1.512859
+150             51.60391               0.000000
+151             75.96899               1.550388
+152             67.52874               1.436782
+153             76.00596               4.470939
+154            107.02875               3.194888
+155             59.91441               4.279601
+156             68.03797               1.582278
+157             77.59883               1.464129
+158             91.97324               6.688963
+159             84.93590               1.602564</code></pre>
 </div>
 </div>
 </section>
@@ -421,16 +731,16 @@ div.csl-indent {
 <pre><code># A tibble: 10 × 4
    discipline                    nominalizations modals pronouns
    &lt;fct&gt;                                   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
- 1 Economics                                69.5   5.48     1.61
- 2 History                                  60.3   4.07     2.80
- 3 Information_and_communication            68.0   3.46     7.12
- 4 Law                                      54.6   3.84     2.80
- 5 Linguistics-language_learning            63.4   3.98     8.90
- 6 Literature                               54.8   4.12     6.45
- 7 Media-culture                            50.0   3.18     9.07
- 8 Philosophy                               52.4   7.58     7.76
- 9 Social_anthropology                      57.3   3.53     8.15
-10 Social_sciences                          65.8   3.76     4.82</code></pre>
+ 1 Economics                                82.6   5.73     2.15
+ 2 History                                  72.4   3.96     3.57
+ 3 Information_and_communication            82.6   4.19     8.72
+ 4 Law                                      65.6   3.90     3.80
+ 5 Linguistics-language_learning            78.2   4.58    11.9 
+ 6 Literature                               67.3   4.48     9.85
+ 7 Media-culture                            61.1   3.74    12.7 
+ 8 Philosophy                               62.2   8.49    10.4 
+ 9 Social_anthropology                      69.6   3.74    11.5 
+10 Social_sciences                          78.5   4.12     6.78</code></pre>
 </div>
 </div>
 </section>
@@ -471,23 +781,23 @@ div.csl-indent {
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="omnwfidbwj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#omnwfidbwj table {
+<div id="sqbjwfjfxd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sqbjwfjfxd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#omnwfidbwj thead, #omnwfidbwj tbody, #omnwfidbwj tfoot, #omnwfidbwj tr, #omnwfidbwj td, #omnwfidbwj th {
+#sqbjwfjfxd thead, #sqbjwfjfxd tbody, #sqbjwfjfxd tfoot, #sqbjwfjfxd tr, #sqbjwfjfxd td, #sqbjwfjfxd th {
   border-style: none;
 }
 
-#omnwfidbwj p {
+#sqbjwfjfxd p {
   margin: 0;
   padding: 0;
 }
 
-#omnwfidbwj .gt_table {
+#sqbjwfjfxd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -513,12 +823,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_caption {
+#sqbjwfjfxd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#omnwfidbwj .gt_title {
+#sqbjwfjfxd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -530,7 +840,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#omnwfidbwj .gt_subtitle {
+#sqbjwfjfxd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -542,7 +852,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#omnwfidbwj .gt_heading {
+#sqbjwfjfxd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -554,13 +864,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_bottom_border {
+#sqbjwfjfxd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_col_headings {
+#sqbjwfjfxd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -575,7 +885,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_col_heading {
+#sqbjwfjfxd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -595,7 +905,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#omnwfidbwj .gt_column_spanner_outer {
+#sqbjwfjfxd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -607,15 +917,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#omnwfidbwj .gt_column_spanner_outer:first-child {
+#sqbjwfjfxd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#omnwfidbwj .gt_column_spanner_outer:last-child {
+#sqbjwfjfxd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#omnwfidbwj .gt_column_spanner {
+#sqbjwfjfxd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -627,11 +937,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#omnwfidbwj .gt_spanner_row {
+#sqbjwfjfxd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#omnwfidbwj .gt_group_heading {
+#sqbjwfjfxd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -657,7 +967,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#omnwfidbwj .gt_empty_group_heading {
+#sqbjwfjfxd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -672,15 +982,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#omnwfidbwj .gt_from_md > :first-child {
+#sqbjwfjfxd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#omnwfidbwj .gt_from_md > :last-child {
+#sqbjwfjfxd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#omnwfidbwj .gt_row {
+#sqbjwfjfxd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -699,7 +1009,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#omnwfidbwj .gt_stub {
+#sqbjwfjfxd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -712,7 +1022,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#omnwfidbwj .gt_stub_row_group {
+#sqbjwfjfxd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -726,15 +1036,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#omnwfidbwj .gt_row_group_first td {
+#sqbjwfjfxd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#omnwfidbwj .gt_row_group_first th {
+#sqbjwfjfxd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#omnwfidbwj .gt_summary_row {
+#sqbjwfjfxd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -744,16 +1054,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#omnwfidbwj .gt_first_summary_row {
+#sqbjwfjfxd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_first_summary_row.thick {
+#sqbjwfjfxd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#omnwfidbwj .gt_last_summary_row {
+#sqbjwfjfxd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -763,7 +1073,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_grand_summary_row {
+#sqbjwfjfxd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -773,7 +1083,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#omnwfidbwj .gt_first_grand_summary_row {
+#sqbjwfjfxd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -783,7 +1093,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_last_grand_summary_row_top {
+#sqbjwfjfxd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -793,11 +1103,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_striped {
+#sqbjwfjfxd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#omnwfidbwj .gt_table_body {
+#sqbjwfjfxd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -806,7 +1116,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_footnotes {
+#sqbjwfjfxd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -820,7 +1130,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_footnote {
+#sqbjwfjfxd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -829,7 +1139,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#omnwfidbwj .gt_sourcenotes {
+#sqbjwfjfxd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -843,7 +1153,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#omnwfidbwj .gt_sourcenote {
+#sqbjwfjfxd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -851,72 +1161,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#omnwfidbwj .gt_left {
+#sqbjwfjfxd .gt_left {
   text-align: left;
 }
 
-#omnwfidbwj .gt_center {
+#sqbjwfjfxd .gt_center {
   text-align: center;
 }
 
-#omnwfidbwj .gt_right {
+#sqbjwfjfxd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#omnwfidbwj .gt_font_normal {
+#sqbjwfjfxd .gt_font_normal {
   font-weight: normal;
 }
 
-#omnwfidbwj .gt_font_bold {
+#sqbjwfjfxd .gt_font_bold {
   font-weight: bold;
 }
 
-#omnwfidbwj .gt_font_italic {
+#sqbjwfjfxd .gt_font_italic {
   font-style: italic;
 }
 
-#omnwfidbwj .gt_super {
+#sqbjwfjfxd .gt_super {
   font-size: 65%;
 }
 
-#omnwfidbwj .gt_footnote_marks {
+#sqbjwfjfxd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#omnwfidbwj .gt_asterisk {
+#sqbjwfjfxd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#omnwfidbwj .gt_indent_1 {
+#sqbjwfjfxd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#omnwfidbwj .gt_indent_2 {
+#sqbjwfjfxd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#omnwfidbwj .gt_indent_3 {
+#sqbjwfjfxd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#omnwfidbwj .gt_indent_4 {
+#sqbjwfjfxd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#omnwfidbwj .gt_indent_5 {
+#sqbjwfjfxd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#omnwfidbwj .katex-display {
+#sqbjwfjfxd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#omnwfidbwj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#sqbjwfjfxd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -933,375 +1243,345 @@ div.csl-indent {
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="Feature">f_01_past_tense</td>
-<td class="gt_row gt_right" headers="Factor1">0.05</td>
-<td class="gt_row gt_right" headers="Factor2">−0.25</td>
-<td class="gt_row gt_right" headers="Factor3">0.12</td>
+<td class="gt_row gt_right" headers="Factor1">0.22</td>
+<td class="gt_row gt_right" headers="Factor2">0.13</td>
+<td class="gt_row gt_right" headers="Factor3">−0.64</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="Feature">f_02_perfect_aspect</td>
-<td class="gt_row gt_right" headers="Factor1">0.30</td>
-<td class="gt_row gt_right" headers="Factor2">−0.39</td>
-<td class="gt_row gt_right" headers="Factor3">−0.11</td>
+<td class="gt_row gt_right" headers="Factor1">−0.04</td>
+<td class="gt_row gt_right" headers="Factor2">0.27</td>
+<td class="gt_row gt_right" headers="Factor3">−0.26</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Feature">f_03_present_tense</td>
-<td class="gt_row gt_right" headers="Factor1">0.22</td>
-<td class="gt_row gt_right" headers="Factor2">0.62</td>
-<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+<td class="gt_row gt_right" headers="Factor1">0.08</td>
+<td class="gt_row gt_right" headers="Factor2">0.23</td>
+<td class="gt_row gt_right" headers="Factor3">0.91</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_04_place_adverbials</td>
-<td class="gt_row gt_right" headers="Factor1">0.07</td>
-<td class="gt_row gt_right" headers="Factor2">0.26</td>
-<td class="gt_row gt_right" headers="Factor3">−0.21</td>
-</tr>
-<tr class="odd">
 <td class="gt_row gt_left" headers="Feature">f_05_time_adverbials</td>
-<td class="gt_row gt_right" headers="Factor1">0.14</td>
-<td class="gt_row gt_right" headers="Factor2">−0.01</td>
-<td class="gt_row gt_right" headers="Factor3">−0.10</td>
+<td class="gt_row gt_right" headers="Factor1">−0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.02</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td class="gt_row gt_left" headers="Feature">f_06_first_person_pronouns</td>
-<td class="gt_row gt_right" headers="Factor1">0.07</td>
-<td class="gt_row gt_right" headers="Factor2">0.47</td>
-<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+<td class="gt_row gt_right" headers="Factor1">0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.11</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td class="gt_row gt_left" headers="Feature">f_07_second_person_pronouns</td>
-<td class="gt_row gt_right" headers="Factor1">−0.01</td>
-<td class="gt_row gt_right" headers="Factor2">0.01</td>
-<td class="gt_row gt_right" headers="Factor3">0.10</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_08_third_person_pronouns</td>
-<td class="gt_row gt_right" headers="Factor1">0.56</td>
-<td class="gt_row gt_right" headers="Factor2">0.40</td>
-<td class="gt_row gt_right" headers="Factor3">0.15</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_09_pronoun_it</td>
-<td class="gt_row gt_right" headers="Factor1">0.33</td>
-<td class="gt_row gt_right" headers="Factor2">0.52</td>
-<td class="gt_row gt_right" headers="Factor3">0.12</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_10_demonstrative_pronoun</td>
-<td class="gt_row gt_right" headers="Factor1">0.62</td>
-<td class="gt_row gt_right" headers="Factor2">0.14</td>
-<td class="gt_row gt_right" headers="Factor3">0.03</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_11_indefinite_pronouns</td>
-<td class="gt_row gt_right" headers="Factor1">0.35</td>
-<td class="gt_row gt_right" headers="Factor2">0.13</td>
-<td class="gt_row gt_right" headers="Factor3">−0.06</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_12_proverb_do</td>
-<td class="gt_row gt_right" headers="Factor1">0.03</td>
-<td class="gt_row gt_right" headers="Factor2">0.07</td>
-<td class="gt_row gt_right" headers="Factor3">0.04</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_13_wh_question</td>
-<td class="gt_row gt_right" headers="Factor1">0.10</td>
-<td class="gt_row gt_right" headers="Factor2">0.18</td>
-<td class="gt_row gt_right" headers="Factor3">−0.05</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_14_nominalizations</td>
-<td class="gt_row gt_right" headers="Factor1">−0.61</td>
-<td class="gt_row gt_right" headers="Factor2">0.15</td>
-<td class="gt_row gt_right" headers="Factor3">0.04</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_15_gerunds</td>
-<td class="gt_row gt_right" headers="Factor1">−0.39</td>
-<td class="gt_row gt_right" headers="Factor2">−0.11</td>
-<td class="gt_row gt_right" headers="Factor3">0.10</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_16_other_nouns</td>
-<td class="gt_row gt_right" headers="Factor1">−0.05</td>
-<td class="gt_row gt_right" headers="Factor2">−0.37</td>
+<td class="gt_row gt_right" headers="Factor1">0.04</td>
+<td class="gt_row gt_right" headers="Factor2">0.19</td>
 <td class="gt_row gt_right" headers="Factor3">−0.17</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_17_agentless_passives</td>
-<td class="gt_row gt_right" headers="Factor1">0.21</td>
-<td class="gt_row gt_right" headers="Factor2">−0.30</td>
-<td class="gt_row gt_right" headers="Factor3">0.00</td>
+<td class="gt_row gt_left" headers="Feature">f_08_third_person_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.19</td>
+<td class="gt_row gt_right" headers="Factor2">0.22</td>
+<td class="gt_row gt_right" headers="Factor3">0.27</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_18_by_passives</td>
-<td class="gt_row gt_right" headers="Factor1">0.03</td>
-<td class="gt_row gt_right" headers="Factor2">−0.23</td>
-<td class="gt_row gt_right" headers="Factor3">−0.14</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_19_be_main_verb</td>
-<td class="gt_row gt_right" headers="Factor1">0.60</td>
-<td class="gt_row gt_right" headers="Factor2">0.13</td>
-<td class="gt_row gt_right" headers="Factor3">−0.03</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_20_existential_there</td>
-<td class="gt_row gt_right" headers="Factor1">0.13</td>
-<td class="gt_row gt_right" headers="Factor2">0.12</td>
-<td class="gt_row gt_right" headers="Factor3">0.03</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_21_that_verb_comp</td>
-<td class="gt_row gt_right" headers="Factor1">0.32</td>
-<td class="gt_row gt_right" headers="Factor2">0.15</td>
+<td class="gt_row gt_left" headers="Feature">f_09_impersonal</td>
+<td class="gt_row gt_right" headers="Factor1">0.54</td>
+<td class="gt_row gt_right" headers="Factor2">−0.05</td>
 <td class="gt_row gt_right" headers="Factor3">−0.02</td>
 </tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_22_that_adj_comp</td>
-<td class="gt_row gt_right" headers="Factor1">0.05</td>
-<td class="gt_row gt_right" headers="Factor2">0.04</td>
-<td class="gt_row gt_right" headers="Factor3">0.04</td>
-</tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_23_wh_clause</td>
-<td class="gt_row gt_right" headers="Factor1">0.26</td>
-<td class="gt_row gt_right" headers="Factor2">0.60</td>
-<td class="gt_row gt_right" headers="Factor3">0.00</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_24_infinitives</td>
-<td class="gt_row gt_right" headers="Factor1">0.02</td>
-<td class="gt_row gt_right" headers="Factor2">0.06</td>
-<td class="gt_row gt_right" headers="Factor3">0.97</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_25_present_participle</td>
-<td class="gt_row gt_right" headers="Factor1">−0.17</td>
-<td class="gt_row gt_right" headers="Factor2">−0.05</td>
+<td class="gt_row gt_left" headers="Feature">f_10_demonstrative_pronoun</td>
+<td class="gt_row gt_right" headers="Factor1">0.19</td>
+<td class="gt_row gt_right" headers="Factor2">0.27</td>
 <td class="gt_row gt_right" headers="Factor3">0.11</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_27_past_participle_whiz</td>
-<td class="gt_row gt_right" headers="Factor1">−0.36</td>
-<td class="gt_row gt_right" headers="Factor2">0.05</td>
-<td class="gt_row gt_right" headers="Factor3">−0.06</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_28_present_participle_whiz</td>
-<td class="gt_row gt_right" headers="Factor1">−0.33</td>
-<td class="gt_row gt_right" headers="Factor2">−0.03</td>
-<td class="gt_row gt_right" headers="Factor3">0.02</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_29_that_subj</td>
-<td class="gt_row gt_right" headers="Factor1">−0.07</td>
-<td class="gt_row gt_right" headers="Factor2">0.41</td>
-<td class="gt_row gt_right" headers="Factor3">0.02</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_30_that_obj</td>
-<td class="gt_row gt_right" headers="Factor1">0.11</td>
-<td class="gt_row gt_right" headers="Factor2">0.36</td>
+<td class="gt_row gt_left" headers="Feature">f_11_indefinite_pronouns</td>
+<td class="gt_row gt_right" headers="Factor1">0.09</td>
+<td class="gt_row gt_right" headers="Factor2">0.27</td>
 <td class="gt_row gt_right" headers="Factor3">−0.03</td>
 </tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_32_wh_obj</td>
-<td class="gt_row gt_right" headers="Factor1">−0.02</td>
-<td class="gt_row gt_right" headers="Factor2">0.30</td>
-<td class="gt_row gt_right" headers="Factor3">0.03</td>
-</tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_33_pied_piping</td>
-<td class="gt_row gt_right" headers="Factor1">0.06</td>
-<td class="gt_row gt_right" headers="Factor2">0.32</td>
-<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+<td class="gt_row gt_left" headers="Feature">f_12_proverb_faire</td>
+<td class="gt_row gt_right" headers="Factor1">0.02</td>
+<td class="gt_row gt_right" headers="Factor2">0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.01</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_34_sentence_relatives</td>
-<td class="gt_row gt_right" headers="Factor1">0.28</td>
-<td class="gt_row gt_right" headers="Factor2">0.09</td>
-<td class="gt_row gt_right" headers="Factor3">−0.14</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_35_because</td>
-<td class="gt_row gt_right" headers="Factor1">0.35</td>
-<td class="gt_row gt_right" headers="Factor2">0.21</td>
-<td class="gt_row gt_right" headers="Factor3">−0.16</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_36_though</td>
-<td class="gt_row gt_right" headers="Factor1">0.16</td>
-<td class="gt_row gt_right" headers="Factor2">−0.16</td>
-<td class="gt_row gt_right" headers="Factor3">−0.04</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_37_if</td>
-<td class="gt_row gt_right" headers="Factor1">0.56</td>
+<td class="gt_row gt_left" headers="Feature">f_13_wh_question</td>
+<td class="gt_row gt_right" headers="Factor1">0.04</td>
 <td class="gt_row gt_right" headers="Factor2">0.01</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_14_nominalizations</td>
+<td class="gt_row gt_right" headers="Factor1">0.00</td>
+<td class="gt_row gt_right" headers="Factor2">−0.77</td>
+<td class="gt_row gt_right" headers="Factor3">0.09</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_15_nominal_infinitives</td>
+<td class="gt_row gt_right" headers="Factor1">0.13</td>
+<td class="gt_row gt_right" headers="Factor2">−0.03</td>
+<td class="gt_row gt_right" headers="Factor3">0.16</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_16_other_nouns</td>
+<td class="gt_row gt_right" headers="Factor1">−0.54</td>
+<td class="gt_row gt_right" headers="Factor2">0.41</td>
+<td class="gt_row gt_right" headers="Factor3">0.06</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_17_agentless_passives</td>
+<td class="gt_row gt_right" headers="Factor1">0.10</td>
+<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_18_agent_passives</td>
+<td class="gt_row gt_right" headers="Factor1">−0.16</td>
+<td class="gt_row gt_right" headers="Factor2">0.06</td>
 <td class="gt_row gt_right" headers="Factor3">−0.09</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_38_other_adv_sub</td>
-<td class="gt_row gt_right" headers="Factor1">−0.08</td>
-<td class="gt_row gt_right" headers="Factor2">0.05</td>
-<td class="gt_row gt_right" headers="Factor3">0.78</td>
+<td class="gt_row gt_left" headers="Feature">f_19_copula_main_verb</td>
+<td class="gt_row gt_right" headers="Factor1">0.37</td>
+<td class="gt_row gt_right" headers="Factor2">0.19</td>
+<td class="gt_row gt_right" headers="Factor3">0.32</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_39_prepositions</td>
-<td class="gt_row gt_right" headers="Factor1">−0.53</td>
-<td class="gt_row gt_right" headers="Factor2">−0.10</td>
-<td class="gt_row gt_right" headers="Factor3">−0.18</td>
+<td class="gt_row gt_left" headers="Feature">f_20_existential</td>
+<td class="gt_row gt_right" headers="Factor1">0.20</td>
+<td class="gt_row gt_right" headers="Factor2">0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.07</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_40_adj_attr</td>
-<td class="gt_row gt_right" headers="Factor1">−0.27</td>
-<td class="gt_row gt_right" headers="Factor2">−0.19</td>
-<td class="gt_row gt_right" headers="Factor3">0.15</td>
+<td class="gt_row gt_left" headers="Feature">f_21_que_verb_comp</td>
+<td class="gt_row gt_right" headers="Factor1">0.50</td>
+<td class="gt_row gt_right" headers="Factor2">−0.09</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_41_adj_pred</td>
-<td class="gt_row gt_right" headers="Factor1">0.33</td>
-<td class="gt_row gt_right" headers="Factor2">0.05</td>
-<td class="gt_row gt_right" headers="Factor3">0.10</td>
+<td class="gt_row gt_left" headers="Feature">f_22_que_adj_comp</td>
+<td class="gt_row gt_right" headers="Factor1">0.09</td>
+<td class="gt_row gt_right" headers="Factor2">0.21</td>
+<td class="gt_row gt_right" headers="Factor3">0.00</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_42_adverbs</td>
-<td class="gt_row gt_right" headers="Factor1">0.58</td>
-<td class="gt_row gt_right" headers="Factor2">−0.10</td>
-<td class="gt_row gt_right" headers="Factor3">0.09</td>
+<td class="gt_row gt_left" headers="Feature">f_23_wh_clause</td>
+<td class="gt_row gt_right" headers="Factor1">0.39</td>
+<td class="gt_row gt_right" headers="Factor2">0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.13</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_44_mean_word_length</td>
-<td class="gt_row gt_right" headers="Factor1">−0.62</td>
-<td class="gt_row gt_right" headers="Factor2">0.04</td>
-<td class="gt_row gt_right" headers="Factor3">0.11</td>
+<td class="gt_row gt_left" headers="Feature">f_24_infinitives</td>
+<td class="gt_row gt_right" headers="Factor1">0.65</td>
+<td class="gt_row gt_right" headers="Factor2">−0.18</td>
+<td class="gt_row gt_right" headers="Factor3">−0.06</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_46_downtoners</td>
-<td class="gt_row gt_right" headers="Factor1">0.18</td>
-<td class="gt_row gt_right" headers="Factor2">−0.17</td>
+<td class="gt_row gt_left" headers="Feature">f_25_present_participle</td>
+<td class="gt_row gt_right" headers="Factor1">0.15</td>
+<td class="gt_row gt_right" headers="Factor2">−0.26</td>
+<td class="gt_row gt_right" headers="Factor3">−0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_27_past_participle_reduced_relative</td>
+<td class="gt_row gt_right" headers="Factor1">−0.47</td>
+<td class="gt_row gt_right" headers="Factor2">0.13</td>
+<td class="gt_row gt_right" headers="Factor3">−0.07</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_28_present_participle_reduced_relative</td>
+<td class="gt_row gt_right" headers="Factor1">−0.14</td>
+<td class="gt_row gt_right" headers="Factor2">−0.27</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_30_que_obj</td>
+<td class="gt_row gt_right" headers="Factor1">0.03</td>
+<td class="gt_row gt_right" headers="Factor2">0.18</td>
+<td class="gt_row gt_right" headers="Factor3">0.08</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_32_lequel_obj</td>
+<td class="gt_row gt_right" headers="Factor1">−0.07</td>
+<td class="gt_row gt_right" headers="Factor2">0.07</td>
 <td class="gt_row gt_right" headers="Factor3">0.06</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_47_hedges</td>
-<td class="gt_row gt_right" headers="Factor1">0.20</td>
-<td class="gt_row gt_right" headers="Factor2">0.02</td>
+<td class="gt_row gt_left" headers="Feature">f_33_pied_piping</td>
+<td class="gt_row gt_right" headers="Factor1">0.18</td>
+<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_34_sentence_relatives</td>
+<td class="gt_row gt_right" headers="Factor1">0.07</td>
+<td class="gt_row gt_right" headers="Factor2">0.08</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_35_causal</td>
+<td class="gt_row gt_right" headers="Factor1">0.14</td>
+<td class="gt_row gt_right" headers="Factor2">−0.11</td>
+<td class="gt_row gt_right" headers="Factor3">0.21</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_37_conditional</td>
+<td class="gt_row gt_right" headers="Factor1">0.30</td>
+<td class="gt_row gt_right" headers="Factor2">0.15</td>
+<td class="gt_row gt_right" headers="Factor3">0.10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_38_other_adv_sub</td>
+<td class="gt_row gt_right" headers="Factor1">0.34</td>
+<td class="gt_row gt_right" headers="Factor2">0.22</td>
 <td class="gt_row gt_right" headers="Factor3">−0.05</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_48_amplifiers</td>
-<td class="gt_row gt_right" headers="Factor1">0.15</td>
-<td class="gt_row gt_right" headers="Factor2">−0.14</td>
-<td class="gt_row gt_right" headers="Factor3">0.02</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_49_emphatics</td>
-<td class="gt_row gt_right" headers="Factor1">0.25</td>
-<td class="gt_row gt_right" headers="Factor2">−0.26</td>
-<td class="gt_row gt_right" headers="Factor3">−0.11</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_50_discourse_particles</td>
-<td class="gt_row gt_right" headers="Factor1">0.48</td>
+<td class="gt_row gt_left" headers="Feature">f_39_prepositions</td>
+<td class="gt_row gt_right" headers="Factor1">−0.55</td>
 <td class="gt_row gt_right" headers="Factor2">−0.04</td>
-<td class="gt_row gt_right" headers="Factor3">0.02</td>
+<td class="gt_row gt_right" headers="Factor3">−0.30</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_51_demonstratives</td>
-<td class="gt_row gt_right" headers="Factor1">0.26</td>
-<td class="gt_row gt_right" headers="Factor2">0.25</td>
-<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+<td class="gt_row gt_left" headers="Feature">f_40_adj_attr</td>
+<td class="gt_row gt_right" headers="Factor1">0.05</td>
+<td class="gt_row gt_right" headers="Factor2">−0.61</td>
+<td class="gt_row gt_right" headers="Factor3">−0.17</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_52_modal_possibility</td>
-<td class="gt_row gt_right" headers="Factor1">0.17</td>
-<td class="gt_row gt_right" headers="Factor2">−0.03</td>
-<td class="gt_row gt_right" headers="Factor3">0.35</td>
+<td class="gt_row gt_left" headers="Feature">f_41_adj_pred</td>
+<td class="gt_row gt_right" headers="Factor1">0.58</td>
+<td class="gt_row gt_right" headers="Factor2">−0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.03</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_53_modal_necessity</td>
-<td class="gt_row gt_right" headers="Factor1">0.11</td>
-<td class="gt_row gt_right" headers="Factor2">−0.01</td>
-<td class="gt_row gt_right" headers="Factor3">0.39</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_54_modal_predictive</td>
-<td class="gt_row gt_right" headers="Factor1">0.14</td>
-<td class="gt_row gt_right" headers="Factor2">−0.02</td>
-<td class="gt_row gt_right" headers="Factor3">0.29</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_55_verb_public</td>
-<td class="gt_row gt_right" headers="Factor1">0.26</td>
-<td class="gt_row gt_right" headers="Factor2">0.01</td>
-<td class="gt_row gt_right" headers="Factor3">0.10</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_56_verb_private</td>
-<td class="gt_row gt_right" headers="Factor1">0.26</td>
-<td class="gt_row gt_right" headers="Factor2">0.15</td>
-<td class="gt_row gt_right" headers="Factor3">0.06</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_57_verb_suasive</td>
-<td class="gt_row gt_right" headers="Factor1">−0.13</td>
+<td class="gt_row gt_left" headers="Feature">f_42_adverbs</td>
+<td class="gt_row gt_right" headers="Factor1">0.63</td>
 <td class="gt_row gt_right" headers="Factor2">0.08</td>
-<td class="gt_row gt_right" headers="Factor3">0.23</td>
+<td class="gt_row gt_right" headers="Factor3">−0.15</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_58_verb_seem</td>
+<td class="gt_row gt_left" headers="Feature">f_44_mean_word_length</td>
+<td class="gt_row gt_right" headers="Factor1">0.23</td>
+<td class="gt_row gt_right" headers="Factor2">−1.02</td>
+<td class="gt_row gt_right" headers="Factor3">−0.07</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_46_downtoners</td>
 <td class="gt_row gt_right" headers="Factor1">0.15</td>
-<td class="gt_row gt_right" headers="Factor2">0.20</td>
-<td class="gt_row gt_right" headers="Factor3">0.06</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_60_that_deletion</td>
-<td class="gt_row gt_right" headers="Factor1">0.16</td>
-<td class="gt_row gt_right" headers="Factor2">0.07</td>
-<td class="gt_row gt_right" headers="Factor3">0.66</td>
+<td class="gt_row gt_right" headers="Factor2">0.11</td>
+<td class="gt_row gt_right" headers="Factor3">−0.19</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_61_stranded_preposition</td>
-<td class="gt_row gt_right" headers="Factor1">0.10</td>
-<td class="gt_row gt_right" headers="Factor2">0.20</td>
-<td class="gt_row gt_right" headers="Factor3">0.10</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_62_split_infinitive</td>
-<td class="gt_row gt_right" headers="Factor1">0.09</td>
-<td class="gt_row gt_right" headers="Factor2">−0.04</td>
-<td class="gt_row gt_right" headers="Factor3">0.20</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_63_split_auxiliary</td>
-<td class="gt_row gt_right" headers="Factor1">0.35</td>
-<td class="gt_row gt_right" headers="Factor2">−0.48</td>
+<td class="gt_row gt_left" headers="Feature">f_47_hedges</td>
+<td class="gt_row gt_right" headers="Factor1">0.12</td>
+<td class="gt_row gt_right" headers="Factor2">0.14</td>
 <td class="gt_row gt_right" headers="Factor3">0.00</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_64_phrasal_coordination</td>
-<td class="gt_row gt_right" headers="Factor1">−0.25</td>
-<td class="gt_row gt_right" headers="Factor2">0.01</td>
-<td class="gt_row gt_right" headers="Factor3">−0.02</td>
+<td class="gt_row gt_left" headers="Feature">f_48_amplifiers</td>
+<td class="gt_row gt_right" headers="Factor1">0.18</td>
+<td class="gt_row gt_right" headers="Factor2">−0.03</td>
+<td class="gt_row gt_right" headers="Factor3">−0.04</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_65_clausal_coordination</td>
-<td class="gt_row gt_right" headers="Factor1">0.28</td>
+<td class="gt_row gt_left" headers="Feature">f_49_emphatics</td>
+<td class="gt_row gt_right" headers="Factor1">0.13</td>
 <td class="gt_row gt_right" headers="Factor2">0.13</td>
-<td class="gt_row gt_right" headers="Factor3">−0.18</td>
+<td class="gt_row gt_right" headers="Factor3">−0.26</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Feature">f_66_neg_synthetic</td>
-<td class="gt_row gt_right" headers="Factor1">0.34</td>
-<td class="gt_row gt_right" headers="Factor2">−0.01</td>
+<td class="gt_row gt_left" headers="Feature">f_50_discourse_particles</td>
+<td class="gt_row gt_right" headers="Factor1">0.19</td>
+<td class="gt_row gt_right" headers="Factor2">0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.05</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_52_modal_possibility</td>
+<td class="gt_row gt_right" headers="Factor1">0.36</td>
+<td class="gt_row gt_right" headers="Factor2">−0.13</td>
+<td class="gt_row gt_right" headers="Factor3">0.14</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_53_modal_necessity</td>
+<td class="gt_row gt_right" headers="Factor1">0.65</td>
+<td class="gt_row gt_right" headers="Factor2">−0.23</td>
+<td class="gt_row gt_right" headers="Factor3">−0.20</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_54_modal_predictive</td>
+<td class="gt_row gt_right" headers="Factor1">0.38</td>
+<td class="gt_row gt_right" headers="Factor2">−0.09</td>
+<td class="gt_row gt_right" headers="Factor3">−0.10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_55_verb_public</td>
+<td class="gt_row gt_right" headers="Factor1">0.39</td>
+<td class="gt_row gt_right" headers="Factor2">0.00</td>
+<td class="gt_row gt_right" headers="Factor3">−0.09</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_56_verb_private</td>
+<td class="gt_row gt_right" headers="Factor1">0.21</td>
+<td class="gt_row gt_right" headers="Factor2">0.07</td>
+<td class="gt_row gt_right" headers="Factor3">0.07</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_58_verb_seem</td>
+<td class="gt_row gt_right" headers="Factor1">0.13</td>
+<td class="gt_row gt_right" headers="Factor2">0.06</td>
+<td class="gt_row gt_right" headers="Factor3">0.18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_59_reduced_forms</td>
+<td class="gt_row gt_right" headers="Factor1">−0.08</td>
+<td class="gt_row gt_right" headers="Factor2">0.04</td>
+<td class="gt_row gt_right" headers="Factor3">−0.01</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_60_reduced_complement</td>
+<td class="gt_row gt_right" headers="Factor1">0.18</td>
+<td class="gt_row gt_right" headers="Factor2">0.16</td>
+<td class="gt_row gt_right" headers="Factor3">−0.07</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_61_stranded_resumptive</td>
+<td class="gt_row gt_right" headers="Factor1">0.13</td>
+<td class="gt_row gt_right" headers="Factor2">−0.10</td>
+<td class="gt_row gt_right" headers="Factor3">0.20</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_63_split_auxiliary</td>
+<td class="gt_row gt_right" headers="Factor1">0.05</td>
+<td class="gt_row gt_right" headers="Factor2">0.19</td>
+<td class="gt_row gt_right" headers="Factor3">−0.09</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Feature">f_64_phrasal_coordination</td>
+<td class="gt_row gt_right" headers="Factor1">−0.14</td>
+<td class="gt_row gt_right" headers="Factor2">−0.19</td>
+<td class="gt_row gt_right" headers="Factor3">−0.03</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_65_clausal_coordination</td>
+<td class="gt_row gt_right" headers="Factor1">0.06</td>
+<td class="gt_row gt_right" headers="Factor2">0.32</td>
 <td class="gt_row gt_right" headers="Factor3">0.03</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Feature">f_67_neg_analytic</td>
-<td class="gt_row gt_right" headers="Factor1">0.42</td>
-<td class="gt_row gt_right" headers="Factor2">−0.12</td>
+<td class="gt_row gt_left" headers="Feature">f_66_neg_synthetic</td>
+<td class="gt_row gt_right" headers="Factor1">−0.11</td>
+<td class="gt_row gt_right" headers="Factor2">0.44</td>
 <td class="gt_row gt_right" headers="Factor3">0.13</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Feature">f_67_neg_analytic</td>
+<td class="gt_row gt_right" headers="Factor1">0.52</td>
+<td class="gt_row gt_right" headers="Factor2">0.01</td>
+<td class="gt_row gt_right" headers="Factor3">−0.10</td>
 </tr>
 </tbody>
 </table>
@@ -1357,10 +1637,10 @@ div.csl-indent {
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(f_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 6
-  term         df sumsq meansq statistic  p.value
-  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 group         9 2595.  288.       7.99  1.35e-9
-2 Residuals   149 5378.   36.1     NA    NA      </code></pre>
+  term         df sumsq meansq statistic       p.value
+  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+1 group         9 2789.  310.       6.52  0.0000000840
+2 Residuals   149 7087.   47.6     NA    NA           </code></pre>
 </div>
 </div>
 <p>The ANOVA confirms that disciplines differ significantly in their Factor 1 scores, indicating distinct rhetorical styles.</p>
@@ -1372,23 +1652,23 @@ div.csl-indent {
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">add_glance_source_note</span>() <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">as_gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="qpzkpmyong" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qpzkpmyong table {
+<div id="drcfzziuid" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#drcfzziuid table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qpzkpmyong thead, #qpzkpmyong tbody, #qpzkpmyong tfoot, #qpzkpmyong tr, #qpzkpmyong td, #qpzkpmyong th {
+#drcfzziuid thead, #drcfzziuid tbody, #drcfzziuid tfoot, #drcfzziuid tr, #drcfzziuid td, #drcfzziuid th {
   border-style: none;
 }
 
-#qpzkpmyong p {
+#drcfzziuid p {
   margin: 0;
   padding: 0;
 }
 
-#qpzkpmyong .gt_table {
+#drcfzziuid .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1414,12 +1694,12 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_caption {
+#drcfzziuid .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qpzkpmyong .gt_title {
+#drcfzziuid .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1431,7 +1711,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-#qpzkpmyong .gt_subtitle {
+#drcfzziuid .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1443,7 +1723,7 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-#qpzkpmyong .gt_heading {
+#drcfzziuid .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1455,13 +1735,13 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_bottom_border {
+#drcfzziuid .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_col_headings {
+#drcfzziuid .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1476,7 +1756,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_col_heading {
+#drcfzziuid .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1496,7 +1776,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#qpzkpmyong .gt_column_spanner_outer {
+#drcfzziuid .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1508,15 +1788,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-#qpzkpmyong .gt_column_spanner_outer:first-child {
+#drcfzziuid .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qpzkpmyong .gt_column_spanner_outer:last-child {
+#drcfzziuid .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qpzkpmyong .gt_column_spanner {
+#drcfzziuid .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1528,11 +1808,11 @@ div.csl-indent {
   width: 100%;
 }
 
-#qpzkpmyong .gt_spanner_row {
+#drcfzziuid .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qpzkpmyong .gt_group_heading {
+#drcfzziuid .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1558,7 +1838,7 @@ div.csl-indent {
   text-align: left;
 }
 
-#qpzkpmyong .gt_empty_group_heading {
+#drcfzziuid .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1573,15 +1853,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-#qpzkpmyong .gt_from_md > :first-child {
+#drcfzziuid .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qpzkpmyong .gt_from_md > :last-child {
+#drcfzziuid .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qpzkpmyong .gt_row {
+#drcfzziuid .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1600,7 +1880,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-#qpzkpmyong .gt_stub {
+#drcfzziuid .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1613,7 +1893,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#qpzkpmyong .gt_stub_row_group {
+#drcfzziuid .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1627,15 +1907,15 @@ div.csl-indent {
   vertical-align: top;
 }
 
-#qpzkpmyong .gt_row_group_first td {
+#drcfzziuid .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qpzkpmyong .gt_row_group_first th {
+#drcfzziuid .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qpzkpmyong .gt_summary_row {
+#drcfzziuid .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1645,16 +1925,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#qpzkpmyong .gt_first_summary_row {
+#drcfzziuid .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_first_summary_row.thick {
+#drcfzziuid .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qpzkpmyong .gt_last_summary_row {
+#drcfzziuid .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1664,7 +1944,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_grand_summary_row {
+#drcfzziuid .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1674,7 +1954,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#qpzkpmyong .gt_first_grand_summary_row {
+#drcfzziuid .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1684,7 +1964,7 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_last_grand_summary_row_top {
+#drcfzziuid .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1694,11 +1974,11 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_striped {
+#drcfzziuid .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qpzkpmyong .gt_table_body {
+#drcfzziuid .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1707,7 +1987,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_footnotes {
+#drcfzziuid .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1721,7 +2001,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_footnote {
+#drcfzziuid .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1730,7 +2010,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#qpzkpmyong .gt_sourcenotes {
+#drcfzziuid .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1744,7 +2024,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-#qpzkpmyong .gt_sourcenote {
+#drcfzziuid .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1752,72 +2032,72 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-#qpzkpmyong .gt_left {
+#drcfzziuid .gt_left {
   text-align: left;
 }
 
-#qpzkpmyong .gt_center {
+#drcfzziuid .gt_center {
   text-align: center;
 }
 
-#qpzkpmyong .gt_right {
+#drcfzziuid .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qpzkpmyong .gt_font_normal {
+#drcfzziuid .gt_font_normal {
   font-weight: normal;
 }
 
-#qpzkpmyong .gt_font_bold {
+#drcfzziuid .gt_font_bold {
   font-weight: bold;
 }
 
-#qpzkpmyong .gt_font_italic {
+#drcfzziuid .gt_font_italic {
   font-style: italic;
 }
 
-#qpzkpmyong .gt_super {
+#drcfzziuid .gt_super {
   font-size: 65%;
 }
 
-#qpzkpmyong .gt_footnote_marks {
+#drcfzziuid .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qpzkpmyong .gt_asterisk {
+#drcfzziuid .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qpzkpmyong .gt_indent_1 {
+#drcfzziuid .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qpzkpmyong .gt_indent_2 {
+#drcfzziuid .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qpzkpmyong .gt_indent_3 {
+#drcfzziuid .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qpzkpmyong .gt_indent_4 {
+#drcfzziuid .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qpzkpmyong .gt_indent_5 {
+#drcfzziuid .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qpzkpmyong .katex-display {
+#drcfzziuid .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qpzkpmyong div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#drcfzziuid div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1856,64 +2136,64 @@ div.csl-indent {
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;History</td>
-<td class="gt_row gt_center" headers="estimate">2.5</td>
-<td class="gt_row gt_center" headers="conf.low">-1.9, 6.9</td>
-<td class="gt_row gt_center" headers="p.value">0.3</td>
+<td class="gt_row gt_center" headers="estimate">-1.2</td>
+<td class="gt_row gt_center" headers="conf.low">-6.3, 3.9</td>
+<td class="gt_row gt_center" headers="p.value">0.7</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Information_and_communication</td>
-<td class="gt_row gt_center" headers="estimate">-0.56</td>
-<td class="gt_row gt_center" headers="conf.low">-4.8, 3.7</td>
-<td class="gt_row gt_center" headers="p.value">0.8</td>
+<td class="gt_row gt_center" headers="estimate">1.9</td>
+<td class="gt_row gt_center" headers="conf.low">-3.0, 6.8</td>
+<td class="gt_row gt_center" headers="p.value">0.4</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Law</td>
-<td class="gt_row gt_center" headers="estimate">2.8</td>
-<td class="gt_row gt_center" headers="conf.low">-1.2, 6.8</td>
-<td class="gt_row gt_center" headers="p.value">0.2</td>
+<td class="gt_row gt_center" headers="estimate">0.97</td>
+<td class="gt_row gt_center" headers="conf.low">-3.7, 5.6</td>
+<td class="gt_row gt_center" headers="p.value">0.7</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Linguistics-language_learning</td>
-<td class="gt_row gt_center" headers="estimate">0.30</td>
-<td class="gt_row gt_center" headers="conf.low">-4.0, 4.6</td>
-<td class="gt_row gt_center" headers="p.value">0.9</td>
+<td class="gt_row gt_center" headers="estimate">2.0</td>
+<td class="gt_row gt_center" headers="conf.low">-2.9, 6.8</td>
+<td class="gt_row gt_center" headers="p.value">0.4</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Literature</td>
-<td class="gt_row gt_center" headers="estimate">6.2</td>
-<td class="gt_row gt_center" headers="conf.low">2.2, 10</td>
-<td class="gt_row gt_center" headers="p.value">0.003</td>
+<td class="gt_row gt_center" headers="estimate">3.3</td>
+<td class="gt_row gt_center" headers="conf.low">-1.3, 7.9</td>
+<td class="gt_row gt_center" headers="p.value">0.2</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Media-culture</td>
-<td class="gt_row gt_center" headers="estimate">8.0</td>
-<td class="gt_row gt_center" headers="conf.low">3.9, 12</td>
-<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+<td class="gt_row gt_center" headers="estimate">3.5</td>
+<td class="gt_row gt_center" headers="conf.low">-1.2, 8.2</td>
+<td class="gt_row gt_center" headers="p.value">0.14</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Philosophy</td>
-<td class="gt_row gt_center" headers="estimate">14</td>
-<td class="gt_row gt_center" headers="conf.low">9.1, 18</td>
+<td class="gt_row gt_center" headers="estimate">15</td>
+<td class="gt_row gt_center" headers="conf.low">10, 20</td>
 <td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Social_anthropology</td>
-<td class="gt_row gt_center" headers="estimate">1.5</td>
-<td class="gt_row gt_center" headers="conf.low">-2.9, 6.0</td>
-<td class="gt_row gt_center" headers="p.value">0.5</td>
+<td class="gt_row gt_center" headers="estimate">0.41</td>
+<td class="gt_row gt_center" headers="conf.low">-4.7, 5.5</td>
+<td class="gt_row gt_center" headers="p.value">0.9</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Social_sciences</td>
-<td class="gt_row gt_center" headers="estimate">0.94</td>
-<td class="gt_row gt_center" headers="conf.low">-3.2, 5.1</td>
-<td class="gt_row gt_center" headers="p.value">0.7</td>
+<td class="gt_row gt_center" headers="estimate">-1.3</td>
+<td class="gt_row gt_center" headers="conf.low">-6.0, 3.5</td>
+<td class="gt_row gt_center" headers="p.value">0.6</td>
 </tr>
 </tbody><tfoot>
 <tr class="gt_sourcenotes odd">
 <td colspan="4" class="gt_sourcenote">Abbreviation: CI = Confidence Interval</td>
 </tr>
 <tr class="gt_sourcenotes even">
-<td colspan="4" class="gt_sourcenote">R² = 0.325; Adjusted R² = 0.285; Sigma = 6.01; Statistic = 7.99; p-value = &lt;0.001; df = 9; Log-likelihood = -506; AIC = 1,033; BIC = 1,067; Deviance = 5,378; Residual df = 149; No.&nbsp;Obs. = 159</td>
+<td colspan="4" class="gt_sourcenote">R² = 0.282; Adjusted R² = 0.239; Sigma = 6.90; Statistic = 6.52; p-value = &lt;0.001; df = 9; Log-likelihood = -527; AIC = 1,077; BIC = 1,111; Deviance = 7,087; Residual df = 149; No.&nbsp;Obs. = 159</td>
 </tr>
 </tfoot>
 
@@ -2034,7 +2314,8 @@ Hardy, Jack A, and Ute Römer. 2013. <span>“Revealing Disciplinary Variation i
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -2043,8 +2324,69 @@ Hardy, Jack A, and Ute Römer. 2013. <span>“Revealing Disciplinary Variation i
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -2058,6 +2400,7 @@ Hardy, Jack A, and Ute Römer. 2013. <span>“Revealing Disciplinary Variation i
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -2220,44 +2563,54 @@ Hardy, Jack A, and Ute Römer. 2013. <span>“Revealing Disciplinary Variation i
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -2355,6 +2708,9 @@ Hardy, Jack A, and Ute Römer. 2013. <span>“Revealing Disciplinary Variation i
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 
