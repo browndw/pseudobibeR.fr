@@ -110,9 +110,15 @@ test_that("biber handles document with only punctuation", {
   )
   class(punct_only) <- c("spacyr_parsed", "data.frame")
   
-  result <- biber(punct_only, normalize = FALSE)
+  # A document without words has undefined lexical diversity (f_43 = NA),
+  # reported with a warning that names the document.
+  expect_warning(
+    result <- biber(punct_only, normalize = FALSE),
+    "undefined lexical diversity: doc1"
+  )
   expect_s3_class(result, "data.frame")
   expect_equal(nrow(result), 1)
+  expect_true(is.na(result$f_43_type_token))
 })
 
 test_that("biber handles multiple documents with varying lengths", {

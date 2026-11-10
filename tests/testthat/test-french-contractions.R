@@ -52,38 +52,26 @@ test_that("f_59_contractions detects true contractions like t'es and p'tit", {
 })
 
 test_that("f_59_contractions does NOT count grammatical elisions", {
-  # Using UDPipe to parse real text with elisions
-  model_path <- "tests/models/french-gsd-ud-2.5-191206.udpipe"
-  skip_if_not(file.exists(model_path), "UDPipe model not available")
-  
+  model_path <- get_udpipe_model_path()
+  skip_if(is.null(model_path), "UDPipe model not available")
   model <- udpipe::udpipe_load_model(model_path)
-  # Text with elisions but NO contractions
-  parsed <- udpipe::udpipe_annotate(model, "C'est l'histoire d'un homme qu'il aime aujourd'hui") %>%
-    as.data.frame()
-  
-  # Convert to spacyr-like format for biber()
-  tokens <- parsed %>%
-    dplyr::mutate(
-      doc_id = "doc1",
-      token_id_int = as.integer(token_id),
-      pos = upos
-    ) %>%
-    dplyr::select(doc_id, sentence_id, token_id, token_id_int, token, lemma, pos, upos, head_token_id, dep_rel)
-  
-  class(tokens) <- c("spacyr_parsed", "data.frame")
-  
-  features <- biber(tokens, measure = "none", normalize = FALSE)
-  
-  # Should be 0 contractions (all are elisions with POS=PRON/DET/ADP/ADV)
-  expect_equal(features$f_59_contractions[features$doc_id == "doc1"], 0)
+  # Obligatory elisions have no full alternative, so they are not reductions (D-45).
+  parsed <- udpipe::udpipe_annotate(
+    model, "C'est l'histoire d'un homme qu'il aime aujourd'hui", doc_id = "doc1"
+  )
+  features <- biber(parsed, measure = "none", normalize = FALSE)
+  expect_equal(features$f_59_contractions, 0)
 })
 
-test_that("f_59_contractions distinguishes t' as elision vs t'es as contraction", {
-  # Note: UDPipe doesn't handle informal "t'es" well (parses as T + ' + es with POS=X/PUNCT/X)
-  # This test uses manually constructed tokens to test the logic for when parsers DO recognize it
-  # In practice, p'tit is more reliably recognized by parsers
-  
-  skip("UDPipe doesn't recognize informal t'es - test with p'tit instead")
+test_that("f_59_contractions distinguishes object t' from reduced subject t'es", {
+  model_path <- get_udpipe_model_path()
+  skip_if(is.null(model_path), "UDPipe model not available")
+  model <- udpipe::udpipe_load_model(model_path)
+  parsed <- udpipe::udpipe_annotate(
+    model, c("T'es s\u00fbr de toi ?", "Je t'aime."), doc_id = c("reduced", "object")
+  )
+  features <- biber(parsed, measure = "none", normalize = FALSE)
+  expect_equal(features$f_59_contractions, c(1, 0))
 })
 
 test_that("f_59_contractions handles other informal contractions", {
@@ -129,28 +117,13 @@ test_that("f_59_contractions handles other informal contractions", {
 })
 
 test_that("f_59_contractions comprehensive elision check with real parsing", {
-  # Test that common elisions are NOT counted when parsed by UDPipe
-  model_path <- "tests/models/french-gsd-ud-2.5-191206.udpipe"
-  skip_if_not(file.exists(model_path), "UDPipe model not available")
-  
+  model_path <- get_udpipe_model_path()
+  skip_if(is.null(model_path), "UDPipe model not available")
   model <- udpipe::udpipe_load_model(model_path)
-  # Sentence with many common elisions
-  parsed <- udpipe::udpipe_annotate(model, "J'aime l'ami d'abord qu'il s'appelle aujourd'hui") %>%
-    as.data.frame()
-  
-  tokens <- parsed %>%
-    dplyr::mutate(
-      doc_id = "doc1",
-      token_id_int = as.integer(token_id),
-      pos = upos
-    ) %>%
-    dplyr::select(doc_id, sentence_id, token_id, token_id_int, token, lemma, pos, upos, head_token_id, dep_rel)
-  
-  class(tokens) <- c("spacyr_parsed", "data.frame")
-  
-  features <- biber(tokens, measure = "none", normalize = FALSE)
-  
-  # Should be 0 - all are grammatical elisions (J', l', d', qu', s', aujourd'hui)
-  # with POS=PRON/DET/ADP
-  expect_equal(features$f_59_contractions[features$doc_id == "doc1"], 0)
+  # J', l', d', qu', s' and aujourd'hui are grammatical elisions.
+  parsed <- udpipe::udpipe_annotate(
+    model, "J'aime l'ami d'abord qu'il s'appelle aujourd'hui", doc_id = "doc1"
+  )
+  features <- biber(parsed, measure = "none", normalize = FALSE)
+  expect_equal(features$f_59_contractions, 0)
 })
