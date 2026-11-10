@@ -1,7 +1,10 @@
 # pseudobibeR.fr: Biber's Linguistic Features for French
 
 [![R-CMD-check](https://github.com/browndw/pseudobibeR.fr/workflows/R-CMD-check/badge.svg)](https://github.com/browndw/pseudobibeR.fr/actions)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Tests](https://github.com/browndw/pseudobibeR.fr/workflows/Tests/badge.svg)](https://github.com/browndw/pseudobibeR.fr/actions)
+[![CRAN status](https://www.r-pkg.org/badges/version/pseudobibeR.fr)](https://CRAN.R-project.org/package=pseudobibeR.fr)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/pseudobibeR.fr)](https://cran.r-project.org/package=pseudobibeR.fr)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 The **pseudobibeR.fr** package counts the 67 lexicogrammatical and functional
